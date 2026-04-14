@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://ardocDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="ardocDc"
+                  class="com.company.pmsmain.entity.Ardoc">
+            <fetchPlan extends="_base"/>
+            <loader id="ardocDl"/>
+        </instance>
+    </data>
+
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+
+    <actions>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+
+    <layout>
+        <vbox width="100%" spacing="true">
+
+            <formLayout id="form" dataContainer="ardocDc">
+                <responsiveSteps>
+                    <responsiveStep minWidth="0" columns="1"/>
+                    <responsiveStep minWidth="40em" columns="2"/>
+                    <responsiveStep minWidth="60em" columns="3"/>
+                </responsiveSteps>
+
+                <textField id="trxncodeField"
+                           property="trxncode"
+                           label="Trxn Code"/>
+
+                <textField id="descriptionField"
+                           property="description"
+                           label="Description"
+                           colspan="2"/>
+
+                <select id="ttypeField"
+                        property="ttype"
+                        label="Trxn Type"/>
+
+                <select id="ptypeField"
+                        property="ptype"
+                        label="Payment/Billing Type"/>
+
+                <select id="billtoField"
+                        property="billto"
+                        label="Bill To"/>
+
+                <select id="depositField"
+                        property="deposit"
+                        label="Deposit"/>
+
+                <select id="utilityField"
+                        property="utility"
+                        label="Utility"/>
+
+                <select id="sinkingfundField"
+                        property="sinkingfund"
+                        label="Sinking Fund"/>
+
+                <select id="longtermField"
+                        property="longterm"
+                        label="Long Term"/>
+
+                <select id="chargeinterestField"
+                        property="chargeinterest"
+                        label="Charge Interest"/>
+
+                <hbox label="Refund Code" spacing="true" alignItems="CENTER">
+                    <textField id="refundcodeField"
+                               property="refundcode"
+                               dataContainer="ardocDc"
+                               label=""/>
+                    <button id="lookupRefundCodeBtn" text="..."/>
+                </hbox>
+
+                <textField id="termField"
+                           label="Term (days)"/>
+
+                <bigDecimalField id="intrateField"
+                                 property="intrate"
+                                 label="Int Rate (%)"/>
+
+                <hbox label="AP Billing A/C No." spacing="true" alignItems="CENTER">
+                    <textField id="apaccnoField"
+                               property="apaccno"
+                               dataContainer="ardocDc"
+                               label=""/>
+                    <button id="lookupApAccNoBtn" text="..."/>
+                </hbox>
+
+                <hbox label="Classification" spacing="true" alignItems="CENTER">
+                    <textField id="classificationField"
+                               property="classification"
+                               dataContainer="ardocDc"
+                               label=""/>
+                    <button id="lookupClassificationBtn" text="..."/>
+                </hbox>
+
+                <textField id="readingfromField"
+                           property="readingfrom"
+                           label="Reading From"/>
+
+            </formLayout>
+
+            <hbox id="detailActions" spacing="true">
+                <button id="saveAndCloseButton" text="Save"/>
+                <button id="closeButton" action="closeAction"/>
+            </hbox>
+
+        </vbox>
+    </layout>
+</view>

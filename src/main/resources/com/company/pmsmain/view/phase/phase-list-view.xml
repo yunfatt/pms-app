@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://phaseListView.title"
+      focusComponent="phasesDataGrid">
+    <data>
+        <collection id="phasesDc"
+                    class="com.company.pmsmain.entity.Phase">
+            <fetchPlan extends="_base"/>
+            <loader id="phasesDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Phase e order by e.phaseno]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="phasesDl">
+            <properties include="phaseno phasename area district town prjno"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <startSlot>
+                <button id="createButton" action="phasesDataGrid.createAction"/>
+                <button id="editButton" action="phasesDataGrid.editAction"/>
+                <button id="removeButton" action="phasesDataGrid.removeAction"/>
+                <!-- Print button — opens format selection dialog -->
+                <button id="printButton"
+                        text="msg://phaseListView.printButton"
+                        icon="vaadin:print"
+                        themeNames="tertiary"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="phasesDl"/>
+            </endSlot>
+        </hbox>
+        <dataGrid id="phasesDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="phasesDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="phaseno"/>
+                <column property="phasename"/>
+                <column property="prjno"/>
+                <column property="area"/>
+                <column property="district"/>
+                <column property="town"/>
+                <column property="datestart"/>
+                <column property="dateend"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

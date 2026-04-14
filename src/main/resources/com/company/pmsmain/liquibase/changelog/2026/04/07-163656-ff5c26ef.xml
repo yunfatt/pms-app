@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="pms-main">
+        <createTable tableName="APP_COMPANY">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_APP_COMPANY"/>
+            </column>
+            <column name="COMPANY_CODE" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMPANY_NAME" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SUBDOMAIN" type="VARCHAR(100)"/>
+            <column name="PATH_KEY" type="VARCHAR(100)"/>
+            <column name="DB_TYPE" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DB_HOST" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DB_PORT" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DB_NAME" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DB_USERNAME" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DB_PASSWORD_ENC" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACTIVE" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

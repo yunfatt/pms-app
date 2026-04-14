@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://genInvoiceView.title"
+      focusComponent="propertyNo1Field">
+    <layout spacing="true" padding="true">
+        <tabSheet id="tabSheet" width="100%">
+
+            <!-- TAB 1: Parameters -->
+            <tab id="parametersTab" label="msg://genInvoiceView.tab.parameters">
+                <vbox spacing="true" padding="true" width="100%">
+
+                    <formLayout id="paramsForm">
+                        <responsiveSteps>
+                            <responsiveStep minWidth="0" columns="1"/>
+                            <responsiveStep minWidth="40em" columns="2"/>
+                        </responsiveSteps>
+
+                        <textField id="lastInvNoField"
+                                   label="msg://genInvoiceView.lastInvNo"
+                                   readOnly="true"
+                                   colspan="2"/>
+
+                        <hbox id="propertyNo1Row" alignItems="BASELINE" colspan="2">
+                            <textField id="propertyNo1Field"
+                                       label="msg://genInvoiceView.propertyNo1"
+                                       width="20em"/>
+                            <button id="propertyNo1LookupBtn" icon="vaadin:search"/>
+                        </hbox>
+
+                        <hbox id="propertyNo2Row" alignItems="BASELINE" colspan="2">
+                            <textField id="propertyNo2Field"
+                                       label="msg://genInvoiceView.propertyNo2"
+                                       width="20em"/>
+                            <button id="propertyNo2LookupBtn" icon="vaadin:search"/>
+                        </hbox>
+
+                        <datePicker id="invoiceDateField"
+                                    label="msg://genInvoiceView.invoiceDate"/>
+
+                        <select id="chargesMonthField"
+                                label="msg://genInvoiceView.chargesMonth">
+                            <items>
+                                <item id="1"  label="January"/>
+                                <item id="2"  label="February"/>
+                                <item id="3"  label="March"/>
+                                <item id="4"  label="April"/>
+                                <item id="5"  label="May"/>
+                                <item id="6"  label="June"/>
+                                <item id="7"  label="July"/>
+                                <item id="8"  label="August"/>
+                                <item id="9"  label="September"/>
+                                <item id="10" label="October"/>
+                                <item id="11" label="November"/>
+                                <item id="12" label="December"/>
+                            </items>
+                        </select>
+
+                        <datePicker id="generatePeriodFromField"
+                                    label="msg://genInvoiceView.generatePeriodFrom"/>
+                        <datePicker id="generatePeriodToField"
+                                    label="msg://genInvoiceView.generatePeriodTo"/>
+
+                        <select id="taxInvTypeField"
+                                label="msg://genInvoiceView.taxInvType">
+                            <items>
+                                <item id="2" label="Inclusive"/>
+                                <item id="3" label="Exclusive"/>
+                            </items>
+                        </select>
+
+                        <checkbox id="checkDuplicateField"
+                                  label="msg://genInvoiceView.checkDuplicate"
+                                  colspan="2"/>
+                    </formLayout>
+
+                    <hbox id="tab1Actions" spacing="true">
+                        <button id="nextButton"
+                                text="msg://genInvoiceView.next"
+                                icon="vaadin:arrow-right"
+                                themeNames="primary"/>
+                        <button id="cancelButton"
+                                text="msg://genInvoiceView.cancel"
+                                icon="vaadin:close"
+                                themeNames="tertiary"/>
+                    </hbox>
+
+                </vbox>
+            </tab>
+
+            <!-- TAB 2: Charge Lines -->
+            <tab id="chargeLinesTab"
+                 label="msg://genInvoiceView.tab.chargeLines"
+                 enabled="false">
+                <vbox spacing="true" padding="true" width="100%">
+
+                    <details id="lineEditor"
+                             summaryText="msg://genInvoiceView.lineEditor"
+                             opened="true"
+                             width="100%">
+                        <vbox spacing="true" width="100%">
+                            <hbox alignItems="BASELINE" spacing="true">
+                                <textField id="chargeNoField"
+                                           label="msg://genInvoiceView.chargeNo"
+                                           width="8em"/>
+                                <button id="chargeNoLookupBtn" icon="vaadin:search"/>
+                                <textField id="descriptionField"
+                                           label="msg://genInvoiceView.description"
+                                           width="24em"/>
+                            </hbox>
+                            <hbox alignItems="BASELINE" spacing="true">
+                                <datePicker id="lineDateFromField"
+                                            label="msg://genInvoiceView.from"
+                                            width="10em"/>
+                                <datePicker id="lineDateToField"
+                                            label="msg://genInvoiceView.to"
+                                            width="10em"/>
+                                <datePicker id="lineDueDateField"
+                                            label="msg://genInvoiceView.dueDate"
+                                            width="10em"/>
+                            </hbox>
+                            <hbox alignItems="BASELINE" spacing="true">
+                                <textField id="qtyField"    label="msg://genInvoiceView.qty"    width="8em"/>
+                                <textField id="priceField"  label="msg://genInvoiceView.price"  width="10em"/>
+                                <textField id="qty2Field"   label="msg://genInvoiceView.qty2"   width="8em"/>
+                                <textField id="price2Field" label="msg://genInvoiceView.price2" width="10em"/>
+                                <textField id="qty3Field"   label="msg://genInvoiceView.qty3"   width="8em"/>
+                                <textField id="price3Field" label="msg://genInvoiceView.price3" width="10em"/>
+                            </hbox>
+                        </vbox>
+                    </details>
+
+                    
+                              width="100%"
+                              minHeight="16em"
+                              columnReorderingAllowed="true">
+
+                                        <vbox id="lineItemsGridPlaceholder" width="100%" minHeight="16em"/>
+
+                    <hbox id="tab2Actions" spacing="true">
+                        <button id="insertLineBtn"
+                                text="msg://genInvoiceView.insert"
+                                icon="vaadin:plus"/>
+                        <button id="deleteLineBtn"
+                                text="msg://genInvoiceView.delete"
+                                icon="vaadin:trash"/>
+                        <button id="backButton"
+                                text="msg://genInvoiceView.back"
+                                icon="vaadin:arrow-left"
+                                themeNames="tertiary"/>
+                        <button id="generateButton"
+                                text="msg://genInvoiceView.generate"
+                                icon="vaadin:cog"
+                                themeNames="primary"/>
+                        <button id="cancelButton2"
+                                text="msg://genInvoiceView.cancel"
+                                icon="vaadin:close"
+                                themeNames="tertiary"/>
+                    </hbox>
+
+                </vbox>
+            </tab>
+
+        </tabSheet>
+    </layout>
+</view>

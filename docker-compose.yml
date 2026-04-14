@@ -1,0 +1,12 @@
+services:
+  jmix-app:
+    image: pms-app:latest
+    network_mode: "host"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - MAIN_DATASOURCE_URL=jdbc:postgresql://localhost:5432/pms-main
+      - MAIN_DATASOURCE_USERNAME=postgres
+      - MAIN_DATASOURCE_PASSWORD=Amsb@2025
+    restart: always
+    volumes:
+      - /var/log/pms:/app/logs  # optional log persistence

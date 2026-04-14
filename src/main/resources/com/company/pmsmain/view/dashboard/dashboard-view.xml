@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://dashboardView.title">
+    <layout spacing="true" padding="true">
+
+        <!-- Header row: welcome + current date -->
+        <hbox id="headerRow" width="100%" alignItems="BASELINE" spacing="true">
+            <span id="welcomeLabel" classNames="dashboard-welcome"/>
+            <span id="dateLabel"    classNames="dashboard-date"/>
+        </hbox>
+
+        <!-- KPI cards row -->
+        <hbox id="kpiRow" width="100%" spacing="true" padding="false">
+            <vbox id="cardTotalPhases"   classNames="kpi-card" spacing="false" padding="true"/>
+            <vbox id="cardActivePhases"  classNames="kpi-card" spacing="false" padding="true"/>
+            <vbox id="cardTotalAreas"    classNames="kpi-card" spacing="false" padding="true"/>
+            <vbox id="cardTotalDistricts"classNames="kpi-card" spacing="false" padding="true"/>
+        </hbox>
+
+        <!-- Charts row: bar by area + pie by district -->
+        <hbox id="chartsRow" width="100%" spacing="true" alignItems="START">
+            <vbox id="chartByAreaBox"     width="50%" spacing="false" padding="true" classNames="chart-box"/>
+            <vbox id="chartByDistrictBox" width="50%" spacing="false" padding="true" classNames="chart-box"/>
+        </hbox>
+
+        <!-- Recent phases table -->
+        <vbox id="recentPhasesBox" width="100%" spacing="false" padding="true" classNames="chart-box">
+            <span classNames="section-title">Recent Phases</span>
+            <dataGrid id="recentPhasesGrid"
+                      width="100%"
+                      minHeight="12em">
+                <columns>
+                    <column property="phaseno"   header="Phase No"   width="8em"/>
+                    <column property="phasename" header="Phase Name" width="20em"/>
+                    <column property="area"      header="Area"       width="10em"/>
+                    <column property="district"  header="District"   width="12em"/>
+                    <column property="town"      header="Town"       width="12em"/>
+                    <column property="datestart" header="Start"      width="9em"/>
+                    <column property="dateend"   header="End"        width="9em"/>
+                </columns>
+            </dataGrid>
+        </vbox>
+
+    </layout>
+</view>

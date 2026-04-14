@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://bankDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="bankDc"
+                  class="com.company.pmsmain.entity.Bank">
+            <fetchPlan extends="_base"/>
+            <loader id="bankDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="bankDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="idBankCodeField" property="id.bankCode"/>
+            <textField id="idCompnoField" property="id.compno"/>
+            <textField id="accnoField" property="accno"/>
+            <textField id="allowbackdateField" property="allowbackdate"/>
+            <textField id="aptrxncodeField" property="aptrxncode"/>
+            <textField id="aptrxncodercptField" property="aptrxncodercpt"/>
+            <textField id="artrxncodeField" property="artrxncode"/>
+            <textField id="artrxncodedepField" property="artrxncodedep"/>
+            <textField id="artrxncodepvField" property="artrxncodepv"/>
+            <textField id="artrxncodercField" property="artrxncoderc"/>
+            <textField id="bankaccnoField" property="bankaccno"/>
+            <textField id="bcaccnoField" property="bcaccno"/>
+            <textField id="bcprjnoField" property="bcprjno"/>
+            <textField id="chargesaccnoField" property="chargesaccno"/>
+            <textField id="docnoField" property="docno"/>
+            <textField id="jompaypayerbankidField" property="jompaypayerbankid"/>
+            <textField id="nameField" property="name"/>
+            <textField id="payautoField" property="payauto"/>
+            <textField id="payautoformatField" property="payautoformat"/>
+            <textField id="paynoField" property="payno"/>
+            <textField id="payprefixField" property="payprefix"/>
+            <textField id="paysuppprefixField" property="paysuppprefix"/>
+            <textField id="prjnoField" property="prjno"/>
+            <textField id="rcptautoField" property="rcptauto"/>
+            <textField id="rcptautoformatField" property="rcptautoformat"/>
+            <textField id="rcptnoField" property="rcptno"/>
+            <textField id="rcptprefixField" property="rcptprefix"/>
+            <textField id="rcptsuppprefixField" property="rcptsuppprefix"/>
+            <textField id="reconcileField" property="reconcile"/>
+            <textField id="securitygroupField" property="securitygroup"/>
+            <textField id="slipField" property="slip"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mainView xmlns="http://jmix.io/schema/flowui/main-view"
+          title="msg://MainView.title">
+
+    <actions>
+        <action id="logoutAction"
+                text="msg:///actions.logout.text"
+                type="logout"/>
+    </actions>
+
+    <appLayout>
+
+        <navigationBar>
+            <hbox id="topBar"
+                  width="100%"
+                  alignItems="CENTER"
+                  spacing="true"
+                  padding="true"
+                  classNames="app-topbar">
+
+                <drawerToggle id="drawerToggle"/>
+
+                <span id="currentCompanyLabel"
+                      text="Current company: (loading...)"
+                      classNames="current-company-badge"/>
+
+                <hbox id="topTabsBox"
+                      width="100%"
+                      spacing="false"
+                      padding="false"
+                      classNames="top-tabs-host"/>
+
+                <userMenu id="userMenu"
+                          themeNames="tertiary"
+                          classNames="top-user-menu">
+                    <items>
+                        <separator/>
+                        <actionItem id="logoutMenuItem"
+                                    ref="logoutAction"
+                                    themeNames="non-checkable"/>
+                    </items>
+                </userMenu>
+            </hbox>
+        </navigationBar>
+
+        <drawerLayout>
+            <vbox id="dynamicMenuBox"
+                  width="100%"
+                  spacing="false"
+                  padding="false"
+                  classNames="app-sidebar"/>
+        </drawerLayout>
+
+        <initialLayout id="initialLayout">
+            <vbox id="welcomeBox"
+                  padding="true"
+                  spacing="true"
+                  classNames="app-content">
+                <h3 text="Welcome"/>
+                <span text="Select a module from the tabs above."/>
+            </vbox>
+        </initialLayout>
+
+    </appLayout>
+</mainView>

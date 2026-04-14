@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://phaseDetailView.title"
+      focusComponent="phasenoField">
+    <data>
+        <instance id="phaseDc"
+                  class="com.company.pmsmain.entity.Phase">
+            <fetchPlan extends="_base"/>
+            <loader id="phaseDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+
+        <!--
+            Mirrors Clarion UpdatePhase form:
+              - Phase No + Phase Name always visible at top (outer "General" tab header fields)
+              - Inner tabSheet: Strata | Original Proprietor | Auto Transfer | Sinking Fund
+        -->
+
+        <!-- Always-visible: Phase No + Phase Name -->
+        <formLayout id="headerForm" dataContainer="phaseDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="phasenoField"
+                       property="phaseno"
+                       label="msg://Phase.phaseno"
+                       required="true"
+                       requiredMessage="msg://Phase.phaseno.required"/>
+            <textField id="phasenameField"
+                       property="phasename"
+                       label="msg://Phase.phasename"
+                       colspan="2"/>
+        </formLayout>
+
+        <!-- Inner tabSheet: Strata | Original Proprietor | Auto Transfer | Sinking Fund -->
+        <tabSheet id="innerTabSheet" width="100%">
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 TAB 1: Strata
+                 Clarion: Lot No, Town/Village/Mukim, District, Area,
+                          Desc. and No. of Title, Parcel No, Shares Unit
+                 ═══════════════════════════════════════════════════════════ -->
+            <tab id="strataTab" label="msg://tab.strata">
+                <formLayout id="strataForm" dataContainer="phaseDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="lotnoField"
+                               property="lotno"
+                               label="msg://Phase.lotno"/>
+                    <textField id="townField"
+                               property="town"
+                               label="msg://Phase.town"/>
+                    <textField id="districtField"
+                               property="district"
+                               label="msg://Phase.district"/>
+                    <textField id="areaField"
+                               property="area"
+                               label="msg://Phase.area"/>
+                    <textField id="titleField"
+                               property="title"
+                               label="msg://Phase.title"/>
+                    <textField id="parcelnoField"
+                               property="parcelno"
+                               label="msg://Phase.parcelno"/>
+                    <textField id="parcelshareField"
+                               property="parcelshare"
+                               label="msg://Phase.parcelshare"/>
+                </formLayout>
+            </tab>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 TAB 2: Original Proprietor
+                 Clarion: Proprietor Name, Address (1-4), Biller Code
+                 ═══════════════════════════════════════════════════════════ -->
+            <tab id="proprietorTab" label="msg://tab.proprietor">
+                <formLayout id="proprietorForm" dataContainer="phaseDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                    </responsiveSteps>
+                    <textField id="proprietornameField"
+                               property="proprietorname"
+                               label="msg://Phase.proprietorname"/>
+                    <textField id="praddress1Field"
+                               property="praddress1"
+                               label="msg://Phase.praddress1"/>
+                    <textField id="praddress2Field"
+                               property="praddress2"
+                               label="msg://Phase.praddress2"/>
+                    <textField id="praddress3Field"
+                               property="praddress3"
+                               label="msg://Phase.praddress3"/>
+                    <textField id="praddress4Field"
+                               property="praddress4"
+                               label="msg://Phase.praddress4"/>
+                    <textField id="billercodeField"
+                               property="billercode"
+                               label="msg://Phase.billercode"/>
+                </formLayout>
+            </tab>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 TAB 3: Auto Transfer
+                 Clarion: Bank dropdown, then bank-specific sub-groups
+                   GroupHSBC  – Merchant (12-digit) for HSBC/Citibank/Alliance
+                   GroupBank1 – Public Bank: BankID/InstitutionID, Merchant,
+                                InstitutionName, RegisterID
+                   GroupBank2 – Public Bank extra: InstitutionID, InstitutionName,
+                                CorpAbbr, PBProd, PBTransferType
+                   GroupCIMB  – CIMB: CompanyID, MerchantName, RegistrationNo
+                   GroupAMB   – Ambank: MerchantNumber (Merchant4), TerminalID (RegisterID4)
+                   GroupUOB   – UOB: MerchantID, CompanyID (InstitutionName)
+                 ═══════════════════════════════════════════════════════════ -->
+            <tab id="autoTransferTab" label="msg://tab.autoTransfer">
+                <vbox id="autoTransferLayout" width="100%" spacing="true">
+
+                    <!-- Bank selector -->
+                    <formLayout id="bankSelectorForm" dataContainer="phaseDc">
+                        <responsiveSteps>
+                            <responsiveStep minWidth="0" columns="1"/>
+                            <responsiveStep minWidth="40em" columns="2"/>
+                        </responsiveSteps>
+                        <select id="bankField"
+                                property="bank"
+                                label="msg://Phase.bank">
+                            <items>
+                                <item id="CITI" label="Citibank"/>
+                                <item id="ABB"  label="Alliance Bank"/>
+                                <item id="HSBC" label="HSBC"/>
+                                <item id="PBB"  label="Public Bank"/>
+                                <item id="CIMB" label="CIMB"/>
+                                <item id="AMB"  label="Ambank"/>
+                                <item id="UOB"  label="UOB"/>
+                            </items>
+                        </select>
+                    </formLayout>
+
+                    <!-- GroupHSBC: Citibank / HSBC / Alliance Bank — Merchant (12-digit) -->
+                    <details id="groupHsbc"
+                             summaryText="msg://Phase.group.hsbc"
+                             opened="true">
+                        <formLayout id="hsbcForm" dataContainer="phaseDc">
+                            <responsiveSteps>
+                                <responsiveStep minWidth="0" columns="1"/>
+                                <responsiveStep minWidth="40em" columns="2"/>
+                            </responsiveSteps>
+                            <textField id="merchantField"
+                                       property="merchant"
+                                       label="msg://Phase.merchant"/>
+                        </formLayout>
+                    </details>
+
+                    <!-- GroupBank1/Bank2: Public Bank -->
+                    <details id="groupPublicBank"
+                             summaryText="msg://Phase.group.publicBank"
+                             opened="false">
+                        <formLayout id="pbForm" dataContainer="phaseDc">
+                            <responsiveSteps>
+                                <responsiveStep minWidth="0" columns="1"/>
+                                <responsiveStep minWidth="40em" columns="2"/>
+                            </responsiveSteps>
+                            <textField id="bankidField"
+                                       property="bankid"
+                                       label="msg://Phase.bankid"/>
+                            <textField id="institutionidField"
+                                       property="institutionid"
+                                       label="msg://Phase.institutionid"/>
+                            <textField id="merchantPbField"
+                                       property="merchant"
+                                       label="msg://Phase.merchant"/>
+                            <textField id="institutionnameField"
+                                       property="institutionname"
+                                       label="msg://Phase.institutionname"/>
+                            <textField id="registeridField"
+                                       property="registerid"
+                                       label="msg://Phase.registerid"/>
+                            <textField id="corpabbrField"
+                                       property="corpabbr"
+                                       label="msg://Phase.corpabbr"/>
+                            <select id="pbprodField"
+                                    property="pbprod"
+                                    label="msg://Phase.pbprod">
+                                <items>
+                                    <item id="REC" label="REC"/>
+                                    <item id="REN" label="REN"/>
+                                    <item id="REA" label="REA"/>
+                                </items>
+                            </select>
+                            <select id="pbtransfertypeField"
+                                    property="pbtransfertype"
+                                    label="msg://Phase.pbtransfertype">
+                                <items>
+                                    <item id="S" label="S"/>
+                                    <item id="P" label="P"/>
+                                    <item id="U" label="U"/>
+                                </items>
+                            </select>
+                        </formLayout>
+                    </details>
+
+                    <!-- GroupCIMB: CIMB -->
+                    <details id="groupCimb"
+                             summaryText="msg://Phase.group.cimb"
+                             opened="false">
+                        <formLayout id="cimbForm" dataContainer="phaseDc">
+                            <responsiveSteps>
+                                <responsiveStep minWidth="0" columns="1"/>
+                                <responsiveStep minWidth="40em" columns="2"/>
+                            </responsiveSteps>
+                            <textField id="cimbField"
+                                       property="cimb"
+                                       label="msg://Phase.cimb"/>
+                            <textField id="cimbNameField"
+                                       property="cimbName"
+                                       label="msg://Phase.cimbName"/>
+                            <textField id="cimbRegnoField"
+                                       property="cimbRegno"
+                                       label="msg://Phase.cimbRegno"/>
+                        </formLayout>
+                    </details>
+
+                    <!-- GroupAMB: Ambank (Merchant Number = Merchant4, Terminal ID = RegisterID4) -->
+                    <details id="groupAmbank"
+                             summaryText="msg://Phase.group.ambank"
+                             opened="false">
+                        <formLayout id="ambForm" dataContainer="phaseDc">
+                            <responsiveSteps>
+                                <responsiveStep minWidth="0" columns="1"/>
+                                <responsiveStep minWidth="40em" columns="2"/>
+                            </responsiveSteps>
+                            <textField id="merchant4Field"
+                                       property="merchant4"
+                                       label="msg://Phase.merchant4"/>
+                            <textField id="registerid4Field"
+                                       property="registerid4"
+                                       label="msg://Phase.registerid4"/>
+                        </formLayout>
+                    </details>
+
+                    <!-- GroupUOB: UOB (Merchant ID = Merchant, Company ID = InstitutionName) -->
+                    <details id="groupUob"
+                             summaryText="msg://Phase.group.uob"
+                             opened="false">
+                        <formLayout id="uobForm" dataContainer="phaseDc">
+                            <responsiveSteps>
+                                <responsiveStep minWidth="0" columns="1"/>
+                                <responsiveStep minWidth="40em" columns="2"/>
+                            </responsiveSteps>
+                            <textField id="merchantUobField"
+                                       property="merchant"
+                                       label="msg://Phase.merchant"/>
+                            <textField id="institutionnameUobField"
+                                       property="institutionname"
+                                       label="msg://Phase.institutionname"/>
+                        </formLayout>
+                    </details>
+
+                    <!-- Remaining bank IDs 2/3 and merchant IDs 2/3 (no direct Clarion group; kept for completeness) -->
+                    <details id="groupOtherIds"
+                             summaryText="msg://Phase.group.otherIds"
+                             opened="false">
+                        <formLayout id="otherIdsForm" dataContainer="phaseDc">
+                            <responsiveSteps>
+                                <responsiveStep minWidth="0" columns="1"/>
+                                <responsiveStep minWidth="40em" columns="2"/>
+                            </responsiveSteps>
+                            <textField id="bankid2Field"
+                                       property="bankid2"
+                                       label="msg://Phase.bankid2"/>
+                            <textField id="registerid2Field"
+                                       property="registerid2"
+                                       label="msg://Phase.registerid2"/>
+                            <textField id="bankid3Field"
+                                       property="bankid3"
+                                       label="msg://Phase.bankid3"/>
+                            <textField id="registerid3Field"
+                                       property="registerid3"
+                                       label="msg://Phase.registerid3"/>
+                            <textField id="merchant2Field"
+                                       property="merchant2"
+                                       label="msg://Phase.merchant2"/>
+                            <textField id="merchant3Field"
+                                       property="merchant3"
+                                       label="msg://Phase.merchant3"/>
+                        </formLayout>
+                    </details>
+
+                </vbox>
+            </tab>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 TAB 4: Sinking Fund
+                 Clarion: Sinking Code (lookup), Sinking Account No (lookup)
+                 Note: lookup buttons map to separate Jmix lookup views
+                       via entityPicker if GL/AR entities are available,
+                       or plain textField until those views exist.
+                 ═══════════════════════════════════════════════════════════ -->
+            <tab id="sinkingFundTab" label="msg://tab.sinkingFund">
+                <formLayout id="sinkingForm" dataContainer="phaseDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="sinkcodeField"
+                               property="sinkcode"
+                               label="msg://Phase.sinkcode"/>
+                    <textField id="sinkaccnoField"
+                               property="sinkaccno"
+                               label="msg://Phase.sinkaccno"/>
+                </formLayout>
+            </tab>
+
+        </tabSheet>
+
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

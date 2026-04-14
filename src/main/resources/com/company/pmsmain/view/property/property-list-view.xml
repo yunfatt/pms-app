@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://propertyListView.title"
+      focusComponent="propertiesDataGrid">
+    <data>
+        <collection id="propertiesDc"
+                    class="com.company.pmsmain.entity.Property">
+            <fetchPlan extends="_base"/>
+            <loader id="propertiesDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Property e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="propertiesDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <startSlot>
+                <button id="createButton" action="propertiesDataGrid.createAction"/>
+                <button id="editButton" action="propertiesDataGrid.editAction"/>
+                <button id="removeButton" action="propertiesDataGrid.removeAction"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="propertiesDl"/>
+            </endSlot>
+        </hbox>
+        <dataGrid id="propertiesDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="propertiesDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="phaseno"/>
+                <column property="propertyno"/>
+                <column property="addr1" width="200px" flexGrow="1"/>
+                <column property="blockno"/>
+                <column property="buildingno"/>
+                <column property="buildup"/>
+                <column property="catcode"/>
+                <column property="commercial"/>
+                <column property="confletterrcvd"/>
+                <column property="consentdate"/>
+                <column property="electtariff"/>
+                <column property="gmeterno"/>
+                <column property="levelno"/>
+
+                <column property="propertystatus"/>
+                <column property="rateSc"/>
+                <column property="rateSf"/>
+                <column property="residentstatus"/>
+                <column property="shareunit"/>
+                <column property="stratatitleno"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

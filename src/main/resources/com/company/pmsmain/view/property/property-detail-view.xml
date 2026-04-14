@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://propertyDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="propertyDc"
+                  class="com.company.pmsmain.entity.Property">
+            <fetchPlan extends="_base"/>
+            <loader id="propertyDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="propertyDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="propertynoField" property="propertyno"/>
+            <textField id="addr1Field" property="addr1"/>
+            <textField id="addr2Field" property="addr2"/>
+            <textField id="addr3Field" property="addr3"/>
+            <textField id="addr4Field" property="addr4"/>
+            <textField id="blocknoField" property="blockno"/>
+            <textField id="buildingnoField" property="buildingno"/>
+            <textField id="buildupField" property="buildup"/>
+            <textField id="catcodeField" property="catcode"/>
+            <textField id="commercialField" property="commercial"/>
+            <datePicker id="confletterrcvdField" property="confletterrcvd"/>
+            <datePicker id="consentdateField" property="consentdate"/>
+            <textField id="ctosField" property="ctos"/>
+            <textField id="electtariffField" property="electtariff"/>
+            <textField id="emeternoField" property="emeterno"/>
+            <textField id="ereading1Field" property="ereading1"/>
+            <textField id="gmeternoField" property="gmeterno"/>
+            <textField id="greading1Field" property="greading1"/>
+            <textField id="legalactionField" property="legalaction"/>
+            <textField id="levelnoField" property="levelno"/>
+            <datePicker id="motpresentedField" property="motpresented"/>
+            <textField id="motpresentnoField" property="motpresentno"/>
+            <datePicker id="motreceivedField" property="motreceived"/>
+            <textField id="occupiedField" property="occupied"/>
+            <datePicker id="origstratatitlereldField" property="origstratatitlereld"/>
+            <textField id="ownernoField" property="ownerno"/>
+            <textField id="phasenoField" property="phaseno"/>
+            <textField id="propertystatusField" property="propertystatus"/>
+            <textField id="rateScField" property="rateSc"/>
+            <textField id="rateSfField" property="rateSf"/>
+            <textField id="renovatedField" property="renovated"/>
+            <textField id="renovateremarkField" property="renovateremark"/>
+            <textField id="residentstatusField" property="residentstatus"/>
+            <textField id="sellingpriceField" property="sellingprice"/>
+            <textField id="shareunitField" property="shareunit"/>
+            <textField id="strataremarksField" property="strataremarks"/>
+            <textField id="stratatitlenoField" property="stratatitleno"/>
+            <textField id="tenantnoField" property="tenantno"/>
+            <textField id="unitnoField" property="unitno"/>
+            <textField id="unituidField" property="unituid"/>
+            <textField id="wmeternoField" property="wmeterno"/>
+            <textField id="wreading1Field" property="wreading1"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

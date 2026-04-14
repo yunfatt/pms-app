@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://customerDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="customerDc"
+                  class="com.company.pmsmain.entity.Customer">
+            <fetchPlan extends="_base"/>
+            <loader id="customerDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="customerDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="accnoField" property="accno"/>
+            <textField id="activeField" property="active"/>
+            <textField id="addr1Field" property="addr1"/>
+            <textField id="addr2Field" property="addr2"/>
+            <textField id="addr3Field" property="addr3"/>
+            <textField id="addr4Field" property="addr4"/>
+            <textField id="addrtypeField" property="addrtype"/>
+            <datePicker id="agreedateField" property="agreedate"/>
+            <textField id="agreenoField" property="agreeno"/>
+            <textField id="autotransferField" property="autotransfer"/>
+            <textField id="bfField" property="bf"/>
+            <textField id="billtounitField" property="billtounit"/>
+            <datePicker id="cardexpiredateField" property="cardexpiredate"/>
+            <textField id="cardnoField" property="cardno"/>
+            <textField id="childrenField" property="children"/>
+            <textField id="cityField" property="city"/>
+            <datePicker id="confirmlettField" property="confirmlett"/>
+            <datePicker id="consentdateField" property="consentdate"/>
+            <textField id="countryField" property="country"/>
+            <textField id="countrycodeField" property="countrycode"/>
+            <textField id="custnameField" property="custname"/>
+            <textField id="custname2Field" property="custname2"/>
+            <textField id="custname3Field" property="custname3"/>
+            <textField id="custname4Field" property="custname4"/>
+            <textField id="custname5Field" property="custname5"/>
+            <textField id="custname6Field" property="custname6"/>
+            <textField id="customerbrnField" property="customerbrn"/>
+            <textField id="customergstnoField" property="customergstno"/>
+            <textField id="custtypeField" property="custtype"/>
+            <datePicker id="datestartField" property="datestart"/>
+            <textField id="disablesmsField" property="disablesms"/>
+            <datePicker id="dobField" property="dob"/>
+            <datePicker id="dob2Field" property="dob2"/>
+            <datePicker id="dob3Field" property="dob3"/>
+            <datePicker id="dob4Field" property="dob4"/>
+            <datePicker id="dob5Field" property="dob5"/>
+            <datePicker id="dob6Field" property="dob6"/>
+            <textField id="einvoicecustomertypeField" property="einvoicecustomertype"/>
+            <textField id="emailField" property="email"/>
+            <textField id="email2Field" property="email2"/>
+            <textField id="email3Field" property="email3"/>
+            <textField id="etelField" property="etel"/>
+            <datePicker id="expireField" property="expire"/>
+            <textField id="faxField" property="fax"/>
+            <textField id="fincodeField" property="fincode"/>
+            <textField id="fincontactsField" property="fincontacts"/>
+            <datePicker id="fineffdateField" property="fineffdate"/>
+            <textField id="finrefField" property="finref"/>
+            <textField id="fscodeField" property="fscode"/>
+            <textField id="fsrefField" property="fsref"/>
+            <datePicker id="gstenddateField" property="gstenddate"/>
+            <datePicker id="gstregistrationdateField" property="gstregistrationdate"/>
+            <textField id="historynoField" property="historyno"/>
+            <textField id="htelField" property="htel"/>
+            <textField id="htel2Field" property="htel2"/>
+            <textField id="identificationidField" property="identificationid"/>
+            <textField id="identificationtypeField" property="identificationtype"/>
+            <textField id="incomeField" property="income"/>
+            <textField id="interestField" property="interest"/>
+            <textField id="legalactionField" property="legalaction"/>
+            <textField id="motnoField" property="motno"/>
+            <datePicker id="motpresentField" property="motpresent"/>
+            <datePicker id="motreceiveField" property="motreceive"/>
+            <textField id="mstatusField" property="mstatus"/>
+            <textField id="national2Field" property="national2"/>
+            <textField id="national3Field" property="national3"/>
+            <textField id="national4Field" property="national4"/>
+            <textField id="national5Field" property="national5"/>
+            <textField id="national6Field" property="national6"/>
+            <textField id="nationalityField" property="nationality"/>
+            <textField id="nric1Field" property="nric1"/>
+            <textField id="nric2Field" property="nric2"/>
+            <textField id="nric3Field" property="nric3"/>
+            <textField id="nric4Field" property="nric4"/>
+            <textField id="nric5Field" property="nric5"/>
+            <textField id="nric6Field" property="nric6"/>
+            <textField id="otelField" property="otel"/>
+            <textField id="otel2Field" property="otel2"/>
+            <textField id="phasenoField" property="phaseno"/>
+            <textField id="pobField" property="pob"/>
+            <textField id="postcodeField" property="postcode"/>
+            <textField id="professionField" property="profession"/>
+            <textField id="propertynoField" property="propertyno"/>
+            <textField id="raceField" property="race"/>
+            <textField id="registeredproprietorField" property="registeredproprietor"/>
+            <textField id="religionField" property="religion"/>
+            <textField id="remarksField" property="remarks"/>
+            <textField id="remarks2Field" property="remarks2"/>
+            <textField id="sexField" property="sex"/>
+            <textField id="solcodeField" property="solcode"/>
+            <textField id="solrefField" property="solref"/>
+            <textField id="spouseincField" property="spouseinc"/>
+            <textField id="spousejobField" property="spousejob"/>
+            <textField id="spousenameField" property="spousename"/>
+            <textField id="stateField" property="state"/>
+            <textField id="statecodeField" property="statecode"/>
+            <textField id="statementField" property="statement"/>
+            <textField id="strataField" property="strata"/>
+            <datePicker id="stratadateField" property="stratadate"/>
+            <textField id="telField" property="tel"/>
+            <textField id="termField" property="term"/>
+            <textField id="tinField" property="tin"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

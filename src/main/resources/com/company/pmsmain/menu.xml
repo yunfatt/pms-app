@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/flowui/menu">
+
+    <menu id="application" title="msg://com.company.pmsmain/menu.application.title" opened="true">
+        <item id="Dashboard.view" view="Dashboard.view" title="Dashboard" icon="vaadin:home"/>
+        <item view="User.list" title="msg://com.company.pmsmain.view.user/UserListView.title"/>
+        <item view="Customer.list" title="msg://com.company.pmsmain.view.customer/customerListView.title"/>
+        <item view="Property.list" title="msg://com.company.pmsmain.view.property/propertyListView.title"/>
+        <item view="Phase.list" title="msg://com.company.pmsmain.view.phase/phaseListView.title"/>
+        <item view="Invhdr.list" title="msg://com.company.pmsmain.view.invhdr/invhdrListView.title"/>
+        <item view="Ardoc.list" title="msg://com.company.pmsmain.view.ardoc/ardocListView.title"/>
+        <item view="Bank.list" title="msg://com.company.pmsmain.view.bank/bankListView.title"/>
+    </menu>
+
+</menu-config>

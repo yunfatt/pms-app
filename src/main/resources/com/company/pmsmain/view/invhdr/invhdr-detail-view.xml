@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://invhdrDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="invhdrDc"
+                  class="com.company.pmsmain.entity.Invhdr">
+            <fetchPlan extends="_base"/>
+            <loader id="invhdrDl"/>
+        </instance>
+
+        <collection id="invdtlsDc"
+                    class="com.company.pmsmain.entity.Invdtl">
+            <fetchPlan extends="_base"/>
+            <loader id="invdtlsDl">
+                <query>
+                    <![CDATA[select e from Invdtl e where e.id.invno = :invno]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+
+    <actions>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+
+    <layout>
+        <vbox width="100%" spacing="true">
+
+            <formLayout id="form" dataContainer="invhdrDc">
+                <responsiveSteps>
+                    <responsiveStep minWidth="0" columns="1"/>
+                    <responsiveStep minWidth="40em" columns="2"/>
+                    <responsiveStep minWidth="60em" columns="3"/>
+                </responsiveSteps>
+
+                <!-- Row 1 -->
+                <textField id="invnoField"
+                           label="Invoice No."
+                           readOnly="true"/>
+
+                <hbox label="Customer No." spacing="true" alignItems="CENTER">
+                    <textField id="propertynoField"
+                               property="propertyno"
+                               dataContainer="invhdrDc"
+                               width="10em"/>
+                    <button id="lookupPropertyBtn" text="..."/>
+                    <textField id="custnameField"
+                               label=""
+                               readOnly="true"
+                               width="20em"/>
+                </hbox>
+
+                <select id="custtypeField"
+                        property="custtype"
+                        dataContainer="invhdrDc"
+                        label="Cust Type"/>
+
+                <!-- Row 2 -->
+                <datePicker id="trxndateField"
+                            property="trxndate"
+                            label="Date"/>
+
+                <select id="taxinvtypeField"
+                        property="taxinvtype"
+                        label="Tax Invoice Type"/>
+
+                <!-- Row 3 -->
+                <textField id="refnoField"
+                           property="refno"
+                           label="Ref No"/>
+
+                <textField id="refno2Field"
+                           property="refno2"
+                           label="Ref No 2"/>
+
+            </formLayout>
+
+            <h3 text="Invoice Items"/>
+
+            <hbox id="itemActions" spacing="true">
+                <button id="addItemBtn" text="Add Line"/>
+                <button id="removeItemBtn" text="Remove Line"/>
+                <button id="moveUpBtn" text="↑" title="Move Up"/>
+                <button id="moveDownBtn" text="↓" title="Move Down"/>
+            </hbox>
+
+            <dataGrid id="invdtlsDataGrid"
+                      width="100%"
+                      minHeight="20em"
+                      dataContainer="invdtlsDc"
+                      editorBuffered="false">
+                <columns resizable="true">
+                    <column property="id.linenum" editable="false" header="Line"/>
+                    <column property="chargeno" editable="true" header="Code"/>
+                    <column property="description" editable="true" header="Description"/>
+                    <column property="date1" editable="true" header="From"/>
+                    <column property="date2" editable="true" header="To"/>
+                    <column property="duedate" editable="true" header="Due Date"/>
+                    <column property="reading1" editable="true" header="Initial Reading"/>
+                    <column property="reading2" editable="true" header="Final Reading"/>
+                    <column key="qty" property="qty" editable="true" header="Qty">
+                        <editorComponent>
+                            <bigDecimalField id="qtyEditor" property="qty"/>
+                        </editorComponent>
+                    </column>
+                    <column key="price" property="price" editable="true" header="U.P./Amount">
+                        <editorComponent>
+                            <bigDecimalField id="priceEditor" property="price"/>
+                        </editorComponent>
+                    </column>
+                    <column property="netamt" editable="false" header="Net Amt"/>
+                    <column property="gstamt" editable="false" header="GST Amt"/>
+                    <column property="amount" editable="false" header="Amount"/>
+                </columns>
+            </dataGrid>
+
+            <!-- Totals -->
+            <formLayout>
+                <responsiveSteps>
+                    <responsiveStep minWidth="0" columns="1"/>
+                    <responsiveStep minWidth="40em" columns="3"/>
+                </responsiveSteps>
+                <bigDecimalField id="netamtField"
+                                 property="netamt"
+                                 dataContainer="invhdrDc"
+                                 label="Net Amt"
+                                 readOnly="true"/>
+                <bigDecimalField id="totalgstField"
+                                 property="totalgst"
+                                 dataContainer="invhdrDc"
+                                 label="Total GST"
+                                 readOnly="true"/>
+                <bigDecimalField id="amountField"
+                                 property="amount"
+                                 dataContainer="invhdrDc"
+                                 label="Amount"
+                                 readOnly="true"/>
+            </formLayout>
+
+            <hbox id="detailActions" spacing="true">
+                <button id="saveAndCloseButton" text="Save"/>
+                <button id="closeButton" action="closeAction"/>
+            </hbox>
+
+        </vbox>
+    </layout>
+</view>

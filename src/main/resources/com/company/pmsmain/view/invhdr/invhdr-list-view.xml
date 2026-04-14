@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://invhdrListView.title"
+      focusComponent="invhdrsDataGrid">
+    <data>
+        <collection id="invhdrsDc"
+                    class="com.company.pmsmain.entity.Invhdr">
+            <fetchPlan extends="_base"/>
+            <loader id="invhdrsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Invhdr e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="invhdrsDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <startSlot>
+                <button id="createButton" action="invhdrsDataGrid.createAction"/>
+                <button id="editButton" action="invhdrsDataGrid.editAction"/>
+                <button id="removeButton" action="invhdrsDataGrid.removeAction"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="invhdrsDl"/>
+            </endSlot>
+        </hbox>
+        <dataGrid id="invhdrsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="invhdrsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="invno"/>
+                <column property="propertyno"/>
+                <column property="custtype"/>
+                <column property="phaseno"/>
+                <column property="trxndate"/>
+                <column property="refno"/>
+                <column property="taxableamt"/>
+                <column property="taxinvtype"/>
+                <column property="netamt"/>
+                <column property="totalgst"/>
+                <column property="amount"/>
+                <column property="posted"/>
+                <column property="printed"/>
+                <column property="timeadded"/>
+                <column property="timechanged"/>
+                <column property="timedeleted"/>
+                <column property="totallines"/>
+                <column property="dateadded"/>
+                <column property="datechanged"/>
+                <column property="datedeleted"/>
+                <column property="deleted"/>
+                <column property="einvdatecancelled"/>
+                <column property="einvdaterejected"/>
+                <column property="einvdatesubmitted"/>
+                <column property="einvdatevalidated"/>
+                <column property="einvlongid"/>
+                <column property="einvsignature"/>
+                <column property="einvstatus"/>
+                <column property="einvsubmissionuid"/>
+                <column property="einvtimecancelled"/>
+                <column property="einvtimerejected"/>
+                <column property="einvtimesubmitted"/>
+                <column property="einvtimevalidated"/>
+                <column property="einvuin"/>
+                <column property="einvvalidated"/>
+                <column property="useradded"/>
+                <column property="userchanged"/>
+                <column property="userdeleted"/>
+                <column property="userid"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

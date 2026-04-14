@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://ardocListView.title"
+      focusComponent="ardocsDataGrid">
+    <data>
+        <collection id="ardocsDc"
+                    class="com.company.pmsmain.entity.Ardoc">
+            <fetchPlan extends="_base"/>
+            <loader id="ardocsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Ardoc e order by e.trxncode]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+
+    <layout>
+        <genericFilter id="genericFilter" dataLoader="ardocsDl">
+            <properties include=".*"/>
+        </genericFilter>
+
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <startSlot>
+                <button id="createButton" action="ardocsDataGrid.createAction"/>
+                <button id="editButton" action="ardocsDataGrid.editAction"/>
+                <button id="removeButton" action="ardocsDataGrid.removeAction"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="ardocsDl"/>
+            </endSlot>
+        </hbox>
+
+        <dataGrid id="ardocsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="ardocsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <!-- ✅ Only plain property columns here -->
+            <columns resizable="true"/>
+        </dataGrid>
+
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

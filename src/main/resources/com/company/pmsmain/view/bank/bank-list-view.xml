@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://bankListView.title"
+      focusComponent="banksDataGrid">
+    <data>
+        <collection id="banksDc"
+                    class="com.company.pmsmain.entity.Bank">
+            <fetchPlan extends="_base"/>
+            <loader id="banksDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Bank e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="banksDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <startSlot>
+                <button id="createButton" action="banksDataGrid.createAction"/>
+                <button id="editButton" action="banksDataGrid.editAction"/>
+                <button id="removeButton" action="banksDataGrid.removeAction"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="banksDl"/>
+            </endSlot>
+        </hbox>
+        <dataGrid id="banksDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="banksDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="id.bankCode"/>
+                <column property="id.compno"/>
+                <column property="accno"/>
+                <column property="allowbackdate"/>
+                <column property="aptrxncode"/>
+                <column property="aptrxncodercpt"/>
+                <column property="artrxncode"/>
+                <column property="artrxncodedep"/>
+                <column property="artrxncodepv"/>
+                <column property="artrxncoderc"/>
+                <column property="bankaccno"/>
+                <column property="bcaccno"/>
+                <column property="bcprjno"/>
+                <column property="chargesaccno"/>
+                <column property="docno"/>
+                <column property="jompaypayerbankid"/>
+                <column property="name"/>
+                <column property="payauto"/>
+                <column property="payautoformat"/>
+                <column property="payno"/>
+                <column property="payprefix"/>
+                <column property="paysuppprefix"/>
+                <column property="prjno"/>
+                <column property="rcptauto"/>
+                <column property="rcptautoformat"/>
+                <column property="rcptno"/>
+                <column property="rcptprefix"/>
+                <column property="rcptsuppprefix"/>
+                <column property="reconcile"/>
+                <column property="securitygroup"/>
+                <column property="slip"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
