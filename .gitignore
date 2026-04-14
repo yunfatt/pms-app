@@ -41,3 +41,8 @@ gradle-app.setting
 
 # ✅ OS files
 Thumbs.db
+
+*.tar
+*.zip
+*.gz
+*.rar
