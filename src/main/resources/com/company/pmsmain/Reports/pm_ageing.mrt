@@ -1,0 +1,1280 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <CalculationMode>Interpretation</CalculationMode>
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <pms Ref="2" type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" isKey="true">
+        <Alias>pms</Alias>
+        <ConnectionStringEncrypted>49ZTCUgKQ8hFWm3c6SUhG9VU+wLGA3kJ4kqh/Gpo4S+AyIECSEgxgWJJ6NzrEHWr1GzbocZow4VrHtXc5Rjsu9FU/UlGSwGZbBq0nU4d4kbD8g==</ConnectionStringEncrypted>
+        <Key>b0e67a8bd69b4472911c83d00105385a</Key>
+        <Name>pms</Name>
+      </pms>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <pms Ref="3" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>pms</Alias>
+        <Columns isList="true" count="14">
+          <value>phaseno,System.String</value>
+          <value>propertyno,System.String</value>
+          <value>custtype,System.String</value>
+          <value>age0,System.Decimal</value>
+          <value>age1,System.Decimal</value>
+          <value>age2,System.Decimal</value>
+          <value>age3,System.Decimal</value>
+          <value>age4,System.Decimal</value>
+          <value>age5,System.Decimal</value>
+          <value>ageing_total,System.Decimal</value>
+          <value>advance,System.Decimal</value>
+          <value>open_credit,System.Decimal</value>
+          <value>outstanding_balance,System.Decimal</value>
+          <value>custname,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>27d668ecb2244c00ac7102764dc6a5e5</Key>
+        <Name>pms</Name>
+        <NameInSource>pms</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select a.*,b.custname from f_outstanding_balance('{PropertyNo1}','{PropertyNo2}','{RunDate}',{UseDueDate}) a inner join customer b on a.phaseno=b.phaseno and a.propertyno = b.propertyno and a.custtype = b.custtype</SqlCommand>
+      </pms>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <UserFunctions isList="true" count="0" />
+    <Variables isList="true" count="14">
+      <value>,SystemName,SystemName,,System.String,Property_x0020_Management_x0020_System,False,False,False,False,,c87f19d70bc1435a8b5f8338e105dc76</value>
+      <value>,CompanyName,CompanyName,,System.String,Advelsoft_x0020__x0028_M_x0029__x0020_Sdn_x0020_Bhd,False,False,False,False,,_x0036_7a0409000b1417da8f814ff86c17a9d</value>
+      <value>,UserId,UserId,,System.String,admin,False,False,False,False,,_x0039_83187cd31984fab97800677b15cc2fd</value>
+      <value>,RunParameters,RunParameters,,System.String,,False,False,False,False,,f99660b4a3044324962ca4bbf807709d</value>
+      <value>,DateFrom,DateFrom,,System.String,_x0032_025-12-01,False,False,False,False,,e7a9fb94d6444a138eede74ff6b33bd7,True</value>
+      <value>,DateTo,DateTo,,System.String,,False,False,False,False,,b75cdd3864144433abe398c7a6e04d19,True</value>
+      <value>,RunDate,RunDate,,System.String,_x0032_025-01-31,False,False,False,False,,f3909e70c55f4c05a0655dbebe3796e4,True</value>
+      <value>,PhaseNo,PhaseNo,,System.String,,False,False,False,False,,f3926a687f1a4e0e9aed9228f562465a,True</value>
+      <value>,PropertyNo1,PropertyNo1,,System.String,,False,False,False,False,,b3757322803d49f3b3fdd4838c51b3f7,True</value>
+      <value>,PropertyNo2,PropertyNo2,,System.String,ZZZ,False,False,False,False,,bb5a284a60d341acb74ac0caa727e38d,True</value>
+      <value>,CustType,CustType,,System.String,B,False,False,False,False,,_x0033_b85dddbe710443eb107d68440d7dbfa,True</value>
+      <value>,UseDueDate,UseDueDate,,System.String,_x0030_,False,False,False,False,,_x0038_4982db7911e421991ccd8d0944f54b8,True</value>
+      <value>,OmitZero,OmitZero,,System.String,,False,False,False,False,,df8675cc973d4ce8bc2626982b2e35b9</value>
+      <value>,AllPhase,AllPhase,,System.String,_x0030_,False,False,False,False,,b6163267f1ed485f816840268964f55d</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>6c40ff4a8a724eb98b544b7413d0d9a7</Key>
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="6">
+        <PageFooterBand1 Ref="5" type="PageFooterBand" isKey="true">
+          <Border>Top;Black;1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,7.19,10.91,0.3</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text18 Ref="6" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.01,5.8,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Name>Text18</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Run On {Format("{0:dd/MM/yyyy}", Today)} {Format("{0:HH:mm}", Time)} By {UserId}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text18>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>PageFooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PageFooterBand1>
+        <ReportTitle Ref="7" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.2,10.91,0.7</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text12 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.1,4.4,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Name>Text12</Name>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>{SystemName}</Text>
+              <TextBrush>Black</TextBrush>
+            </Text12>
+            <Text15 Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.3,4.4,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Name>Text15</Name>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>{CompanyName}</Text>
+              <TextBrush>Black</TextBrush>
+            </Text15>
+            <Text16 Ref="10" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.5,5.4,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Name>Text16</Name>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>{RunParameters}</Text>
+              <TextBrush>Black</TextBrush>
+            </Text16>
+            <Text17 Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.5,0.1,4.4,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text17</Name>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>Ageing Report As At {RunDate}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text17>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>ReportTitle</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </ReportTitle>
+        <Header Ref="12" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,1.3,10.91,0.2</ClientRectangle>
+          <Components isList="true" count="14">
+            <HeaderText1 Ref="13" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText1</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>phase no</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText1>
+            <HeaderText2 Ref="14" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.5,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText2</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>property no</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText2>
+            <HeaderText3 Ref="15" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.3,0,0.2,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText3</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>CT</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText3>
+            <HeaderText4 Ref="16" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>3.7,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText4</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>age0</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText4>
+            <HeaderText5 Ref="17" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4.5,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText5</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>age1</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText5>
+            <HeaderText6 Ref="18" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>5.3,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText6</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>age2</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText6>
+            <HeaderText7 Ref="19" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.1,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText7</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>age3</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText7>
+            <HeaderText8 Ref="20" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.9,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText8</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>age4</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText8>
+            <HeaderText9 Ref="21" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7.7,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText9</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>age5</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText9>
+            <HeaderText10 Ref="22" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>8.5,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText10</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>ageing_total</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText10>
+            <HeaderText11 Ref="23" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>10.1,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText11</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>advance</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText11>
+            <HeaderText12 Ref="24" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>9.3,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText12</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>open_credit</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText12>
+            <HeaderText13 Ref="25" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2.9,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText13</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>Balance</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText13>
+            <Text1 Ref="26" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.5,0,1.4,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>Text1</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>Name</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>Header</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </Header>
+        <Data Ref="27" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,1.9,10.91,0.2</ClientRectangle>
+          <Components isList="true" count="14">
+            <DataText1 Ref="28" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText1</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.phaseno}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText1>
+            <DataText2 Ref="29" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.5,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText2</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.propertyno}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText2>
+            <DataText3 Ref="30" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.3,0,0.2,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText3</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.custtype}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText3>
+            <DataText4 Ref="31" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>3.7,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText4</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.age0}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="32" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText4>
+            <DataText5 Ref="33" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4.5,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText5</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.age1}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="34" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText5>
+            <DataText6 Ref="35" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>5.3,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText6</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.age2}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="36" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText6>
+            <DataText7 Ref="37" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.1,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText7</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.age3}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="38" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText7>
+            <DataText8 Ref="39" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.9,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText8</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.age4}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="40" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText8>
+            <DataText9 Ref="41" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7.7,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText9</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.age5}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="42" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText9>
+            <DataText10 Ref="43" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>8.5,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText10</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.ageing_total}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="44" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText10>
+            <DataText11 Ref="45" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>10.1,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText11</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.advance}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="46" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText11>
+            <DataText12 Ref="47" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>9.3,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText12</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.open_credit}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="48" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText12>
+            <DataText13 Ref="49" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2.9,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText13</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.outstanding_balance}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="50" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText13>
+            <Text2 Ref="51" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.5,0,1.4,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="27" />
+              <Text>{pms.custname}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName>pms</DataSourceName>
+          <EvenStyle>Blue Steel_Data1_Even Style</EvenStyle>
+          <Expressions isList="true" count="0" />
+          <FilterMode>Or</FilterMode>
+          <Filters isList="true" count="0" />
+          <Name>Data</Name>
+          <OddStyle>Blue Steel_Data1_Odd Style</OddStyle>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="0" />
+        </Data>
+        <Footer Ref="52" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,2.5,10.91,0.2</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>Footer</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </Footer>
+        <ReportSummaryBand1 Ref="53" type="ReportSummaryBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,3.1,10.91,0.3</ClientRectangle>
+          <Components isList="true" count="11">
+            <Text3 Ref="54" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.9,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text3</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>{Sum(Data,pms.outstanding_balance)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextFormat Ref="55" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 Ref="56" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.7,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text4</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>{Sum(Data,pms.age0)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextFormat Ref="57" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text5 Ref="58" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.5,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text5</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>{Sum(Data,pms.age1)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextFormat Ref="59" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text6 Ref="60" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.3,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text6</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>{Sum(Data,pms.age2)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextFormat Ref="61" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text8 Ref="62" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.1,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text8</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>{Sum(Data,pms.age3)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextFormat Ref="63" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text9 Ref="64" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.9,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text9</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>{Sum(Data,pms.age4)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextFormat Ref="65" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text10 Ref="66" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.7,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text10</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>{Sum(Data,pms.age5)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextFormat Ref="67" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="68" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.5,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text11</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>{Sum(Data,pms.ageing_total)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextFormat Ref="69" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text13 Ref="70" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.3,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text13</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>{Sum(Data,pms.open_credit)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextFormat Ref="71" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text14 Ref="72" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.1,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text14</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>{Sum(Data,pms.advance)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextFormat Ref="73" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text7 Ref="74" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.4,0,1.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Report_Summary</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Name>Text7</Name>
+              <Page isRef="4" />
+              <Parent isRef="53" />
+              <Text>Grand Total</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>ReportSummaryBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </ReportSummaryBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Expressions isList="true" count="0" />
+      <Guid>2d8dcc3a3de540a5a97e560e51d41950</Guid>
+      <Margins>0.39,0.39,0.39,0.39</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>8.27</PageHeight>
+      <PageWidth>11.69</PageWidth>
+      <Report isRef="0" />
+    </Page1>
+  </Pages>
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportAuthor>Yun Fatt Yap</ReportAuthor>
+  <ReportChanged>4/16/2026 1:20:11 PM</ReportChanged>
+  <ReportCreated>3/6/2026 12:09:58 PM</ReportCreated>
+  <ReportFile>D:\Prgs11.1\pms77p\StimulsoftReports\pm_ageing.mrt</ReportFile>
+  <ReportGuid>39abb33212054e6f84198d08ffe9eca6</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Inches</ReportUnit>
+  <ReportVersion>2026.1.7.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="12">
+    <Blue_x0020_Steel_Report_Title1 Ref="75" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item55 Ref="76" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>ReportTitle</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item55>
+      </Conditions>
+      <Font>Arial,14,Bold</Font>
+      <Name>Blue Steel_Report_Title1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[79:129:189]</TextBrush>
+    </Blue_x0020_Steel_Report_Title1>
+    <Blue_x0020_Steel_Report_Title2 Ref="77" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item57 Ref="78" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>ReportTitle</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item57>
+      </Conditions>
+      <Font>Arial,10,Bold</Font>
+      <Name>Blue Steel_Report_Title2</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[79:129:189]</TextBrush>
+    </Blue_x0020_Steel_Report_Title2>
+    <Blue_x0020_Steel_Report_Summary Ref="79" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item59 Ref="80" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>ReportSummary</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item59>
+      </Conditions>
+      <Font>Arial,10,Bold</Font>
+      <Name>Blue Steel_Report_Summary</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[79:129:189]</TextBrush>
+    </Blue_x0020_Steel_Report_Summary>
+    <Blue_x0020_Steel_Page_Header Ref="81" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item61 Ref="82" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>PageHeader</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item61>
+      </Conditions>
+      <Font>Arial,10</Font>
+      <Name>Blue Steel_Page_Header</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Blue_x0020_Steel_Page_Header>
+    <Blue_x0020_Steel_Page_Footer Ref="83" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item63 Ref="84" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>PageFooter</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item63>
+      </Conditions>
+      <Font>Arial,10</Font>
+      <Name>Blue Steel_Page_Footer</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Blue_x0020_Steel_Page_Footer>
+    <Blue_x0020_Steel_Group_Header1 Ref="85" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item65 Ref="86" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>GroupHeader</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item65>
+      </Conditions>
+      <Font>Arial,13,Bold</Font>
+      <Name>Blue Steel_Group_Header1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[79:129:189]</TextBrush>
+    </Blue_x0020_Steel_Group_Header1>
+    <Blue_x0020_Steel_Group_Footer1 Ref="87" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item67 Ref="88" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>GroupFooter</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item67>
+      </Conditions>
+      <Font>Arial,9.75,Bold,Point,False,204</Font>
+      <Name>Blue Steel_Group_Footer1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[79:129:189]</TextBrush>
+    </Blue_x0020_Steel_Group_Footer1>
+    <Blue_x0020_Steel_Header1 Ref="89" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+      <Brush>[79:129:189]</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item69 Ref="90" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>Header</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item69>
+      </Conditions>
+      <Font>Arial,9.75,Bold,Point,False,204</Font>
+      <Name>Blue Steel_Header1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>White</TextBrush>
+    </Blue_x0020_Steel_Header1>
+    <Blue_x0020_Steel_Data1 Ref="91" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item71 Ref="92" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>Data</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item71>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Blue Steel_Data1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Blue_x0020_Steel_Data1>
+    <Blue_x0020_Steel_Data1_Odd_x0020_Style Ref="93" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>[255:255:255]</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item73 Ref="94" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>DataOddStyle</Placement>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item73>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Blue Steel_Data1_Odd Style</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Blue_x0020_Steel_Data1_Odd_x0020_Style>
+    <Blue_x0020_Steel_Data1_Even_x0020_Style Ref="95" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>[216:216:216]</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item75 Ref="96" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>DataEvenStyle</Placement>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item75>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Blue Steel_Data1_Even Style</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Blue_x0020_Steel_Data1_Even_x0020_Style>
+    <Blue_x0020_Steel_Footer1 Ref="97" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black</Border>
+      <Brush>White</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item77 Ref="98" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>Footer</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item77>
+      </Conditions>
+      <Font>Arial,8.25,Bold,Point,False,204</Font>
+      <Name>Blue Steel_Footer1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Blue_x0020_Steel_Footer1>
+  </Styles>
+</StiSerializer>

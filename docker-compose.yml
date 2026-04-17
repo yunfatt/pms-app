@@ -7,6 +7,9 @@ services:
       - MAIN_DATASOURCE_URL=jdbc:postgresql://localhost:5432/pms-main
       - MAIN_DATASOURCE_USERNAME=postgres
       - MAIN_DATASOURCE_PASSWORD=Amsb@2025
+      - APP_REPORTS_PATH=/app/reports
+      - SERVER_PORT=8100        # ← change port here
     restart: always
     volumes:
       - /var/log/pms:/app/logs  # optional log persistence
+      - /opt/pms-app/reports:/app/reports

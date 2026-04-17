@@ -5,6 +5,7 @@ import com.company.pmsmain.entity.Invhdr;
 import com.company.pmsmain.entity.Property;
 import com.company.pmsmain.entity.key.InvdtlCompKey;
 import com.company.pmsmain.util.DocumentFormatUtils;
+import com.company.pmsmain.view.invdtl.InvdtlDetailView;
 import com.company.pmsmain.view.main.MainView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
@@ -17,14 +18,7 @@ import io.jmix.flowui.component.textfield.TypedTextField;
 import io.jmix.flowui.model.CollectionContainer;
 import io.jmix.flowui.model.CollectionLoader;
 import io.jmix.flowui.model.DataContext;
-import io.jmix.flowui.view.EditedEntityContainer;
-import io.jmix.flowui.view.StandardDetailView;
-import io.jmix.flowui.view.Subscribe;
-import io.jmix.flowui.view.Target;
-import io.jmix.flowui.view.View.InitEvent;
-import io.jmix.flowui.view.ViewComponent;
-import io.jmix.flowui.view.ViewController;
-import io.jmix.flowui.view.ViewDescriptor;
+import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
@@ -86,28 +80,50 @@ public class InvhdrDetailView extends StandardDetailView<Invhdr> {
 
     private boolean recalculating = false;
 
-    // ✅ Fires only on new records
+    // ── Init entity (new records only) ────────────────────────────────────────
+
     @Subscribe
     public void onInitEntity(final InitEntityEvent<Invhdr> event) {
         Invhdr invhdr = event.getEntity();
-
         if (invhdr.getTrxndate() == null) {
             invhdr.setTrxndate(new Date());
         }
-
         if (invhdr.getCusttype() == null) {
             invhdr.setCusttype('O');
         }
     }
 
+    // ── Init ──────────────────────────────────────────────────────────────────
+
     @Subscribe
     public void onInit(final InitEvent event) {
+        setupButtons();
+        setupCustType();
+        setupPropertyLookup();
+        setupLineDoubleClick();
+    }
+
+    private void setupButtons() {
         addItemBtn.addClickListener(click -> addLine());
         removeItemBtn.addClickListener(click -> removeSelectedLine());
         moveUpBtn.addClickListener(click -> moveLine(-1));
         moveDownBtn.addClickListener(click -> moveLine(1));
         saveAndCloseButton.addClickListener(click -> saveAndClose());
+    }
 
+    private void setupCustType() {
+        custtypeField.setItems(Arrays.asList('O', 'T'));
+        custtypeField.setItemLabelGenerator(c -> {
+            if (c == null) return "";
+            return switch (c) {
+                case 'O' -> "Owner";
+                case 'T' -> "Tenant";
+                default  -> String.valueOf(c);
+            };
+        });
+    }
+
+    private void setupPropertyLookup() {
         lookupPropertyBtn.addClickListener(click ->
                 dialogWindows.lookup(this, Property.class)
                         .withSelectHandler(properties -> {
@@ -125,23 +141,17 @@ public class InvhdrDetailView extends StandardDetailView<Invhdr> {
             getEditedEntity().setPropertyno(e.getValue());
             refreshCustomerDisplay(e.getValue());
         });
+    }
 
-        invdtlsDataGrid.addItemClickListener(e -> {
+    private void setupLineDoubleClick() {
+        invdtlsDataGrid.addItemDoubleClickListener(e -> {
             if (e.getItem() != null) {
-                invdtlsDataGrid.getEditor().editItem(e.getItem());
+                openLineDialog(e.getItem());
             }
         });
-
-        custtypeField.setItems(Arrays.asList('O', 'T'));
-        custtypeField.setItemLabelGenerator(c -> {
-            if (c == null) return "";
-            return switch (c) {
-                case 'O' -> "Owner";
-                case 'T' -> "Tenant";
-                default -> String.valueOf(c);
-            };
-        });
     }
+
+    // ── Ready ─────────────────────────────────────────────────────────────────
 
     @Subscribe
     public void onReady(final ReadyEvent event) {
@@ -156,17 +166,19 @@ public class InvhdrDetailView extends StandardDetailView<Invhdr> {
         refreshCustomerDisplay(invhdr.getPropertyno());
     }
 
+    // ── Pre-save ──────────────────────────────────────────────────────────────
+
     @Subscribe(target = Target.DATA_CONTEXT)
     public void onPreSave(final DataContext.PreSaveEvent event) {
         Invhdr invhdr = getEditedEntity();
-
         if (invhdr.getTrxndate() == null) {
             invhdr.setTrxndate(new Date());
         }
-
         recalculateTotals();
         refreshInvnoDisplay();
     }
+
+    // ── Item property change ──────────────────────────────────────────────────
 
     @Subscribe(id = "invdtlsDc", target = Target.DATA_CONTAINER)
     public void onInvdtlsDcItemPropertyChange(
@@ -187,7 +199,20 @@ public class InvhdrDetailView extends StandardDetailView<Invhdr> {
         }
     }
 
-    // ── Line operations ──────────────────────────────────────────────────────
+    // ── Line item dialog ──────────────────────────────────────────────────────
+
+    private void openLineDialog(Invdtl item) {
+        dialogWindows.detail(this, Invdtl.class)
+                .editEntity(item)
+                .withViewClass(InvdtlDetailView.class)
+                .withAfterCloseListener(e -> {
+                    recalculateTotals();
+                    invdtlsDataGrid.getDataProvider().refreshAll();
+                })
+                .open();
+    }
+
+    // ── Line operations ───────────────────────────────────────────────────────
 
     private void addLine() {
         Invdtl item = dataContext.create(Invdtl.class);
@@ -205,13 +230,14 @@ public class InvhdrDetailView extends StandardDetailView<Invhdr> {
 
         invdtlsDc.getMutableItems().add(item);
         recalculateTotals();
-        invdtlsDataGrid.getEditor().editItem(item);
+
+        // Open new line in dialog immediately
+        openLineDialog(item);
     }
 
     private void removeSelectedLine() {
         Invdtl selected = invdtlsDataGrid.getSingleSelectedItem();
         if (selected != null) {
-            invdtlsDataGrid.getEditor().cancel();
             invdtlsDc.getMutableItems().remove(selected);
             recalculateTotals();
         }
@@ -223,7 +249,7 @@ public class InvhdrDetailView extends StandardDetailView<Invhdr> {
 
         List<Invdtl> items = invdtlsDc.getMutableItems();
         int currentIndex = items.indexOf(selected);
-        int targetIndex = currentIndex + direction;
+        int targetIndex  = currentIndex + direction;
 
         if (targetIndex < 0 || targetIndex >= items.size()) return;
 
@@ -259,13 +285,13 @@ public class InvhdrDetailView extends StandardDetailView<Invhdr> {
         closeWithSave();
     }
 
-    // ── Calculations ─────────────────────────────────────────────────────────
+    // ── Calculations ──────────────────────────────────────────────────────────
 
     private void recalculateLineAmount(Invdtl item) {
         recalculating = true;
         try {
-            BigDecimal qty = nz(item.getQty());
-            BigDecimal price = nz(item.getPrice());
+            BigDecimal qty    = nz(item.getQty());
+            BigDecimal price  = nz(item.getPrice());
             BigDecimal netamt = qty.multiply(price);
             item.setNetamt(netamt);
             item.setAmount(netamt.add(nz(item.getGstamt())));
@@ -305,7 +331,7 @@ public class InvhdrDetailView extends StandardDetailView<Invhdr> {
         property.ifPresentOrElse(p -> {
             String display = List.of(
                             p.getUnitno() != null ? p.getUnitno() : "",
-                            p.getAddr1() != null ? p.getAddr1() : ""
+                            p.getAddr1()  != null ? p.getAddr1()  : ""
                     ).stream()
                     .filter(s -> !s.isBlank())
                     .reduce((a, b) -> a + " - " + b)

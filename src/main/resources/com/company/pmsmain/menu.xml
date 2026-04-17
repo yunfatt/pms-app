@@ -10,6 +10,7 @@
         <item view="Invhdr.list" title="msg://com.company.pmsmain.view.invhdr/invhdrListView.title"/>
         <item view="Ardoc.list" title="msg://com.company.pmsmain.view.ardoc/ardocListView.title"/>
         <item view="Bank.list" title="msg://com.company.pmsmain.view.bank/bankListView.title"/>
+        <item view="Charge.list" title="msg://com.company.pmsmain.view.charge/chargeListView.title"/>
     </menu>
 
 </menu-config>

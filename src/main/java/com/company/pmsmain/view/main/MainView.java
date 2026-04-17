@@ -10,8 +10,6 @@ import com.vaadin.flow.component.avatar.AvatarVariant;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -34,8 +32,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class MainView extends StandardMainView implements AfterNavigationObserver {
 
     @Autowired
-    private CompanyRoutingTestService companyRoutingTestService;
-    @Autowired
     private Messages messages;
     @Autowired
     private UiComponents uiComponents;
@@ -43,6 +39,8 @@ public class MainView extends StandardMainView implements AfterNavigationObserve
     private CurrentUserSubstitution currentUserSubstitution;
     @Autowired
     private TenantDebugService tenantDebugService;
+    @Autowired
+    private CompanyRoutingTestService companyRoutingTestService;
 
     @ViewComponent
     private Span currentCompanyLabel;
@@ -52,12 +50,16 @@ public class MainView extends StandardMainView implements AfterNavigationObserve
     private VerticalLayout dynamicMenuBox;
 
     private Tabs moduleTabs;
+    private Tabs subTabs;
+    private Div menuItemsBox = new Div();
     private String currentRoute = "";
 
     @Subscribe
     public void onInit(InitEvent event) {
-        buildTopTabs();
-    }
+        buildModuleTabs();
+        getContent().getStyle()
+                .set("background-color", "#f0f9f4");
+      }
 
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
@@ -65,14 +67,16 @@ public class MainView extends StandardMainView implements AfterNavigationObserve
         if (moduleTabs.getSelectedTab() == null) {
             moduleTabs.setSelectedIndex(0);
         }
-        rebuildCurrentMenu();
+        rebuildSubTabs();
     }
 
     @Override
     public void afterNavigation(AfterNavigationEvent event) {
         currentRoute = event.getLocation().getPath();
-        rebuildCurrentMenu();
+        rebuildMenuItems();
     }
+
+    // ── Company badge ─────────────────────────────────────────────────────────
 
     private void updateCompanyBadge() {
         String code = tenantDebugService.getCurrentCompanyCode();
@@ -82,153 +86,183 @@ public class MainView extends StandardMainView implements AfterNavigationObserve
                 Strings.nullToEmpty(name)));
     }
 
-    private void buildTopTabs() {
-        Tab arTab = new Tab("Accounts Receivable");
-        Tab apTab = new Tab("Accounts Payable");
-        Tab cbTab = new Tab("Cash Book");
-        Tab glTab = new Tab("General Ledger");
-        Tab adminTab = new Tab("Administration");
+    // ── Level 1: Module tabs ──────────────────────────────────────────────────
 
-        moduleTabs = new Tabs(arTab, apTab, cbTab, glTab, adminTab);
+    private void buildModuleTabs() {
+        Tab arTab  = new Tab("Accounts Receivable");
+        Tab apTab  = new Tab("Accounts Payable");
+        Tab cbTab  = new Tab("Cash Book");
+        Tab glTab  = new Tab("General Ledger");
+        Tab admTab = new Tab("Administration");
+
+        moduleTabs = new Tabs(arTab, apTab, cbTab, glTab, admTab);
         moduleTabs.setWidthFull();
         moduleTabs.addClassName("premium-module-tabs");
-        moduleTabs.addSelectedChangeListener(e -> rebuildCurrentMenu());
+        moduleTabs.addSelectedChangeListener(e -> rebuildSubTabs());
 
         topTabsBox.removeAll();
         topTabsBox.add(moduleTabs);
     }
 
-    private void rebuildCurrentMenu() {
+    // ── Level 2: Sub-tabs ─────────────────────────────────────────────────────
+
+    private void rebuildSubTabs() {
         if (moduleTabs == null || moduleTabs.getSelectedTab() == null) return;
 
-        String label = moduleTabs.getSelectedTab().getLabel();
-        dynamicMenuBox.removeAll();
+        Tab filesTab   = new Tab("Files");
+        Tab trxnTab    = new Tab("Transactions");
+        Tab reportsTab = new Tab("Reports");
 
-        switch (label) {
-            case "Accounts Receivable" -> showAccountsReceivableMenu();
-            case "Accounts Payable" -> showAccountsPayableMenu();
-            case "Cash Book" -> showCashBookMenu();
-            case "General Ledger" -> showGeneralLedgerMenu();
-            case "Administration" -> showAdministrationMenu();
+        subTabs = new Tabs(filesTab, trxnTab, reportsTab);
+        subTabs.setWidthFull();
+        subTabs.addClassName("premium-sub-tabs");
+        subTabs.addSelectedChangeListener(e -> {
+            menuItemsBox.removeAll();
+            rebuildMenuItems();
+        });
+
+        dynamicMenuBox.removeAll();
+        dynamicMenuBox.add(subTabs);
+        dynamicMenuBox.add(createMenuItemsBox());
+
+        subTabs.setSelectedIndex(0);
+    }
+
+    // ── Level 3: Menu items ───────────────────────────────────────────────────
+
+    private Component createMenuItemsBox() {
+        menuItemsBox = new Div();
+        menuItemsBox.setWidthFull();
+        menuItemsBox.getStyle()
+                .set("padding", "8px 0")
+                .set("display", "flex")
+                .set("flex-direction", "column");
+        rebuildMenuItems();
+        return menuItemsBox;
+    }
+
+    private void rebuildMenuItems() {
+        if (moduleTabs == null || subTabs == null) return;
+        if (moduleTabs.getSelectedTab() == null
+                || subTabs.getSelectedTab() == null) return;
+
+        String module = moduleTabs.getSelectedTab().getLabel();
+        String subTab = getSubTabLabel();
+
+        menuItemsBox.removeAll();
+
+        switch (module) {
+            case "Accounts Receivable" -> buildARMenu(subTab);
+            case "Accounts Payable"    -> buildAPMenu(subTab);
+            case "Cash Book"           -> buildCBMenu(subTab);
+            case "General Ledger"      -> buildGLMenu(subTab);
+            case "Administration"      -> buildAdminMenu(subTab);
         }
     }
 
-    private void showAccountsReceivableMenu() {
-        dynamicMenuBox.add(
-                createSection("AR_M", "MASTER",
-                        createMenuButton("Phase", "phases", VaadinIcon.BUILDING),
-                        createMenuButton("Property", "properties", VaadinIcon.HOME),
-                        createMenuButton("Customers", "customers", VaadinIcon.USER),
-                        createMenuButton("Transaction Code", "ardocs", VaadinIcon.USER)
-                ),
-                createSection("AR_T", "TRANSACTION",
-                        createMenuButton("Invoice Entry", "invhdrs", VaadinIcon.FILE_TEXT),
-                        createMenuButton("Receipt Entry", "receipts", VaadinIcon.MONEY)
-                )
-        );
+    private String getSubTabLabel() {
+        if (subTabs == null || subTabs.getSelectedTab() == null) return "Files";
+        return subTabs.getSelectedTab().getLabel();
     }
 
-    private void showAccountsPayableMenu() {
-        dynamicMenuBox.add(
-                createSection("AP_M", "MASTER", createMenuButton("Suppliers", "suppliers", VaadinIcon.TRUCK)),
-                createSection("AP_T", "TRANSACTION", createMenuButton("Bill Entry", "bills", VaadinIcon.INPUT))
-        );
+    // ── AR Menu ───────────────────────────────────────────────────────────────
+
+    private void buildARMenu(String subTab) {
+        switch (subTab) {
+            case "Files" -> {
+                menuItemsBox.add(
+                        createMenuButton("Phase",            "phases"),
+                        createMenuButton("Property",         "properties"),
+                        createMenuButton("Customers",        "customers"),
+                        createMenuButton("Transaction Code", "ardocs"),
+                        createMenuButton("Charge Code",      "charges")
+                );
+            }
+            case "Transactions" -> {
+                menuItemsBox.add(
+                        createMenuButton("Invoice Entry", "invhdrs")
+                );
+            }
+            case "Reports" -> {
+                menuItemsBox.add(
+                        createMenuButton("Customer Transactions", "cust-trxn-report"),
+                        createMenuButton("Ageing",                "ageing-report")
+                );
+            }
+        }
     }
 
-    private void showCashBookMenu() {
-        dynamicMenuBox.add(
-                createSection("CB_T", "TRANSACTION",
-                        createMenuButton("Bank Entry", "bank-entry", VaadinIcon.INSTITUTION),
-                        createMenuButton("Reconciliation", "reconcile", VaadinIcon.CHECK_CIRCLE)
-                )
-        );
+    // ── AP Menu ───────────────────────────────────────────────────────────────
+
+    private void buildAPMenu(String subTab) {
+        switch (subTab) {
+            case "Files"        -> menuItemsBox.add(createDummyMenuButton("Suppliers"));
+            case "Transactions" -> menuItemsBox.add(createDummyMenuButton("Bill Entry"));
+            case "Reports"      -> menuItemsBox.add(createDummyMenuButton("AP Reports"));
+        }
     }
 
-    private void showGeneralLedgerMenu() {
-        dynamicMenuBox.add(
-                createSection("GL_M", "MASTER", createMenuButton("Chart of Accounts", "accounts", VaadinIcon.LIST)),
-                createSection("GL_R", "REPORTS", createMenuButton("Trial Balance", "trial-balance", VaadinIcon.BAR_CHART))
-        );
+    // ── CB Menu ───────────────────────────────────────────────────────────────
+
+    private void buildCBMenu(String subTab) {
+        switch (subTab) {
+            case "Files"        -> menuItemsBox.add(createDummyMenuButton("Bank Accounts"));
+            case "Transactions" -> {
+                menuItemsBox.add(
+                        createDummyMenuButton("Bank Entry"),
+                        createDummyMenuButton("Reconciliation")
+                );
+            }
+            case "Reports"      -> menuItemsBox.add(createDummyMenuButton("Cash Book Report"));
+        }
     }
 
-    private void showAdministrationMenu() {
-        dynamicMenuBox.add(
-                createSection("ADM_SEC", "SECURITY",
-                        createMenuButton("Users", "users", VaadinIcon.USERS),
-                        // Added Missing Role Views
-                        createMenuButton("Resource Roles", "sec/resourcerolemodels", VaadinIcon.KEY),
-                        createMenuButton("Row-level Roles", "sec/rowlevelrolemodels", VaadinIcon.LOCK)
-                )
-        );
+    // ── GL Menu ───────────────────────────────────────────────────────────────
+
+    private void buildGLMenu(String subTab) {
+        switch (subTab) {
+            case "Files"        -> menuItemsBox.add(createDummyMenuButton("Chart of Accounts"));
+            case "Transactions" -> menuItemsBox.add(createDummyMenuButton("Journal Entry"));
+            case "Reports"      -> menuItemsBox.add(createDummyMenuButton("Trial Balance"));
+        }
     }
 
-    private Component createSection(String key, String title, Component... items) {
-        VerticalLayout section = uiComponents.create(VerticalLayout.class);
-        section.setPadding(false);
-        section.setSpacing(false);
-        section.addClassName("premium-menu-section");
+    // ── Admin Menu ────────────────────────────────────────────────────────────
 
-        HorizontalLayout header = uiComponents.create(HorizontalLayout.class);
-        header.addClassName("premium-menu-section-header");
-        header.setSpacing(false);
-        header.setWidthFull();
-
-        Span arrow = uiComponents.create(Span.class);
-        arrow.addClassName("premium-menu-section-arrow");
-
-        Span caption = uiComponents.create(Span.class);
-        caption.setText(title);
-        caption.addClassName("premium-menu-section-caption");
-
-        header.add(arrow, caption);
-
-        VerticalLayout itemsBox = uiComponents.create(VerticalLayout.class);
-        itemsBox.setPadding(false);
-        itemsBox.setSpacing(false);
-        itemsBox.addClassName("premium-menu-items-box");
-        for (Component item : items) itemsBox.add(item);
-
-        boolean expanded = getSectionState(key, true);
-        itemsBox.setVisible(expanded);
-        arrow.setText(expanded ? "▾ " : "▸ ");
-
-        header.addClickListener(e -> {
-            boolean newState = !itemsBox.isVisible();
-            setSectionState(key, newState);
-            itemsBox.setVisible(newState);
-            arrow.setText(newState ? "▾ " : "▸ ");
-        });
-
-        section.add(header, itemsBox);
-        return section;
+    private void buildAdminMenu(String subTab) {
+        switch (subTab) {
+            case "Files" -> {
+                menuItemsBox.add(
+                        createMenuButton("Users",           "users"),
+                        createMenuButton("Resource Roles",  "sec/resourcerolemodels"),
+                        createMenuButton("Row-level Roles", "sec/rowlevelrolemodels")
+                );
+            }
+            case "Transactions" -> menuItemsBox.add(createDummyMenuButton("Admin Tasks"));
+            case "Reports"      -> menuItemsBox.add(createDummyMenuButton("Audit Log"));
+        }
     }
 
-    private Button createMenuButton(String caption, String route, VaadinIcon icon) {
+    // ── Button helpers ────────────────────────────────────────────────────────
+
+    private Button createMenuButton(String caption, String route) {
         Button btn = uiComponents.create(Button.class);
         btn.setText(caption);
-        btn.setIcon(icon.create());
         btn.setWidthFull();
-
         btn.addClassName("premium-menu-item");
-        // Explicit check for high-contrast border application
         if (route.equals(currentRoute)) {
             btn.addClassName("premium-menu-item-active");
         }
-
         btn.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(route)));
         return btn;
     }
 
-    private boolean getSectionState(String key, boolean def) {
-        return getUI().map(ui -> {
-            Object val = ui.getSession().getAttribute(key);
-            return val instanceof Boolean ? (Boolean) val : def;
-        }).orElse(def);
+    private Button createDummyMenuButton(String caption) {
+        String slug = caption.toLowerCase().replace(" ", "-");
+        return createMenuButton(caption, "not-implemented/" + slug);
     }
 
-    private void setSectionState(String key, boolean val) {
-        getUI().ifPresent(ui -> ui.getSession().setAttribute(key, val));
-    }
+    // ── User menu renderer ────────────────────────────────────────────────────
 
     @Install(to = "userMenu", subject = "buttonRenderer")
     private Component userMenuButtonRenderer(final UserDetails userDetails) {
@@ -243,5 +277,16 @@ public class MainView extends StandardMainView implements AfterNavigationObserve
         name.setText(user.getUsername());
         layout.add(avatar, name);
         return layout;
+    }
+
+    private boolean getSectionState(String key, boolean def) {
+        return getUI().map(ui -> {
+            Object val = ui.getSession().getAttribute(key);
+            return val instanceof Boolean ? (Boolean) val : def;
+        }).orElse(def);
+    }
+
+    private void setSectionState(String key, boolean val) {
+        getUI().ifPresent(ui -> ui.getSession().setAttribute(key, val));
     }
 }

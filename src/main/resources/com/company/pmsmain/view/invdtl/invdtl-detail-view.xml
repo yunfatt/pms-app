@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://invdtlDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="invdtlDc"
+                  class="com.company.pmsmain.entity.Invdtl">
+            <fetchPlan extends="_base"/>
+            <loader id="invdtlDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="invdtlDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="idInvnoField" property="id.invno"/>
+            <textField id="idLinenumField" property="id.linenum"/>
+            <textField id="amountField" property="amount"/>
+            <textField id="chargeidField" property="chargeid"/>
+            <textField id="chargenoField" property="chargeno"/>
+            <textField id="compnoField" property="compno"/>
+            <datePicker id="date1Field" property="date1"/>
+            <datePicker id="date2Field" property="date2"/>
+            <textField id="descriptionField" property="description"/>
+            <datePicker id="duedateField" property="duedate"/>
+            <textField id="echargeidField" property="echargeid"/>
+            <textField id="gstamtField" property="gstamt"/>
+            <textField id="gstpayableField" property="gstpayable"/>
+            <textField id="gstrateField" property="gstrate"/>
+            <datePicker id="gsttaxpointdateField" property="gsttaxpointdate"/>
+            <textField id="icptamtField" property="icptamt"/>
+            <textField id="icptqtyField" property="icptqty"/>
+            <textField id="icptqty2Field" property="icptqty2"/>
+            <textField id="icptqty3Field" property="icptqty3"/>
+            <textField id="icptqty4Field" property="icptqty4"/>
+            <textField id="icptqty5Field" property="icptqty5"/>
+            <textField id="icptqty6Field" property="icptqty6"/>
+            <textField id="icptrateField" property="icptrate"/>
+            <textField id="icptrate2Field" property="icptrate2"/>
+            <textField id="icptrate3Field" property="icptrate3"/>
+            <textField id="icptrate4Field" property="icptrate4"/>
+            <textField id="icptrate5Field" property="icptrate5"/>
+            <textField id="icptrate6Field" property="icptrate6"/>
+            <textField id="maxdemandField" property="maxdemand"/>
+            <textField id="netamtField" property="netamt"/>
+            <textField id="periodField" property="period"/>
+            <textField id="priceField" property="price"/>
+            <textField id="price2Field" property="price2"/>
+            <textField id="price3Field" property="price3"/>
+            <textField id="price4Field" property="price4"/>
+            <textField id="price5Field" property="price5"/>
+            <textField id="price6Field" property="price6"/>
+            <textField id="qtyField" property="qty"/>
+            <textField id="qty2Field" property="qty2"/>
+            <textField id="qty3Field" property="qty3"/>
+            <textField id="qty4Field" property="qty4"/>
+            <textField id="qty5Field" property="qty5"/>
+            <textField id="qty6Field" property="qty6"/>
+            <textField id="reading1Field" property="reading1"/>
+            <textField id="reading2Field" property="reading2"/>
+            <textField id="reamtField" property="reamt"/>
+            <textField id="rerateField" property="rerate"/>
+            <textField id="taxcodeidField" property="taxcodeid"/>
+            <textField id="unitField" property="unit"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

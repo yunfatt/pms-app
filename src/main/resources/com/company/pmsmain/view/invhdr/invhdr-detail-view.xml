@@ -31,19 +31,19 @@
     <layout>
         <vbox width="100%" spacing="true">
 
+            <!-- ── Header form ──────────────────────────────────────────── -->
             <formLayout id="form" dataContainer="invhdrDc">
                 <responsiveSteps>
-                    <responsiveStep minWidth="0" columns="1"/>
+                    <responsiveStep minWidth="0"    columns="1"/>
                     <responsiveStep minWidth="40em" columns="2"/>
                     <responsiveStep minWidth="60em" columns="3"/>
                 </responsiveSteps>
 
-                <!-- Row 1 -->
                 <textField id="invnoField"
                            label="Invoice No."
                            readOnly="true"/>
 
-                <hbox label="Customer No." spacing="true" alignItems="CENTER">
+                <hbox label="Property No." spacing="true" alignItems="CENTER">
                     <textField id="propertynoField"
                                property="propertyno"
                                dataContainer="invhdrDc"
@@ -60,7 +60,6 @@
                         dataContainer="invhdrDc"
                         label="Cust Type"/>
 
-                <!-- Row 2 -->
                 <datePicker id="trxndateField"
                             property="trxndate"
                             label="Date"/>
@@ -69,7 +68,6 @@
                         property="taxinvtype"
                         label="Tax Invoice Type"/>
 
-                <!-- Row 3 -->
                 <textField id="refnoField"
                            property="refno"
                            label="Ref No"/>
@@ -80,49 +78,47 @@
 
             </formLayout>
 
+            <!-- ── Invoice items ─────────────────────────────────────────── -->
             <h3 text="Invoice Items"/>
 
             <hbox id="itemActions" spacing="true">
-                <button id="addItemBtn" text="Add Line"/>
+                <button id="addItemBtn"    text="Add Line"/>
                 <button id="removeItemBtn" text="Remove Line"/>
-                <button id="moveUpBtn" text="↑" title="Move Up"/>
-                <button id="moveDownBtn" text="↓" title="Move Down"/>
+                <button id="moveUpBtn"     text="↑" title="Move Up"/>
+                <button id="moveDownBtn"   text="↓" title="Move Down"/>
             </hbox>
 
             <dataGrid id="invdtlsDataGrid"
                       width="100%"
-                      minHeight="20em"
-                      dataContainer="invdtlsDc"
-                      editorBuffered="false">
+                      minHeight="15em"
+                      dataContainer="invdtlsDc">
+                <actions>
+                    <action id="editLineAction"
+                            text="Edit"
+                            type="list_edit"
+                            openMode="DIALOG"/>
+                </actions>
                 <columns resizable="true">
-                    <column property="id.linenum" editable="false" header="Line"/>
-                    <column property="chargeno" editable="true" header="Code"/>
-                    <column property="description" editable="true" header="Description"/>
-                    <column property="date1" editable="true" header="From"/>
-                    <column property="date2" editable="true" header="To"/>
-                    <column property="duedate" editable="true" header="Due Date"/>
-                    <column property="reading1" editable="true" header="Initial Reading"/>
-                    <column property="reading2" editable="true" header="Final Reading"/>
-                    <column key="qty" property="qty" editable="true" header="Qty">
-                        <editorComponent>
-                            <bigDecimalField id="qtyEditor" property="qty"/>
-                        </editorComponent>
-                    </column>
-                    <column key="price" property="price" editable="true" header="U.P./Amount">
-                        <editorComponent>
-                            <bigDecimalField id="priceEditor" property="price"/>
-                        </editorComponent>
-                    </column>
-                    <column property="netamt" editable="false" header="Net Amt"/>
-                    <column property="gstamt" editable="false" header="GST Amt"/>
-                    <column property="amount" editable="false" header="Amount"/>
+                    <column property="id.linenum"  header="Line"            width="60px"/>
+                    <column property="chargeno"    header="Code"            width="80px"/>
+                    <column property="description" header="Description"     width="200px"/>
+                    <column property="date1"       header="From"/>
+                    <column property="date2"       header="To"/>
+                    <column property="duedate"     header="Due Date"/>
+                    <column property="reading1"    header="Initial Reading"/>
+                    <column property="reading2"    header="Final Reading"/>
+                    <column property="qty"         header="Qty"/>
+                    <column property="price"       header="U.P/Amt"/>
+                    <column property="netamt"      header="Net Amt"/>
+                    <column property="gstamt"      header="GST Amt"/>
+                    <column property="amount"      header="Amount"/>
                 </columns>
             </dataGrid>
 
-            <!-- Totals -->
+            <!-- ── Totals ────────────────────────────────────────────────── -->
             <formLayout>
                 <responsiveSteps>
-                    <responsiveStep minWidth="0" columns="1"/>
+                    <responsiveStep minWidth="0"    columns="1"/>
                     <responsiveStep minWidth="40em" columns="3"/>
                 </responsiveSteps>
                 <bigDecimalField id="netamtField"
@@ -142,6 +138,7 @@
                                  readOnly="true"/>
             </formLayout>
 
+            <!-- ── Footer actions ────────────────────────────────────────── -->
             <hbox id="detailActions" spacing="true">
                 <button id="saveAndCloseButton" text="Save"/>
                 <button id="closeButton" action="closeAction"/>

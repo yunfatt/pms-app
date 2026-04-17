@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://chargeDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="chargeDc"
+                  class="com.company.pmsmain.entity.Charge">
+            <fetchPlan extends="_base">
+                <property name="uid"/>
+            </fetchPlan>
+            <loader id="chargeDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="chargeDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="chargetypeField" property="chargetype"/>
+            <textField id="descriptionField" property="description"/>
+            <textField id="minamtField" property="minamt"/>
+            <textField id="minqtyField" property="minqty"/>
+            <textField id="monthdueField" property="monthdue"/>
+            <textField id="periodField" property="period"/>
+            <textField id="phasenoField" property="phaseno"/>
+            <textField id="priceField" property="price"/>
+            <textField id="price2Field" property="price2"/>
+            <textField id="price3Field" property="price3"/>
+            <textField id="price4Field" property="price4"/>
+            <textField id="price5Field" property="price5"/>
+            <textField id="readingtypeField" property="readingtype"/>
+            <textField id="taxcodeidField" property="taxcodeid"/>
+            <textField id="taxinvtypeField" property="taxinvtype"/>
+            <textField id="trxncodeField" property="trxncode"/>
+            <textField id="unitField" property="unit"/>
+            <textField id="unit2Field" property="unit2"/>
+            <textField id="unit3Field" property="unit3"/>
+            <textField id="unit4Field" property="unit4"/>
+            <textField id="unit5Field" property="unit5"/>
+            <textField id="usedefaulttaxcodeField" property="usedefaulttaxcode"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

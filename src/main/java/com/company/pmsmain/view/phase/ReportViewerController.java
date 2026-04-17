@@ -15,15 +15,11 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-/**
- * REST endpoints for Stimulsoft JS viewer.
- *
- * GET  /api/report/phase-list/render  → renders report, returns PDF bytes
- * GET  /api/report/phase-list/mrt     → returns raw .mrt for client-side rendering
- */
 @RestController
 @RequestMapping("/public/report/phase-list")
 public class ReportViewerController {
@@ -34,8 +30,8 @@ public class ReportViewerController {
     @Autowired
     private CurrentAuthentication currentAuthentication;
 
-    @Value("${app.reports.path:com/company/pmsmain/Reports/PrintPhaseList.mrt}")
-    private String reportPath;
+    @Value("${app.reports.path:com/company/pmsmain/Reports}")
+    private String reportsBasePath;
 
     @Value("${app.system-name:Property Management System}")
     private String systemName;
@@ -43,10 +39,8 @@ public class ReportViewerController {
     @Value("${app.company-name:}")
     private String companyName;
 
-    /**
-     * Renders the report and streams it as PDF.
-     * Called by the viewer HTML page after loading.
-     */
+    // ── Endpoints ────────────────────────────────────────────────────────────
+
     @GetMapping("/pdf")
     public void renderPdf(
             @RequestParam(defaultValue = "") String phaseNoFrom,
@@ -55,7 +49,6 @@ public class ReportViewerController {
             HttpServletResponse response) throws Exception {
 
         StiReport report = buildReport(phaseNoFrom, phaseNoTo, companyCode);
-
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         StiExportManager.exportPdf(report, out);
 
@@ -64,9 +57,6 @@ public class ReportViewerController {
         response.getOutputStream().write(out.toByteArray());
     }
 
-    /**
-     * Returns the rendered report as HTML for inline preview.
-     */
     @GetMapping(value = "/html", produces = MediaType.TEXT_HTML_VALUE)
     public void renderHtml(
             @RequestParam(defaultValue = "") String phaseNoFrom,
@@ -75,7 +65,6 @@ public class ReportViewerController {
             HttpServletResponse response) throws Exception {
 
         StiReport report = buildReport(phaseNoFrom, phaseNoTo, companyCode);
-
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         StiExportManager.exportHtml(report, out);
 
@@ -83,9 +72,6 @@ public class ReportViewerController {
         response.getWriter().write(out.toString("UTF-8"));
     }
 
-    /**
-     * Serves the viewer HTML page directly — avoids static resource routing issues.
-     */
     @GetMapping(value = "/viewer", produces = MediaType.TEXT_HTML_VALUE)
     public void viewerPage(
             @RequestParam(defaultValue = "") String phaseNoFrom,
@@ -149,12 +135,35 @@ public class ReportViewerController {
         response.getWriter().write(html);
     }
 
+    // ── Template loader ───────────────────────────────────────────────────────
 
+    private File loadReportTemplate(String fileName) throws IOException {
+        if (reportsBasePath.startsWith("/")) {
+            // Docker — read directly from mounted volume outside container
+            Path path = Paths.get(reportsBasePath, fileName);
+            if (!Files.exists(path)) {
+                throw new FileNotFoundException(
+                        "Report template not found at: " + path);
+            }
+            return path.toFile();
+        }
+
+        // Dev/IDE — read from classpath using getFile() (works outside JAR)
+        String resourcePath = reportsBasePath + "/" + fileName;
+        ClassPathResource resource = new ClassPathResource(resourcePath);
+        if (!resource.exists()) {
+            throw new FileNotFoundException(
+                    "Report template not found on classpath: " + resourcePath);
+        }
+        return resource.getFile();
+    }
+
+    // ── Report builder ───────────────────────────────────────────────────────
 
     private StiReport buildReport(String phaseNoFrom,
                                   String phaseNoTo,
                                   String companyCode) throws Exception {
-        // Resolve company code
+        // 1. Resolve company
         String raw = (companyCode == null || companyCode.isBlank())
                 ? TenantContext.getCompanyCode() : companyCode;
         String code = (raw != null)
@@ -166,30 +175,30 @@ public class ReportViewerController {
                 .optional()
                 .orElseThrow(() -> new IllegalStateException("Company not found: " + code));
 
+        // 2. Build connection string
         String dbConn = "Server="   + company.getDbHost()
                 + ";Port="     + company.getDbPort()
                 + ";Database=" + company.getDbName()
                 + ";User Id="  + company.getDbUsername()
                 + ";Password=" + company.getDbPasswordEnc() + ";";
 
-        // Load report
-        ClassPathResource res = new ClassPathResource(reportPath);
-        File reportFile = res.getFile();
+        // 3. Load template
+        File reportFile = loadReportTemplate("PrintPhaseList.mrt");
         StiReport report = StiSerializeManager.deserializeReport(reportFile);
 
-        // Set connection
+        // 4. Set connection
         report.getDictionary().getDatabases().clear();
         report.getDictionary().getDatabases().add(
                 new StiPostgreSQLDatabase("pms", dbConn));
 
-        // Set variables
+        // 5. Set variables
         report.setVariable("SystemName",  systemName);
-        report.setVariable("CompanyName", companyName);
+        report.setVariable("CompanyName", company.getCompanyName());
         report.setVariable("UserId",      currentAuthentication.getUser().getUsername());
         report.setVariable("PhaseNoFrom", phaseNoFrom);
         report.setVariable("PhaseNoTo",   phaseNoTo);
 
-        // Render
+        // 6. Render
         report.render();
 
         return report;

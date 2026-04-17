@@ -1,0 +1,1568 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <CalculationMode>Interpretation</CalculationMode>
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <pms Ref="2" type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" isKey="true">
+        <Alias>pms</Alias>
+        <ConnectionStringEncrypted>49ZTCUgKQ8hFWm3c6SUhG9VU+wLGA3kJ4kqh/Gpo4S+AyIECSEgxgWJJ6NzrEHWr1GzbocZow4VrHtXc5Rjsu9FU/UlGSwGZbBq0nU4d4kbD8g==</ConnectionStringEncrypted>
+        <Key>d7ccb9fb122047e2aec3b630253c5d15</Key>
+        <Name>pms</Name>
+      </pms>
+    </Databases>
+    <DataSources isList="true" count="3">
+      <pms Ref="3" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>pms</Alias>
+        <Columns isList="true" count="20">
+          <value>ORIGINAL,record_type,record_type,record_type,System.String,ad47a76d5b9641f28854dfa6e3478b22</value>
+          <value>ORIGINAL,phaseno,phaseno,phaseno,System.String,_x0034_b2817b5f20942289d9bbbfca78e0f98</value>
+          <value>ORIGINAL,propertyno,propertyno,propertyno,System.String,d7c1ba5f59384df88a8f5deab4201963</value>
+          <value>ORIGINAL,custtype,custtype,custtype,System.String,_x0036_a7e3b3b5e50421a8bb27fc4bddac5cc</value>
+          <value>ORIGINAL,billno,billno,billno,System.String,fa0b1ee1fc034113ad172a71a10619c4</value>
+          <value>ORIGINAL,trxndate,trxndate,trxndate,System.DateTime,_x0032_4be2a4226e04640b0ec672cef1f31ac</value>
+          <value>ORIGINAL,duedate,duedate,duedate,System.DateTime,_x0030_7b5aa8d5d1241cfa94a616cd7bcf4c9</value>
+          <value>ORIGINAL,billtype,billtype,billtype,System.String,_x0032_11291f30a5c4f6a9a1f2bd2bfabd6ce</value>
+          <value>ORIGINAL,billdesc,billdesc,billdesc,System.String,_x0033_aca466c6fe64b6ab7f5314ce4d90cd4</value>
+          <value>ORIGINAL,netamt,netamt,netamt,System.Decimal,_x0030_d08cce5dd004953b5a38e6b5af39896</value>
+          <value>ORIGINAL,gstamt,gstamt,gstamt,System.Decimal,da774624c6c64f5699976465cbf94497</value>
+          <value>ORIGINAL,billamt,billamt,billamt,System.Decimal,c2fda2708d994bfa80ef77fbc0cee2b8</value>
+          <value>ORIGINAL,paymentno,paymentno,paymentno,System.String,_x0036_0006d0899c844459b61eebab9dc3de4</value>
+          <value>ORIGINAL,paymentdate,paymentdate,paymentdate,System.DateTime,_x0031_37bc6a9fcff4ec2b392292a871ef1c8</value>
+          <value>ORIGINAL,paymenttype,paymenttype,paymenttype,System.String,_x0034_fce917fc0104de08c7856f328704c71</value>
+          <value>ORIGINAL,paydesc,paydesc,paydesc,System.String,_x0031_684d3502594423281666c70ad51475f</value>
+          <value>ORIGINAL,chequeno,chequeno,chequeno,System.String,f1821255ab484e8e816928401f395ef9</value>
+          <value>ORIGINAL,chequedate,chequedate,chequedate,System.DateTime,_x0034_c66f947648c4c75976d5ea9ce4fa3b9</value>
+          <value>ORIGINAL,applied,applied,applied,System.Decimal,f6a86d5d001847f58556facc3bcd42aa</value>
+          <value>ORIGINAL,balance,balance,balance,System.Decimal,a148f857359d4d8ead96ab588ab98918</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>2112de94ea2347cbadc20b6c8464ed07</Key>
+        <Name>pms</Name>
+        <NameInSource>pms</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from f_custtrxn('{PropertyNo1}','{PropertyNo2}','{DateFrom}','{RunDate}',{UseDueDate})</SqlCommand>
+      </pms>
+      <customer Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>customer</Alias>
+        <Columns isList="true" count="103">
+          <value>ORIGINAL,custno,custno,custno,System.Int32,_x0032_711fe4383e24c7d9c3930093ac01925</value>
+          <value>ORIGINAL,historyno,historyno,historyno,System.Int16,d6dc7921e106492d89a86752e3f028a8</value>
+          <value>ORIGINAL,gstregistrationdate,gstregistrationdate,gstregistrationdate,System.DateTime,_x0031_0d1b494f96f4c91b281da933beea3a0</value>
+          <value>ORIGINAL,gstenddate,gstenddate,gstenddate,System.DateTime,c71e3647212c4510b2e1d8ee943f6393</value>
+          <value>ORIGINAL,agreedate,agreedate,agreedate,System.DateTime,_x0039_4b058fca0e44e628f75d98057ea64d4</value>
+          <value>ORIGINAL,datestart,datestart,datestart,System.DateTime,_x0039_f70bc2085474658ba19b5bda34571e8</value>
+          <value>ORIGINAL,expire,expire,expire,System.DateTime,_x0033_4a0366a9cff4d558f35c0123dae729b</value>
+          <value>ORIGINAL,dob,dob,dob,System.DateTime,e96c4b31a45b48b0839c9384df5e7a9b</value>
+          <value>ORIGINAL,dob2,dob2,dob2,System.DateTime,_x0033_1e70b9ef37c4398b17e56fefaa2bb06</value>
+          <value>ORIGINAL,dob3,dob3,dob3,System.DateTime,d672486f1db142539cb5dd4327d78439</value>
+          <value>ORIGINAL,dob4,dob4,dob4,System.DateTime,a7ccdf1731ee4a0db3b29ca1748a289e</value>
+          <value>ORIGINAL,dob5,dob5,dob5,System.DateTime,e3109a3cdfd740aa96f54568d2495cd5</value>
+          <value>ORIGINAL,dob6,dob6,dob6,System.DateTime,b92bd1381b9246c08834be878a5fd601</value>
+          <value>ORIGINAL,term,term,term,System.Decimal,_x0036_0b50a7a53c84c3b928afce2f501d1f9</value>
+          <value>ORIGINAL,disablesms,disablesms,disablesms,System.Int16,_x0033_33244f82e7448fb9ab93391605e99dd</value>
+          <value>ORIGINAL,statement,statement,statement,System.Int16,_x0032_b0746b54f4d44748f100682916b5d88</value>
+          <value>ORIGINAL,interest,interest,interest,System.Int16,_x0030_e1081a130154a8b89a238085d5730e5</value>
+          <value>ORIGINAL,bf,bf,bf,System.Int16,_x0034_72b059d4851470a9bc242725fdee2a1</value>
+          <value>ORIGINAL,autotransfer,autotransfer,autotransfer,System.Int16,_x0034_e54475c4cbf4b92ba9292ed01da5454</value>
+          <value>ORIGINAL,cardexpiredate,cardexpiredate,cardexpiredate,System.DateTime,_x0039_5d82feab0524889b074dd0a3209386e</value>
+          <value>ORIGINAL,fineffdate,fineffdate,fineffdate,System.DateTime,_x0030_360b24625a7418f8cc8147b09ad00cd</value>
+          <value>ORIGINAL,income,income,income,System.Decimal,_x0036_4ead6b11910452ca9eb955416dd1f1a</value>
+          <value>ORIGINAL,spouseinc,spouseinc,spouseinc,System.Decimal,_x0030_719ee1545214d9ba9f860386219729d</value>
+          <value>ORIGINAL,children,children,children,System.Decimal,_x0036_2cd7f54898146b99624dea351852d1f</value>
+          <value>ORIGINAL,motreceive,motreceive,motreceive,System.DateTime,_x0039_de254a9e71c4ceda3cc8030a2818cb5</value>
+          <value>ORIGINAL,confirmlett,confirmlett,confirmlett,System.DateTime,d78ba577d8ae41cf8bba06fd4522430f</value>
+          <value>ORIGINAL,stratadate,stratadate,stratadate,System.DateTime,_x0032_bb7313cde50451c8da6af3fb50dcadb</value>
+          <value>ORIGINAL,motpresent,motpresent,motpresent,System.DateTime,_x0036_a90485ca88d4a98b13b43f3fa4887ef</value>
+          <value>ORIGINAL,consentdate,consentdate,consentdate,System.DateTime,_x0032_8bf35b836244c7591ff6dc82bc1bc00</value>
+          <value>ORIGINAL,legalaction,legalaction,legalaction,System.Int16,b32abeeb0ba646c29bf95062a6058236</value>
+          <value>ORIGINAL,registeredproprietor,registeredproprietor,registeredproprietor,System.Int16,aa356fbb05ef4c48a5137fbd8d54aa0f</value>
+          <value>ORIGINAL,active,active,active,System.Int16,_x0033_2f6a48cefbb47e190e81ad95bd74013</value>
+          <value>ORIGINAL,phaseno,phaseno,phaseno,System.String,_x0030_24f06180c244683809833b037b0a24f</value>
+          <value>ORIGINAL,propertyno,propertyno,propertyno,System.String,_x0030_2efbf4a39a842b69fbf975c633b44a1</value>
+          <value>ORIGINAL,custtype,custtype,custtype,System.String,_x0033_420c3bccd4b4d7cb6d96fcd35988ab3</value>
+          <value>ORIGINAL,addrtype,addrtype,addrtype,System.String,_x0033_bcb1b0a88894bac87301a123e932359</value>
+          <value>ORIGINAL,custname,custname,custname,System.String,_x0037_69ae405381a4bf696371caaf6a950d6</value>
+          <value>ORIGINAL,custname2,custname2,custname2,System.String,_x0039_ab35d8023db471f812a4ff398a906f9</value>
+          <value>ORIGINAL,custname3,custname3,custname3,System.String,f52b5972c225498a8a59c14744bbc85f</value>
+          <value>ORIGINAL,custname4,custname4,custname4,System.String,_x0031_80cd56c6c444c93a5e716187ce73ef0</value>
+          <value>ORIGINAL,custname5,custname5,custname5,System.String,_x0039_31871dd155743fd84b5143f1ade42b3</value>
+          <value>ORIGINAL,custname6,custname6,custname6,System.String,d60d544df49a4095bc87cf5a30806979</value>
+          <value>ORIGINAL,customerbrn,customerbrn,customerbrn,System.String,d84fceb6550d4bfcaa8d171cc7edb4fc</value>
+          <value>ORIGINAL,identificationtype,identificationtype,identificationtype,System.String,_x0030_066825d24994f5b924ad4da1ff1c99a</value>
+          <value>ORIGINAL,identificationid,identificationid,identificationid,System.String,_x0036_73969562851484b9da7af0dd9c18852</value>
+          <value>ORIGINAL,customergstno,customergstno,customergstno,System.String,_x0034_45510dd017d431d95aad7a1bf05e9a9</value>
+          <value>ORIGINAL,einvoicecustomertype,einvoicecustomertype,einvoicecustomertype,System.String,f7633222579041e7ac3c4592135280d0</value>
+          <value>ORIGINAL,tin,tin,tin,System.String,b80e05b4ecda4d7680e2b9ceff25f702</value>
+          <value>ORIGINAL,addr1,addr1,addr1,System.String,_x0030_b7e9da7f32a42c29832d2d8be2aab98</value>
+          <value>ORIGINAL,addr2,addr2,addr2,System.String,_x0031_aa9f970ea20455dbb9655b027b33084</value>
+          <value>ORIGINAL,addr3,addr3,addr3,System.String,_x0032_f6e819dd792400d91792ed1d2967b56</value>
+          <value>ORIGINAL,addr4,addr4,addr4,System.String,_x0032_f6be2b3d7174572aa97a70481286a0b</value>
+          <value>ORIGINAL,city,city,city,System.String,_x0036_e7efe94840d4d1585ca668b31f29ab4</value>
+          <value>ORIGINAL,postcode,postcode,postcode,System.String,_x0035_709ba0f5d2d4cdc978ba34938f43960</value>
+          <value>ORIGINAL,statecode,statecode,statecode,System.String,_x0034_55faa38aaed46eca5bc28ba086acaa4</value>
+          <value>ORIGINAL,state,state,state,System.String,_x0036_695f21c55ae451ab202e80891db8f44</value>
+          <value>ORIGINAL,countrycode,countrycode,countrycode,System.String,c61bcf5643d841a8b2feb1524bc12b97</value>
+          <value>ORIGINAL,country,country,country,System.String,_x0030_2ebeda4257b49699bf4d9109e01a974</value>
+          <value>ORIGINAL,billtounit,billtounit,billtounit,System.String,_x0036_fd5b2976f58479f9b1847908000fca5</value>
+          <value>ORIGINAL,agreeno,agreeno,agreeno,System.String,_x0038_c2f772210a9466d9a59492661843a2b</value>
+          <value>ORIGINAL,race,race,race,System.String,ea4af4894e304e39bccfd627ebe51435</value>
+          <value>ORIGINAL,sex,sex,sex,System.String,c5b5e8e9a0574daea781d24d5c677bde</value>
+          <value>ORIGINAL,nationality,nationality,nationality,System.String,_x0034_d4812a72e644dc4b9f02bf625d7c45b</value>
+          <value>ORIGINAL,national2,national2,national2,System.String,_x0036_973f2d7cecd4e04b1a06fc7db27eb24</value>
+          <value>ORIGINAL,national3,national3,national3,System.String,_x0034_0850bdcf82340bfa85779dc8295c71d</value>
+          <value>ORIGINAL,national4,national4,national4,System.String,_x0032_281cb531ed844c296d8d54416002232</value>
+          <value>ORIGINAL,national5,national5,national5,System.String,_x0033_d96ef2665e446b0b170c3383b7a33d5</value>
+          <value>ORIGINAL,national6,national6,national6,System.String,b8453d8c54e448629f16b540a853cffa</value>
+          <value>ORIGINAL,profession,profession,profession,System.String,da99b8d703e04596982760974225d654</value>
+          <value>ORIGINAL,mstatus,mstatus,mstatus,System.String,_x0034_1875d9a23f548408c49ed0c59a34ac8</value>
+          <value>ORIGINAL,otel,otel,otel,System.String,_x0033_77a51e286ed44b0bec63ba001f84493</value>
+          <value>ORIGINAL,otel2,otel2,otel2,System.String,_x0034_b89c7f537d14fd8b236e43641065c51</value>
+          <value>ORIGINAL,etel,etel,etel,System.String,c947db87e4854ffa80c133b63d6b7de1</value>
+          <value>ORIGINAL,tel,tel,tel,System.String,_x0032_af027c2d6fe4b29bf1c5ed524c88cc6</value>
+          <value>ORIGINAL,htel,htel,htel,System.String,d50b74e87c7e491181c50ab00cce9c02</value>
+          <value>ORIGINAL,htel2,htel2,htel2,System.String,cdf5b50130b64cb082ad8c2021a2edc8</value>
+          <value>ORIGINAL,fax,fax,fax,System.String,_x0036_813b20b76ec48f2b8e4668b8a15550d</value>
+          <value>ORIGINAL,email,email,email,System.String,fecd6b3e95804ad7a69e9440a9f2a47a</value>
+          <value>ORIGINAL,email2,email2,email2,System.String,_x0031_3a3ee5329bb4d47bea246f09a265ba1</value>
+          <value>ORIGINAL,email3,email3,email3,System.String,_x0031_7d11ddfd25d4ee4bfb622d2f70c1239</value>
+          <value>ORIGINAL,nric1,nric1,nric1,System.String,_x0038_ab59cc8354e43b59244660539f2e5ee</value>
+          <value>ORIGINAL,nric2,nric2,nric2,System.String,d2e217d16acb4ea19b72ab929d3c2d6e</value>
+          <value>ORIGINAL,nric3,nric3,nric3,System.String,cc840bc10a7c4408989a840a53aedd8b</value>
+          <value>ORIGINAL,nric4,nric4,nric4,System.String,ab12703507644c0e8f4e938d881f5e48</value>
+          <value>ORIGINAL,nric5,nric5,nric5,System.String,_x0033_fb3e6ef4be340ab896467552269318b</value>
+          <value>ORIGINAL,nric6,nric6,nric6,System.String,_x0031_324a78d9c0e477e9acf757605131990</value>
+          <value>ORIGINAL,accno,accno,accno,System.String,a3ef41291ca24316bb6cb00a6e33ce72</value>
+          <value>ORIGINAL,cardno,cardno,cardno,System.String,fbe3d30f3d3d483b9a041a0a5c947333</value>
+          <value>ORIGINAL,fincode,fincode,fincode,System.String,_x0037_81b044c12fe40bf99a7a43563ff5fb1</value>
+          <value>ORIGINAL,finref,finref,finref,System.String,_x0038_ed6a4e24937484a86c0cb9c9dfa1e59</value>
+          <value>ORIGINAL,fincontacts,fincontacts,fincontacts,System.String,e4c3c43fa3284e35aae8f8a4e4b3bf21</value>
+          <value>ORIGINAL,fscode,fscode,fscode,System.String,_x0036_2eebe294f6b43519caceb7029dbca8f</value>
+          <value>ORIGINAL,fsref,fsref,fsref,System.String,_x0033_db982c3afcf462b98211f479856d156</value>
+          <value>ORIGINAL,solcode,solcode,solcode,System.String,c9a361c271164c3faeeba9cd083ad90f</value>
+          <value>ORIGINAL,solref,solref,solref,System.String,ec5bee0ddff74b5089678ebe7cffd767</value>
+          <value>ORIGINAL,strata,strata,strata,System.String,_x0034_e388ab0cf6a45178240da5cfe140740</value>
+          <value>ORIGINAL,religion,religion,religion,System.String,fa85b1351d39419f95b23235a63abc4e</value>
+          <value>ORIGINAL,pob,pob,pob,System.String,_x0037_cd9034c53604f2d903bb6b71cf5a6fb</value>
+          <value>ORIGINAL,spousename,spousename,spousename,System.String,_x0033_28ae86e9d874b5a9c0d14a376108d8c</value>
+          <value>ORIGINAL,spousejob,spousejob,spousejob,System.String,_x0035_a6d246c599b4cb8b63e6d9b7b1ccbf7</value>
+          <value>ORIGINAL,motno,motno,motno,System.String,e4d34d886a93494b8d5852ccbe9132f2</value>
+          <value>ORIGINAL,remarks,remarks,remarks,System.String,deae30c83ad74a05b2f4d803d4a110bb</value>
+          <value>ORIGINAL,remarks2,remarks2,remarks2,System.String,_x0037_5d30e8f78374c09b3088482f9c4e665</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>d1aaa5f3c026406f9633cbaa1cd39103</Key>
+        <Name>customer</Name>
+        <NameInSource>pms</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from "public"."customer"</SqlCommand>
+      </customer>
+      <property Ref="5" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>property</Alias>
+        <Columns isList="true" count="42">
+          <value>ownerno,System.Int16</value>
+          <value>tenantno,System.Int16</value>
+          <value>residentstatus,System.Int32</value>
+          <value>commercial,System.Int16</value>
+          <value>occupied,System.Int16</value>
+          <value>buildup,System.Decimal</value>
+          <value>rate_sc,System.Decimal</value>
+          <value>rate_sf,System.Decimal</value>
+          <value>shareunit,System.Decimal</value>
+          <value>sellingprice,System.Decimal</value>
+          <value>wreading1,System.Decimal</value>
+          <value>ereading1,System.Decimal</value>
+          <value>greading1,System.Decimal</value>
+          <value>renovated,System.Int16</value>
+          <value>legalaction,System.Int16</value>
+          <value>ctos,System.Int16</value>
+          <value>consentdate,System.DateTime</value>
+          <value>motreceived,System.DateTime</value>
+          <value>confletterrcvd,System.DateTime</value>
+          <value>origstratatitlereld,System.DateTime</value>
+          <value>motpresented,System.DateTime</value>
+          <value>unituid,System.Int32</value>
+          <value>propertyno,System.String</value>
+          <value>phaseno,System.String</value>
+          <value>buildingno,System.String</value>
+          <value>blockno,System.String</value>
+          <value>levelno,System.String</value>
+          <value>unitno,System.String</value>
+          <value>electtariff,System.String</value>
+          <value>addr1,System.String</value>
+          <value>addr2,System.String</value>
+          <value>addr3,System.String</value>
+          <value>addr4,System.String</value>
+          <value>catcode,System.String</value>
+          <value>wmeterno,System.String</value>
+          <value>emeterno,System.String</value>
+          <value>gmeterno,System.String</value>
+          <value>renovateremark,System.String</value>
+          <value>propertystatus,System.String</value>
+          <value>stratatitleno,System.String</value>
+          <value>motpresentno,System.String</value>
+          <value>strataremarks,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>1d05f1e2861240bd907b6b0e1301872f</Key>
+        <Name>property</Name>
+        <NameInSource>pms</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from "public"."property"</SqlCommand>
+      </property>
+    </DataSources>
+    <Relations isList="true" count="1">
+      <Relation Ref="6" type="DataRelation" isKey="true">
+        <Alias>Relation</Alias>
+        <ChildColumns isList="true" count="2">
+          <value>propertyno</value>
+          <value>custtype</value>
+        </ChildColumns>
+        <ChildSource isRef="3" />
+        <Dictionary isRef="1" />
+        <Key>ba86e23dd1504423bd64673fb5b32084</Key>
+        <Name>Relation</Name>
+        <NameInSource>Relation</NameInSource>
+        <ParentColumns isList="true" count="2">
+          <value>propertyno</value>
+          <value>custtype</value>
+        </ParentColumns>
+        <ParentSource isRef="4" />
+      </Relation>
+    </Relations>
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <UserFunctions isList="true" count="0" />
+    <Variables isList="true" count="14">
+      <value>,SystemName,SystemName,,System.String,Property_x0020_Management_x0020_System,False,False,False,False,,_x0037_954abb56f6e40ce81f1e209c00c02a1</value>
+      <value>,CompanyName,CompanyName,,System.String,Advelsoft_x0020__x0028_M_x0029__x0020_Sdn_x0020_Bhd,False,False,False,False,,_x0037_d7a0448132b47af9296d47f2add20eb</value>
+      <value>,UserId,UserId,,System.String,admin,False,False,False,False,,e4805546ae754f2f847cef6e8b5b959f</value>
+      <value>,RunParameters,RunParameters,,System.String,,False,False,False,False,,ade3d247bf96476b980bdea2e8b3caa6</value>
+      <value>,DateFrom,DateFrom,,System.String,_x0032_025-12-01,False,False,False,False,,_x0032_0cde82e49df494aa399159e870291fa,True</value>
+      <value>,DateTo,DateTo,,System.String,,False,False,False,False,,e8893619ea0946cd81f400a3ac0d9efa,True</value>
+      <value>,RunDate,RunDate,,System.String,_x0032_025-01-31,False,False,False,False,,_x0033_f3e97f5bbb143c3aac63a8c91aaa223,True</value>
+      <value>,PhaseNo,PhaseNo,,System.String,,False,False,False,False,,c39b9331784e4c978be42eeb4cdfff53,True</value>
+      <value>,PropertyNo1,PropertyNo1,,System.String,,False,False,False,False,,eedea8585bb844739144343c275a986b,True</value>
+      <value>,PropertyNo2,PropertyNo2,,System.String,ZZZ,False,False,False,False,,_x0034_d4dd1b25a064a3aa9de268f96c07914,True</value>
+      <value>,CustType,CustType,,System.String,B,False,False,False,False,,_x0036_1f8398ecff7410fbb6b2498b77d7af0,True</value>
+      <value>,UseDueDate,UseDueDate,,System.String,_x0030_,False,False,False,False,,_x0037_2b66c33bd0e4e09807ee3df1228efe3,True</value>
+      <value>,OmitZero,OmitZero,,System.String,,False,False,False,False,,_x0033_468e1f34e404b159c19701321872911</value>
+      <value>,AllPhase,AllPhase,,System.String,_x0030_,False,False,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>9e6da70c155443c5919d92aceaac615f</Key>
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="7" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="8">
+        <PageHeaderBand1 Ref="8" type="PageHeaderBand" isKey="true">
+          <Border>None;[104:133:155];1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.2,10.91,0.7</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text8 Ref="9" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,7.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Page_Header</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Name>Text8</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>{SystemName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text9 Ref="10" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.2,7.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Page_Header</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Name>Text9</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>{CompanyName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text10 Ref="11" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.4,7.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Page_Header</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Name>Text10</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>{RunParameters}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="12" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.7,0,3.2,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Page_Header</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text11</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>Customer Transaction Report As At {RunDate}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+          </Components>
+          <ComponentStyle>Blue 25%_Page_Header</ComponentStyle>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>PageHeaderBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </PageHeaderBand1>
+        <PageFooterBand1 Ref="13" type="PageFooterBand" isKey="true">
+          <Border>Top;[104:133:155];1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,7.09,10.91,0.4</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text12 Ref="14" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.01,8.3,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Page_Footer</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Name>Text12</Name>
+              <Page isRef="7" />
+              <Parent isRef="13" />
+              <Text>Run On {Format("{0:dd/MM/yyyy}", Today)} {Format("{0:HH:mm}", Time)} By {UserId}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+          </Components>
+          <ComponentStyle>Blue 25%_Page_Footer</ComponentStyle>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>PageFooterBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </PageFooterBand1>
+        <Header Ref="15" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,1.3,10.91,0.2</ClientRectangle>
+          <Components isList="true" count="15">
+            <HeaderText5 Ref="16" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText5</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>bill no</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText5>
+            <HeaderText6 Ref="17" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.8,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText6</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>trxn date</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText6>
+            <HeaderText7 Ref="18" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.4,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText7</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>due date</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText7>
+            <HeaderText8 Ref="19" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2,0,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText8</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>trxn code</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText8>
+            <HeaderText9 Ref="20" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2.5,0,2.1,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText9</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>description</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText9>
+            <HeaderText10 Ref="21" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4.6,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText10</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>net amt</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText10>
+            <HeaderText11 Ref="22" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>5.2,0,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText11</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>gst amt</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText11>
+            <HeaderText12 Ref="23" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>5.7,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText12</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>bill amt</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText12>
+            <HeaderText13 Ref="24" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.3,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText13</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>payment no</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText13>
+            <HeaderText14 Ref="25" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7.1,0,0.7,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText14</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>payment date</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText14>
+            <HeaderText15 Ref="26" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7.8,0,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText15</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>payment type</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText15>
+            <HeaderText17 Ref="27" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>8.3,0,0.7,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText17</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>cheque no</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText17>
+            <HeaderText18 Ref="28" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>9,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>HeaderText18</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>cheque date</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText18>
+            <HeaderText19 Ref="29" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>9.8,0,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>HeaderText19</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>applied</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText19>
+            <HeaderText20 Ref="30" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+              <Brush>[79:129:189]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>10.3,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>HeaderText20</Name>
+              <Page isRef="7" />
+              <Parent isRef="15" />
+              <Text>balance</Text>
+              <TextBrush>White</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText20>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>Header</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </Header>
+        <GroupHeaderBand1 Ref="31" type="GroupHeaderBand" isKey="true">
+          <Border>Top;[104:133:155];1;Solid;False;4;Black</Border>
+          <Brush>EmptyBrush</Brush>
+          <ClientRectangle>0,1.9,10.91,0.4</ClientRectangle>
+          <Components isList="true" count="5">
+            <DataText2 Ref="32" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.4,0.2,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,11,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText2</Name>
+              <Page isRef="7" />
+              <Parent isRef="31" />
+              <Text>{pms.phaseno}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText2>
+            <DataText3 Ref="33" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.9,0.2,0.9,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,11,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText3</Name>
+              <Page isRef="7" />
+              <Parent isRef="31" />
+              <Text>{pms.propertyno}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText3>
+            <DataText4 Ref="34" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2.8,0.2,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,11,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText4</Name>
+              <Page isRef="7" />
+              <Parent isRef="31" />
+              <Text>{pms.custtype}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText4>
+            <Text6 Ref="35" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>3.3,0.2,4.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,11,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>Text6</Name>
+              <Page isRef="7" />
+              <Parent isRef="31" />
+              <Text>{pms.Relation.custname}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text7 Ref="36" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0.2,1.4,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,11,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>Text7</Name>
+              <Page isRef="7" />
+              <Parent isRef="31" />
+              <Text>Property No. :</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+          </Components>
+          <Condition>{pms.propertyno}</Condition>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </GroupHeaderBand1>
+        <Data Ref="37" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,2.7,10.91,0.2</ClientRectangle>
+          <Components isList="true" count="15">
+            <DataText5 Ref="38" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText5</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.billno}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText5>
+            <DataText6 Ref="39" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.8,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText6</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.trxndate}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="40" type="DateFormat" isKey="true">
+                <StringFormat>dd/MM/yyyy</StringFormat>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText6>
+            <DataText7 Ref="41" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.4,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText7</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.duedate}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="42" type="DateFormat" isKey="true">
+                <StringFormat>dd/MM/yyyy</StringFormat>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText7>
+            <DataText8 Ref="43" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2,0,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText8</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.billtype}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText8>
+            <DataText9 Ref="44" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2.5,0,2.1,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText9</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.billdesc}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText9>
+            <DataText10 Ref="45" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4.6,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText10</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.netamt}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText10>
+            <DataText11 Ref="46" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>5.2,0,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText11</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.gstamt}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText11>
+            <DataText12 Ref="47" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>5.7,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText12</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.billamt}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText12>
+            <DataText13 Ref="48" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.3,0,0.8,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText13</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.paymentno}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText13>
+            <DataText14 Ref="49" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7.1,0,0.7,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText14</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.paymentdate}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="50" type="DateFormat" isKey="true">
+                <StringFormat>dd/MM/yyyy</StringFormat>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText14>
+            <DataText15 Ref="51" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7.8,0,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText15</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.paymenttype}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText15>
+            <DataText17 Ref="52" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>8.3,0,0.7,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText17</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.chequeno}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText17>
+            <DataText18 Ref="53" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>9,0,0.7,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Name>DataText18</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.chequedate}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextFormat Ref="54" type="DateFormat" isKey="true">
+                <StringFormat>dd/MM/yyyy</StringFormat>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText18>
+            <DataText19 Ref="55" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>9.7,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HideZeros>True</HideZeros>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText19</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.applied}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText19>
+            <DataText20 Ref="56" type="Text" isKey="true">
+              <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>10.3,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Name>DataText20</Name>
+              <Page isRef="7" />
+              <Parent isRef="37" />
+              <Text>{pms.balance}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText20>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>pms</DataSourceName>
+          <EvenStyle>Blue Steel_Data1_Even Style</EvenStyle>
+          <Expressions isList="true" count="0" />
+          <FilterMode>Or</FilterMode>
+          <Filters isList="true" count="0" />
+          <Name>Data</Name>
+          <OddStyle>Blue Steel_Data1_Odd Style</OddStyle>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+          <Sort isList="true" count="6">
+            <value>ASC</value>
+            <value>propertyno</value>
+            <value>ASC</value>
+            <value>duedate</value>
+            <value>ASC</value>
+            <value>billno</value>
+          </Sort>
+        </Data>
+        <GroupFooterBand1 Ref="57" type="GroupFooterBand" isKey="true">
+          <Border>None;[104:133:155];1;Solid;False;4;Black;True</Border>
+          <Brush>[224:253:255]</Brush>
+          <ClientRectangle>0,3.3,10.91,0.2</ClientRectangle>
+          <Components isList="true" count="6">
+            <Text1 Ref="58" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.6,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text1</Name>
+              <Page isRef="7" />
+              <Parent isRef="57" />
+              <Text>{Sum(Data,pms.netamt)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text2 Ref="59" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.2,0,0.5,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text2</Name>
+              <Page isRef="7" />
+              <Parent isRef="57" />
+              <Text>{Sum(Data,pms.gstamt)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text3 Ref="60" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.7,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text3</Name>
+              <Page isRef="7" />
+              <Parent isRef="57" />
+              <Text>{Sum(Data,pms.billamt)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 Ref="61" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.7,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text4</Name>
+              <Page isRef="7" />
+              <Parent isRef="57" />
+              <Text>{Sum(Data,pms.applied)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text5 Ref="62" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.3,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text5</Name>
+              <Page isRef="7" />
+              <Parent isRef="57" />
+              <Text>{Sum(Data,pms.balance)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text15 Ref="63" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,1.4,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Name>Text15</Name>
+              <Page isRef="7" />
+              <Parent isRef="57" />
+              <Text>{pms.propertyno}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+            </Text15>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>GroupFooterBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </GroupFooterBand1>
+        <Footer Ref="64" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,3.9,10.91,0.2</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>Footer</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </Footer>
+        <ReportSummaryBand1 Ref="65" type="ReportSummaryBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4.5,10.91,0.3</ClientRectangle>
+          <Components isList="true" count="5">
+            <Text16 Ref="66" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.6,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Name>Text16</Name>
+              <Page isRef="7" />
+              <Parent isRef="65" />
+              <Text>{Sum(Data,pms.netamt)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text17 Ref="67" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.2,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <Name>Text17</Name>
+              <Page isRef="7" />
+              <Parent isRef="65" />
+              <Text>{Sum(Data,pms.gstamt)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Totals</Type>
+            </Text17>
+            <Text18 Ref="68" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.8,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <Name>Text18</Name>
+              <Page isRef="7" />
+              <Parent isRef="65" />
+              <Text>{Sum(Data,pms.billamt)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Totals</Type>
+            </Text18>
+            <Text19 Ref="69" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.6,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <Name>Text19</Name>
+              <Page isRef="7" />
+              <Parent isRef="65" />
+              <Text>{Sum(Data,pms.applied)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Totals</Type>
+            </Text19>
+            <Text20 Ref="70" type="Text" isKey="true">
+              <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.2,0,0.6,0.2</ClientRectangle>
+              <ComponentStyle>Blue Steel_Group_Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,9.75,Bold,Point,False,204</Font>
+              <Name>Text20</Name>
+              <Page isRef="7" />
+              <Parent isRef="65" />
+              <Text>{Sum(Data,pms.balance)}</Text>
+              <TextBrush>[79:129:189]</TextBrush>
+              <Type>Totals</Type>
+            </Text20>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>ReportSummaryBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </ReportSummaryBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Expressions isList="true" count="0" />
+      <Guid>b0c9a877958a42a4a85787b1acc7138d</Guid>
+      <Margins>0.39,0.39,0.39,0.39</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>8.27</PageHeight>
+      <PageWidth>11.69</PageWidth>
+      <Report isRef="0" />
+    </Page1>
+  </Pages>
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportAuthor>Yun Fatt Yap</ReportAuthor>
+  <ReportChanged>4/16/2026 1:20:26 PM</ReportChanged>
+  <ReportCreated>2/24/2026 4:41:35 PM</ReportCreated>
+  <ReportFile>D:\Prgs11.1\pms77p\StimulsoftReports\pm_custtrxn.mrt</ReportFile>
+  <ReportGuid>dbe8fba5446b4674ace043e655146c6c</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Inches</ReportUnit>
+  <ReportVersion>2026.1.7.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="12">
+    <Blue_x0020_Steel_Report_Title1 Ref="71" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item67 Ref="72" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>ReportTitle</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item67>
+      </Conditions>
+      <Font>Arial,14,Bold</Font>
+      <Name>Blue Steel_Report_Title1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[79:129:189]</TextBrush>
+    </Blue_x0020_Steel_Report_Title1>
+    <Blue_x0020_Steel_Report_Title2 Ref="73" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item69 Ref="74" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>ReportTitle</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item69>
+      </Conditions>
+      <Font>Arial,10,Bold</Font>
+      <Name>Blue Steel_Report_Title2</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[79:129:189]</TextBrush>
+    </Blue_x0020_Steel_Report_Title2>
+    <Blue_x0020_Steel_Report_Summary Ref="75" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item71 Ref="76" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>ReportSummary</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item71>
+      </Conditions>
+      <Font>Arial,10,Bold</Font>
+      <Name>Blue Steel_Report_Summary</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[79:129:189]</TextBrush>
+    </Blue_x0020_Steel_Report_Summary>
+    <Blue_x0020_Steel_Page_Header Ref="77" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item73 Ref="78" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>PageHeader</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item73>
+      </Conditions>
+      <Font>Arial,10</Font>
+      <Name>Blue Steel_Page_Header</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Blue_x0020_Steel_Page_Header>
+    <Blue_x0020_Steel_Page_Footer Ref="79" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item75 Ref="80" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>PageFooter</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item75>
+      </Conditions>
+      <Font>Arial,10</Font>
+      <Name>Blue Steel_Page_Footer</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Blue_x0020_Steel_Page_Footer>
+    <Blue_x0020_Steel_Group_Header1 Ref="81" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item77 Ref="82" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>GroupHeader</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item77>
+      </Conditions>
+      <Font>Arial,11,Bold</Font>
+      <Name>Blue Steel_Group_Header1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[79:129:189]</TextBrush>
+    </Blue_x0020_Steel_Group_Header1>
+    <Blue_x0020_Steel_Group_Footer1 Ref="83" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>Top, Bottom;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item79 Ref="84" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>GroupFooter</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item79>
+      </Conditions>
+      <Font>Arial,9.75,Bold,Point,False,204</Font>
+      <Name>Blue Steel_Group_Footer1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[79:129:189]</TextBrush>
+    </Blue_x0020_Steel_Group_Footer1>
+    <Blue_x0020_Steel_Header1 Ref="85" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black;True</Border>
+      <Brush>[79:129:189]</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item81 Ref="86" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>Header</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item81>
+      </Conditions>
+      <Font>Arial,9.75,Bold,Point,False,204</Font>
+      <Name>Blue Steel_Header1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>White</TextBrush>
+    </Blue_x0020_Steel_Header1>
+    <Blue_x0020_Steel_Data1 Ref="87" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item83 Ref="88" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>Data</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item83>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Blue Steel_Data1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Blue_x0020_Steel_Data1>
+    <Blue_x0020_Steel_Data1_Odd_x0020_Style Ref="89" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>[255:255:255]</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item85 Ref="90" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>DataOddStyle</Placement>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item85>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Blue Steel_Data1_Odd Style</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Blue_x0020_Steel_Data1_Odd_x0020_Style>
+    <Blue_x0020_Steel_Data1_Even_x0020_Style Ref="91" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:39];1;Solid;False;4;Black</Border>
+      <Brush>[216:216:216]</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item87 Ref="92" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>DataEvenStyle</Placement>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item87>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Blue Steel_Data1_Even Style</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Blue_x0020_Steel_Data1_Even_x0020_Style>
+    <Blue_x0020_Steel_Footer1 Ref="93" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>Top, Bottom;[0:0:39];2;Solid;False;4;Black</Border>
+      <Brush>White</Brush>
+      <CollectionName>Blue Steel</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item89 Ref="94" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>Footer</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item89>
+      </Conditions>
+      <Font>Arial,8.25,Bold,Point,False,204</Font>
+      <Name>Blue Steel_Footer1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Blue_x0020_Steel_Footer1>
+  </Styles>
+</StiSerializer>

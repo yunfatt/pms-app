@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://chargeListView.title"
+      focusComponent="searchField">
+    <data>
+        <collection id="chargesDc"
+                    class="com.company.pmsmain.entity.Charge">
+            <fetchPlan extends="_base"/>
+            <loader id="chargesDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Charge e
+                 where ((:searchText is null or :searchText = '')
+                    or lower(e.trxncode) like lower(concat('%', :searchText, '%'))
+                    or lower(e.description) like lower(concat('%', :searchText, '%')))
+                 and (:period = 0 or e.period = :period)
+                 order by e.period, e.trxncode]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="false"/>
+        <urlQueryParameters>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <layout>
+
+        <!-- ── Search bar ──────────────────────────────────────────────── -->
+        <hbox width="100%"
+              alignItems="CENTER"
+              padding="false"
+              spacing="true"
+              classNames="simple-search-bar">
+            <textField id="searchField"
+                       placeholder="Search code or description..."
+                       width="320px"
+                       clearButtonVisible="true"/>
+            <button id="searchButton"
+                    text="Search"
+                    themeNames="primary"
+                    icon="vaadin:search"/>
+            <button id="advancedSearchToggle"
+                    text="Advanced"
+                    themeNames="tertiary"
+                    icon="vaadin:filter"/>
+            <genericFilter id="genericFilter"
+                           dataLoader="chargesDl"
+                           visible="false">
+                <properties include="trxncode description chargetype phaseno"/>
+            </genericFilter>
+        </hbox>
+
+        <!-- ── Action buttons ──────────────────────────────────────────── -->
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <startSlot>
+                <button id="createButton" action="chargesDataGrid.createAction"/>
+                <button id="editButton"   action="chargesDataGrid.editAction"/>
+                <button id="removeButton" action="chargesDataGrid.removeAction"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="chargesDl"/>
+            </endSlot>
+        </hbox>
+
+        <!-- ── Data grid ───────────────────────────────────────────────── -->
+        <dataGrid id="chargesDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="chargesDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction"   type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="trxncode"/>
+                <column property="description"/>
+                <column property="chargetype"/>
+                <column property="phaseno"/>
+                <column property="price"/>
+                <column property="unit"/>
+                <column property="period"/>
+                <column property="monthdue"/>
+            </columns>
+        </dataGrid>
+
+    </layout>
+</view>

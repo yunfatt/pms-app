@@ -2,22 +2,25 @@
 <view xmlns="http://jmix.io/schema/flowui/view"
       xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
       title="msg://phaseListView.title"
-      focusComponent="phasesDataGrid">
+      focusComponent="searchField">
     <data>
         <collection id="phasesDc"
                     class="com.company.pmsmain.entity.Phase">
             <fetchPlan extends="_base"/>
             <loader id="phasesDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from Phase e order by e.phaseno]]>
+                    <![CDATA[select e from Phase e
+                 where ((:searchText is null or :searchText = '')
+                    or lower(e.phaseno) like lower(concat('%', :searchText, '%'))
+                    or lower(e.phasename) like lower(concat('%', :searchText, '%')))
+                 order by e.phaseno]]>
                 </query>
             </loader>
         </collection>
     </data>
     <facets>
-        <dataLoadCoordinator auto="true"/>
+        <dataLoadCoordinator auto="false"/>
         <urlQueryParameters>
-            <genericFilter component="genericFilter"/>
             <pagination component="pagination"/>
         </urlQueryParameters>
     </facets>
@@ -26,16 +29,39 @@
         <action id="discardAction" type="lookup_discard"/>
     </actions>
     <layout>
-        <genericFilter id="genericFilter"
-                       dataLoader="phasesDl">
-            <properties include="phaseno phasename area district town prjno"/>
-        </genericFilter>
+
+        <!-- ── Search bar ──────────────────────────────────────────────────────── -->
+        <hbox width="100%"
+              alignItems="CENTER"
+              padding="false"
+              spacing="true"
+              classNames="simple-search-bar">
+            <textField id="searchField"
+                       placeholder="Search phase no or name..."
+                       width="320px"
+                       clearButtonVisible="true"/>
+            <button id="searchButton"
+                    text="Search"
+                    themeNames="primary"
+                    icon="vaadin:search"/>
+            <button id="advancedSearchToggle"
+                    text="Advanced"
+                    themeNames="tertiary"
+                    icon="vaadin:filter"/>
+            <!-- Advanced filter inline -->
+            <genericFilter id="genericFilter"
+                           dataLoader="phasesDl"
+                           visible="false">
+                <properties include="phaseno phasename area district town prjno"/>
+            </genericFilter>
+        </hbox>
+
+        <!-- ── Action buttons ──────────────────────────────────────────── -->
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
                 <button id="createButton" action="phasesDataGrid.createAction"/>
                 <button id="editButton" action="phasesDataGrid.editAction"/>
                 <button id="removeButton" action="phasesDataGrid.removeAction"/>
-                <!-- Print button — opens format selection dialog -->
                 <button id="printButton"
                         text="msg://phaseListView.printButton"
                         icon="vaadin:print"
@@ -45,6 +71,8 @@
                 <simplePagination id="pagination" dataLoader="phasesDl"/>
             </endSlot>
         </hbox>
+
+        <!-- ── Data grid ───────────────────────────────────────────────── -->
         <dataGrid id="phasesDataGrid"
                   width="100%"
                   minHeight="20em"
@@ -66,6 +94,7 @@
                 <column property="dateend"/>
             </columns>
         </dataGrid>
+
         <hbox id="lookupActions" visible="false">
             <button id="selectButton" action="selectAction"/>
             <button id="discardButton" action="discardAction"/>

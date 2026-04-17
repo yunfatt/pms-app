@@ -10,6 +10,7 @@ import com.stimulsoft.report.StiSerializeManager;
 import com.stimulsoft.report.dictionary.databases.StiPostgreSQLDatabase;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -24,15 +25,21 @@ import io.jmix.flowui.component.grid.DataGrid;
 import io.jmix.flowui.download.DownloadFormat;
 import io.jmix.flowui.download.Downloader;
 import io.jmix.flowui.kit.component.button.JmixButton;
+import io.jmix.flowui.model.CollectionLoader;
 import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
+import io.jmix.flowui.component.genericfilter.GenericFilter;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
+import com.vaadin.flow.component.Key;
+import io.jmix.flowui.component.textfield.TypedTextField;
+import com.vaadin.flow.component.ClickEvent;
 
 @Route(value = "phases", layout = MainView.class)
 @ViewController(id = "Phase.list")
@@ -59,8 +66,8 @@ public class PhaseListView extends StandardListView<Phase> {
     @Autowired
     private UnconstrainedDataManager unconstrainedDataManager;
 
-    @Value("${app.reports.path:com/company/pmsmain/Reports/PrintPhaseList.mrt}")
-    private String reportPath;
+    @Value("${app.reports.path:com/company/pmsmain/Reports}")
+    private String reportsBasePath;
 
     @Value("${app.system-name:Property Management System}")
     private String systemName;
@@ -68,9 +75,26 @@ public class PhaseListView extends StandardListView<Phase> {
     @Value("${app.company-name:}")
     private String companyName;
 
+    @ViewComponent
+    private TypedTextField<String> searchField;
+
+    @ViewComponent
+    private CollectionLoader<Phase> phasesDl;
+
+    @Subscribe("searchButton")
+    public void onSearchButtonClick(ClickEvent<JmixButton> event) {
+        executeSearch();
+    }
+
+    @Subscribe
+    public void onBeforeShow(BeforeShowEvent event) {
+        phasesDl.setParameter("searchText", "");
+        phasesDl.load();
+    }
     @Subscribe
     public void onInit(InitEvent event) {
         printButton.addClickListener(e -> showFormatDialog());
+        setupSearch();
     }
 
     private enum ExportType { PDF, EXCEL }
@@ -83,11 +107,9 @@ public class PhaseListView extends StandardListView<Phase> {
         dialog.setCloseOnOutsideClick(true);
         dialog.setCloseOnEsc(true);
 
-        // Title
         H4 title = new H4("Select Export Format");
         title.getStyle().set("margin", "0 0 16px 0");
 
-        // PDF button
         Button pdfBtn = new Button("PDF", VaadinIcon.FILE_TEXT.create());
         pdfBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         pdfBtn.setWidth("120px");
@@ -96,7 +118,6 @@ public class PhaseListView extends StandardListView<Phase> {
             exportReport(ExportType.PDF);
         });
 
-        // Excel button
         Button excelBtn = new Button("Excel", VaadinIcon.TABLE.create());
         excelBtn.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
         excelBtn.setWidth("120px");
@@ -105,18 +126,15 @@ public class PhaseListView extends StandardListView<Phase> {
             exportReport(ExportType.EXCEL);
         });
 
-        // Cancel button
         Button cancelBtn = new Button("Cancel");
         cancelBtn.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         cancelBtn.addClickListener(e -> dialog.close());
 
-        // Format buttons row
         HorizontalLayout formatButtons = new HorizontalLayout(pdfBtn, excelBtn);
         formatButtons.setSpacing(true);
         formatButtons.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         formatButtons.setWidthFull();
 
-        // Cancel row
         HorizontalLayout cancelRow = new HorizontalLayout(cancelBtn);
         cancelRow.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
         cancelRow.setWidthFull();
@@ -149,6 +167,8 @@ public class PhaseListView extends StandardListView<Phase> {
                     downloader.download(out.toByteArray(), "PrintPhaseList.xlsx", DownloadFormat.XLSX);
                 }
             }
+            // Navigate back to main page after download
+            getUI().ifPresent(ui -> ui.navigate(""));
 
         } catch (Throwable ex) {
             notifications.create("Failed to generate report: " + ex.getMessage())
@@ -156,6 +176,29 @@ public class PhaseListView extends StandardListView<Phase> {
                     .show();
             throw new RuntimeException("Failed to generate Phase List report", ex);
         }
+    }
+
+    // ── Template loader ───────────────────────────────────────────────────────
+
+    private File loadReportTemplate(String fileName) throws IOException {
+        if (reportsBasePath.startsWith("/")) {
+            // Docker — read directly from mounted volume outside container
+            Path path = Paths.get(reportsBasePath, fileName);
+            if (!Files.exists(path)) {
+                throw new FileNotFoundException(
+                        "Report template not found at: " + path);
+            }
+            return path.toFile();
+        }
+
+        // Dev/IDE — read from classpath using getFile() (works outside JAR)
+        String resourcePath = reportsBasePath + "/" + fileName;
+        ClassPathResource resource = new ClassPathResource(resourcePath);
+        if (!resource.exists()) {
+            throw new FileNotFoundException(
+                    "Report template not found on classpath: " + resourcePath);
+        }
+        return resource.getFile();
     }
 
     // ── Report builder ───────────────────────────────────────────────────────
@@ -192,14 +235,7 @@ public class PhaseListView extends StandardListView<Phase> {
                 + ";Password=" + company.getDbPasswordEnc() + ";";
 
         // 3. Load report template
-        ClassPathResource classPathResource = new ClassPathResource(reportPath);
-        if (!classPathResource.exists()) {
-            notifications.create("Report template not found: " + reportPath)
-                    .withType(Notifications.Type.ERROR)
-                    .show();
-            return null;
-        }
-        File reportFile = classPathResource.getFile();
+        File reportFile = loadReportTemplate("PrintPhaseList.mrt");
         StiReport report = StiSerializeManager.deserializeReport(reportFile);
 
         // 4. Set database connection
@@ -224,7 +260,7 @@ public class PhaseListView extends StandardListView<Phase> {
 
         // 6. Set variables
         report.setVariable("SystemName",  systemName);
-        report.setVariable("CompanyName", companyName);
+        report.setVariable("CompanyName", company.getCompanyName());
         report.setVariable("UserId",      currentAuthentication.getUser().getUsername());
         report.setVariable("PhaseNoFrom", phaseNoFrom);
         report.setVariable("PhaseNoTo",   phaseNoTo);
@@ -233,5 +269,60 @@ public class PhaseListView extends StandardListView<Phase> {
         report.render();
 
         return report;
+    }
+    private void setupSearch() {
+        searchField.addKeyPressListener(Key.ENTER, e -> executeSearch());
+        searchField.addValueChangeListener(e -> {
+            if (e.getValue() == null || e.getValue().isBlank()) {
+                executeSearch();
+            }
+        });
+    }
+    private void executeSearch() {
+        String text = searchField.getValue();
+        phasesDl.setParameter("searchText",
+                text == null ? "" : text.trim());
+        phasesDl.load();
+    }
+    @ViewComponent
+    private Details advancedFilterDetails;
+
+    @ViewComponent
+    private GenericFilter genericFilter;
+
+
+    @ViewComponent
+    private JmixButton searchButton;
+
+    private boolean advancedMode = false;
+    @ViewComponent
+    private JmixButton advancedSearchToggle;
+    @Subscribe("advancedSearchToggle")
+    public void onAdvancedSearchToggle(ClickEvent<JmixButton> event) {
+        advancedMode = !advancedMode;
+
+        // Toggle button text and icon
+        if (advancedMode) {
+            advancedSearchToggle.setText("Simple");
+            advancedSearchToggle.setIcon(VaadinIcon.SEARCH.create());
+        } else {
+            advancedSearchToggle.setText("Advanced");
+            advancedSearchToggle.setIcon(VaadinIcon.FILTER.create());
+        }
+
+        // Toggle simple search visibility
+        searchField.setVisible(!advancedMode);
+        searchButton.setVisible(!advancedMode);
+
+        // Toggle advanced filter visibility
+        genericFilter.setVisible(advancedMode);
+
+        // Reset when switching modes
+        if (!advancedMode) {
+            phasesDl.setParameter("searchText", "");
+            phasesDl.load();
+        } else {
+            phasesDl.removeParameter("searchText");
+        }
     }
 }

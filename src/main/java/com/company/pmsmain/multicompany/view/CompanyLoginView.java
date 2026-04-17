@@ -31,7 +31,7 @@ public class CompanyLoginView extends VerticalLayout {
         setJustifyContentMode(JustifyContentMode.CENTER);
 
         H2 title = new H2("Enter Your Company Code");
-        Paragraph hint = new Paragraph("e.g. COMPANY-A");
+        Paragraph hint = new Paragraph("e.g. DEMO");
 
         // Show error if redirected with ?error=invalid
         String error = VaadinServletRequest.getCurrent() != null

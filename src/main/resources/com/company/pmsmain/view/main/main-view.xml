@@ -56,7 +56,7 @@
                   padding="true"
                   spacing="true"
                   classNames="app-content">
-                <h3 text="Welcome"/>
+                <h3 text="Welcome to Advelsoft Property Mangement System"/>
                 <span text="Select a module from the tabs above."/>
             </vbox>
         </initialLayout>
