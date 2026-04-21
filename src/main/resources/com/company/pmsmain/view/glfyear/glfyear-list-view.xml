@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
-      title="msg://bankListView.title"
+      title="msg://glfyearListView.title"
       focusComponent="searchField">
     <data>
-        <collection id="banksDc"
-                    class="com.company.pmsmain.entity.Bank">
+        <collection id="glfyearDc"
+                    class="com.company.pmsmain.entity.Glfyear">
             <fetchPlan extends="_base"/>
-            <loader id="banksDl" readOnly="true">
+            <loader id="glfyearDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from Bank e
+                    <![CDATA[select e from Glfyear e
                  where ((:searchText is null or :searchText = '')
-                    or lower(e.id.bankCode) like lower(concat('%', :searchText, '%'))
-                    or lower(e.name) like lower(concat('%', :searchText, '%'))
-                    or lower(e.bankaccno) like lower(concat('%', :searchText, '%')))
-                 order by e.id.bankCode]]>
+                    or lower(e.fiscalyear) like lower(concat('%', :searchText, '%'))
+                    or lower(e.auditedby) like lower(concat('%', :searchText, '%')))
+                 order by e.id.fiscalyear]]>
                 </query>
             </loader>
         </collection>
@@ -37,7 +36,7 @@
               spacing="true"
               classNames="simple-search-bar">
             <textField id="searchField"
-                       placeholder="Search bank code, name or account no..."
+                       placeholder="Search fiscal year or audited by..."
                        width="320px"
                        clearButtonVisible="true"/>
             <button id="searchButton"
@@ -48,8 +47,9 @@
                     text="Advanced"
                     themeNames="tertiary"
                     icon="vaadin:filter"/>
+            <!-- Advanced filter inline -->
             <genericFilter id="genericFilter"
-                           dataLoader="banksDl"
+                           dataLoader="glfyearDl"
                            visible="false">
                 <properties include=".*"/>
             </genericFilter>
@@ -58,24 +58,20 @@
         <!-- ── Action buttons ──────────────────────────────────────────── -->
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
-                <button id="createButton" action="banksDataGrid.createAction"/>
-                <button id="editButton" action="banksDataGrid.editAction"/>
-                <button id="removeButton" action="banksDataGrid.removeAction"/>
-                <button id="printButton"
-                        text="msg://bankListView.printButton"
-                        icon="vaadin:print"
-                        themeNames="tertiary"/>
+                <button id="createButton" action="glfyearDataGrid.createAction"/>
+                <button id="editButton" action="glfyearDataGrid.editAction"/>
+                <button id="removeButton" action="glfyearDataGrid.removeAction"/>
             </startSlot>
             <endSlot>
-                <simplePagination id="pagination" dataLoader="banksDl"/>
+                <simplePagination id="pagination" dataLoader="glfyearDl"/>
             </endSlot>
         </hbox>
 
         <!-- ── Data grid ───────────────────────────────────────────────── -->
-        <dataGrid id="banksDataGrid"
+        <dataGrid id="glfyearDataGrid"
                   width="100%"
                   minHeight="20em"
-                  dataContainer="banksDc"
+                  dataContainer="glfyearDc"
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create"/>
@@ -83,14 +79,13 @@
                 <action id="removeAction" type="list_remove"/>
             </actions>
             <columns resizable="true">
-                <column property="id.bankCode" header="Bank Code" width="9em"/>
-                <column property="name" header="Bank Name" width="20em"/>
-                <column property="bankaccno" header="Bank Account No" width="14em"/>
-                <column property="accno" header="GL Account" width="10em"/>
-                <column property="prjno" header="Project" width="9em"/>
-                <column property="rcptauto" header="Rcpt Auto" width="8em"/>
-                <column property="payauto" header="Pay Auto" width="8em"/>
-                <column property="reconcile" header="Reconcile" width="8em"/>
+                <column property="id.fiscalyear" header="Fiscal Year" width="10em"/>
+                <column property="initdate" header="Date From" width="10em"/>
+                <column property="finaldate" header="Date To" width="10em"/>
+                <column property="accperiod" header="Periods" width="6em"/>
+                <column property="audited" header="Audited" width="7em"/>
+                <column property="auditedby" header="Audited By" width="12em"/>
+                <column property="auditeddate" header="Audited Date" width="10em"/>
             </columns>
         </dataGrid>
 

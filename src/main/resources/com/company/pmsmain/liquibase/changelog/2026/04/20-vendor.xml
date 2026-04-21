@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="pms-main">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="vendor"/></not>
+        </preConditions>
+        <createTable tableName="vendor">
+            <column name="compno" type="VARCHAR(2)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_VENDOR"/>
+            </column>
+            <column name="vdrno" type="VARCHAR(8)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_VENDOR"/>
+            </column>
+            <column name="accno" type="VARCHAR(8)"/>
+            <column name="active" type="SMALLINT"/>
+            <column name="addr1" type="VARCHAR(50)"/>
+            <column name="addr2" type="VARCHAR(50)"/>
+            <column name="addr3" type="VARCHAR(50)"/>
+            <column name="addr4" type="VARCHAR(50)"/>
+            <column name="area" type="VARCHAR(2)"/>
+            <column name="bank_acctno" type="VARCHAR(20)"/>
+            <column name="bank_code" type="VARCHAR(15)"/>
+            <column name="city" type="VARCHAR(40)"/>
+            <column name="contact" type="VARCHAR(50)"/>
+            <column name="country" type="VARCHAR(30)"/>
+            <column name="countrycode" type="VARCHAR(3)"/>
+            <column name="creditlimit" type="DECIMAL(10,2)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="enableautopay" type="SMALLINT"/>
+            <column name="fax" type="VARCHAR(30)"/>
+            <column name="groupno" type="VARCHAR(6)"/>
+            <column name="gstenddate" type="DATE"/>
+            <column name="gstregistrationdate" type="DATE"/>
+            <column name="identificationid" type="VARCHAR(30)"/>
+            <column name="identificationtype" type="CHAR(1)"/>
+            <column name="postcode" type="VARCHAR(6)"/>
+            <column name="prjno" type="VARCHAR(8)"/>
+            <column name="remark1" type="VARCHAR(50)"/>
+            <column name="remark2" type="VARCHAR(50)"/>
+            <column name="remark3" type="VARCHAR(50)"/>
+            <column name="selfbilledapprovaldate" type="DATE"/>
+            <column name="state" type="VARCHAR(50)"/>
+            <column name="statecode" type="VARCHAR(2)"/>
+            <column name="supplierbrn" type="VARCHAR(50)"/>
+            <column name="suppliergst" type="VARCHAR(20)"/>
+            <column name="tel" type="VARCHAR(30)"/>
+            <column name="tel2" type="VARCHAR(30)"/>
+            <column name="term" type="DECIMAL(10,2)"/>
+            <column name="tin" type="VARCHAR(40)"/>
+            <column name="totdue" type="DECIMAL(10,2)"/>
+            <column name="vdrname" type="VARCHAR(60)"/>
+            <column name="vdrname2" type="VARCHAR(60)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

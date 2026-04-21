@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://glfyearDetailView.title">
+    <data>
+        <instance id="glfyearDc"
+                  class="com.company.pmsmain.entity.Glfyear">
+            <fetchPlan extends="_base"/>
+            <loader id="glfyearDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="glfyearDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="fiscalyearField" property="id.fiscalyear" label="Fiscal Year" readOnly="true"/>
+            <datePicker id="initdateField" property="initdate" label="Date From" />
+            <datePicker id="finaldateField" property="finaldate" label="Date To" />
+        </formLayout>
+
+        <!-- accperiodField is outside the dataContainer form to avoid Short→Integer auto-binding -->
+        <formLayout id="headerForm">
+            <integerField id="accperiodField" label="Accounting Periods" readOnly="true"/>
+        </formLayout>
+
+        <formLayout id="periodForm" dataContainer="glfyearDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <span colspan="2" text="Restrict Period At" classNames="font-bold"/>
+            <checkbox id="pctrl1"  property="periodctrl1"  label="Period 1"/>
+            <checkbox id="pctrl2"  property="periodctrl2"  label="Period 2"/>
+            <checkbox id="pctrl3"  property="periodctrl3"  label="Period 3"/>
+            <checkbox id="pctrl4"  property="periodctrl4"  label="Period 4"/>
+            <checkbox id="pctrl5"  property="periodctrl5"  label="Period 5"/>
+            <checkbox id="pctrl6"  property="periodctrl6"  label="Period 6"/>
+            <checkbox id="pctrl7"  property="periodctrl7"  label="Period 7"/>
+            <checkbox id="pctrl8"  property="periodctrl8"  label="Period 8"/>
+            <checkbox id="pctrl9"  property="periodctrl9"  label="Period 9"/>
+            <checkbox id="pctrl10" property="periodctrl10" label="Period 10"/>
+            <checkbox id="pctrl11" property="periodctrl11" label="Period 11"/>
+            <checkbox id="pctrl12" property="periodctrl12" label="Period 12"/>
+            <checkbox id="pctrl13" property="periodctrl13" label="Period 13"/>
+            <checkbox id="pctrl14" property="periodctrl14" label="Period 14"/>
+            <checkbox id="pctrl15" property="periodctrl15" label="Period 15"/>
+            <checkbox id="pctrl16" property="periodctrl16" label="Period 16"/>
+            <checkbox id="pctrl17" property="periodctrl17" label="Period 17"/>
+            <checkbox id="pctrl18" property="periodctrl18" label="Period 18"/>
+        </formLayout>
+
+        <formLayout id="auditForm" dataContainer="glfyearDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="3"/>
+            </responsiveSteps>
+            <span colspan="3" text="Audit" classNames="font-bold"/>
+            <checkbox id="auditedField" property="audited" label="Audited"/>
+            <textField id="auditedbyField" property="auditedby" label="Audited By" readOnly="true"/>
+            <datePicker id="auditeddateField" property="auditeddate" label="Audited Date" readOnly="true"/>
+        </formLayout>
+
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

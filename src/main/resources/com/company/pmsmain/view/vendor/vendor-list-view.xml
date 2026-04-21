@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
-      title="msg://bankListView.title"
+      title="msg://vendorListView.title"
       focusComponent="searchField">
     <data>
-        <collection id="banksDc"
-                    class="com.company.pmsmain.entity.Bank">
+        <collection id="vendorsDc"
+                    class="com.company.pmsmain.entity.Vendor">
             <fetchPlan extends="_base"/>
-            <loader id="banksDl" readOnly="true">
+            <loader id="vendorsDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from Bank e
+                    <![CDATA[select e from Vendor e
                  where ((:searchText is null or :searchText = '')
-                    or lower(e.id.bankCode) like lower(concat('%', :searchText, '%'))
-                    or lower(e.name) like lower(concat('%', :searchText, '%'))
-                    or lower(e.bankaccno) like lower(concat('%', :searchText, '%')))
-                 order by e.id.bankCode]]>
+                    or lower(e.id.vdrno) like lower(concat('%', :searchText, '%'))
+                    or lower(e.vdrname) like lower(concat('%', :searchText, '%'))
+                    or lower(e.contact) like lower(concat('%', :searchText, '%')))
+                 order by e.id.vdrno]]>
                 </query>
             </loader>
         </collection>
@@ -37,7 +37,7 @@
               spacing="true"
               classNames="simple-search-bar">
             <textField id="searchField"
-                       placeholder="Search bank code, name or account no..."
+                       placeholder="Search vendor no, name or contact..."
                        width="320px"
                        clearButtonVisible="true"/>
             <button id="searchButton"
@@ -48,8 +48,9 @@
                     text="Advanced"
                     themeNames="tertiary"
                     icon="vaadin:filter"/>
+            <!-- Advanced filter inline -->
             <genericFilter id="genericFilter"
-                           dataLoader="banksDl"
+                           dataLoader="vendorsDl"
                            visible="false">
                 <properties include=".*"/>
             </genericFilter>
@@ -58,24 +59,24 @@
         <!-- ── Action buttons ──────────────────────────────────────────── -->
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
-                <button id="createButton" action="banksDataGrid.createAction"/>
-                <button id="editButton" action="banksDataGrid.editAction"/>
-                <button id="removeButton" action="banksDataGrid.removeAction"/>
+                <button id="createButton" action="vendorsDataGrid.createAction"/>
+                <button id="editButton" action="vendorsDataGrid.editAction"/>
+                <button id="removeButton" action="vendorsDataGrid.removeAction"/>
                 <button id="printButton"
-                        text="msg://bankListView.printButton"
+                        text="msg://vendorListView.printButton"
                         icon="vaadin:print"
                         themeNames="tertiary"/>
             </startSlot>
             <endSlot>
-                <simplePagination id="pagination" dataLoader="banksDl"/>
+                <simplePagination id="pagination" dataLoader="vendorsDl"/>
             </endSlot>
         </hbox>
 
         <!-- ── Data grid ───────────────────────────────────────────────── -->
-        <dataGrid id="banksDataGrid"
+        <dataGrid id="vendorsDataGrid"
                   width="100%"
                   minHeight="20em"
-                  dataContainer="banksDc"
+                  dataContainer="vendorsDc"
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create"/>
@@ -83,14 +84,15 @@
                 <action id="removeAction" type="list_remove"/>
             </actions>
             <columns resizable="true">
-                <column property="id.bankCode" header="Bank Code" width="9em"/>
-                <column property="name" header="Bank Name" width="20em"/>
-                <column property="bankaccno" header="Bank Account No" width="14em"/>
-                <column property="accno" header="GL Account" width="10em"/>
-                <column property="prjno" header="Project" width="9em"/>
-                <column property="rcptauto" header="Rcpt Auto" width="8em"/>
-                <column property="payauto" header="Pay Auto" width="8em"/>
-                <column property="reconcile" header="Reconcile" width="8em"/>
+                <column property="id.vdrno" header="Vendor No" width="9em"/>
+                <column property="vdrname" header="Vendor Name" width="20em"/>
+                <column property="vdrname2" header="Vendor Name 2" width="16em"/>
+                <column property="tel" header="Tel" width="11em"/>
+                <column property="contact" header="Contact Person" width="14em"/>
+                <column property="city" header="City" width="10em"/>
+                <column property="state" header="State" width="10em"/>
+                <column property="groupno" header="Group" width="7em"/>
+                <column property="active" header="Active" width="6em"/>
             </columns>
         </dataGrid>
 

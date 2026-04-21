@@ -11,6 +11,17 @@
         <item view="Ardoc.list" title="msg://com.company.pmsmain.view.ardoc/ardocListView.title"/>
         <item view="Bank.list" title="msg://com.company.pmsmain.view.bank/bankListView.title"/>
         <item view="Charge.list" title="msg://com.company.pmsmain.view.charge/chargeListView.title"/>
+        <item view="Glacc.list" title="msg://com.company.pmsmain.view.glacc/glaccListView.title"/>
+        <menu id="ap" title="AP">
+            <menu id="ap.file" title="File">
+                <item view="Vendor.list" title="Suppliers"/>
+            </menu>
+        </menu>
+        <menu id="cb" title="Cash Book">
+            <menu id="cb.file" title="File">
+                <item view="Bank.list" title="Banks"/>
+            </menu>
+        </menu>
     </menu>
 
 </menu-config>

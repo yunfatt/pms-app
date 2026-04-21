@@ -1,7 +1,7 @@
-package com.company.pmsmain.view.bank;
+package com.company.pmsmain.view.vendor;
 
 import com.company.pmsmain.entity.AppCompany;
-import com.company.pmsmain.entity.Bank;
+import com.company.pmsmain.entity.Vendor;
 import com.company.pmsmain.multicompany.context.TenantContext;
 import com.company.pmsmain.view.main.MainView;
 import com.stimulsoft.report.StiExportManager;
@@ -41,15 +41,15 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 
-@Route(value = "banks", layout = MainView.class)
-@ViewController(id = "Bank.list")
-@ViewDescriptor(path = "bank-list-view.xml")
-@LookupComponent("banksDataGrid")
+@Route(value = "suppliers", layout = MainView.class)
+@ViewController(id = "Vendor.list")
+@ViewDescriptor(path = "vendor-list-view.xml")
+@LookupComponent("vendorsDataGrid")
 @DialogMode(width = "64em")
-public class BankListView extends StandardListView<Bank> {
+public class VendorListView extends StandardListView<Vendor> {
 
     @ViewComponent
-    private DataGrid<Bank> banksDataGrid;
+    private DataGrid<Vendor> vendorsDataGrid;
 
     @ViewComponent
     private JmixButton printButton;
@@ -67,7 +67,7 @@ public class BankListView extends StandardListView<Bank> {
     private GenericFilter genericFilter;
 
     @ViewComponent
-    private CollectionLoader<Bank> banksDl;
+    private CollectionLoader<Vendor> vendorsDl;
 
     @Autowired
     private Notifications notifications;
@@ -107,8 +107,8 @@ public class BankListView extends StandardListView<Bank> {
 
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
-        banksDl.setParameter("searchText", "");
-        banksDl.load();
+        vendorsDl.setParameter("searchText", "");
+        vendorsDl.load();
     }
 
     @Subscribe("searchButton")
@@ -133,17 +133,17 @@ public class BankListView extends StandardListView<Bank> {
         genericFilter.setVisible(advancedMode);
 
         if (!advancedMode) {
-            banksDl.setParameter("searchText", "");
-            banksDl.load();
+            vendorsDl.setParameter("searchText", "");
+            vendorsDl.load();
         } else {
-            banksDl.removeParameter("searchText");
+            vendorsDl.removeParameter("searchText");
         }
     }
 
     private void executeSearch() {
         String text = searchField.getValue();
-        banksDl.setParameter("searchText", text == null ? "" : text.trim());
-        banksDl.load();
+        vendorsDl.setParameter("searchText", text == null ? "" : text.trim());
+        vendorsDl.load();
     }
 
     // ── Format selection dialog ───────────────────────────────────────────────
@@ -207,11 +207,11 @@ public class BankListView extends StandardListView<Bank> {
             switch (exportType) {
                 case PDF -> {
                     StiExportManager.exportPdf(report, out);
-                    downloader.download(out.toByteArray(), "BankList.pdf", DownloadFormat.PDF);
+                    downloader.download(out.toByteArray(), "SupplierList.pdf", DownloadFormat.PDF);
                 }
                 case EXCEL -> {
                     StiExportManager.exportExcel(report, out);
-                    downloader.download(out.toByteArray(), "BankList.xlsx", DownloadFormat.XLSX);
+                    downloader.download(out.toByteArray(), "SupplierList.xlsx", DownloadFormat.XLSX);
                 }
             }
             getUI().ifPresent(ui -> ui.navigate(""));
@@ -220,7 +220,7 @@ public class BankListView extends StandardListView<Bank> {
             notifications.create("Failed to generate report: " + ex.getMessage())
                     .withType(Notifications.Type.ERROR)
                     .show();
-            throw new RuntimeException("Failed to generate Bank List report", ex);
+            throw new RuntimeException("Failed to generate Supplier List report", ex);
         }
     }
 
@@ -273,32 +273,32 @@ public class BankListView extends StandardListView<Bank> {
                 + ";User Id="  + company.getDbUsername()
                 + ";Password=" + company.getDbPasswordEnc() + ";";
 
-        File reportFile = loadReportTemplate("banklist.mrt");
+        File reportFile = loadReportTemplate("supplierlist.mrt");
         StiReport report = StiSerializeManager.deserializeReport(reportFile);
 
         report.getDictionary().getDatabases().clear();
         report.getDictionary().getDatabases().add(
                 new StiPostgreSQLDatabase("pms", dbConn));
 
-        Collection<Bank> banks = banksDataGrid.getItems().getItems();
-        String bankCodeFrom = "";
-        String bankCodeTo   = "ZZZZZZZZ";
-        if (!banks.isEmpty()) {
-            List<Bank> sorted = banks.stream()
-                    .filter(b -> b.getId() != null && b.getId().getBankCode() != null)
-                    .sorted((a, b) -> a.getId().getBankCode().compareTo(b.getId().getBankCode()))
+        Collection<Vendor> vendors = vendorsDataGrid.getItems().getItems();
+        String vdrNoFrom = "";
+        String vdrNoTo   = "ZZZZZZZZ";
+        if (!vendors.isEmpty()) {
+            List<Vendor> sorted = vendors.stream()
+                    .filter(v -> v.getId() != null && v.getId().getVdrno() != null)
+                    .sorted((a, b) -> a.getId().getVdrno().compareTo(b.getId().getVdrno()))
                     .toList();
             if (!sorted.isEmpty()) {
-                bankCodeFrom = sorted.get(0).getId().getBankCode();
-                bankCodeTo   = sorted.get(sorted.size() - 1).getId().getBankCode();
+                vdrNoFrom = sorted.get(0).getId().getVdrno();
+                vdrNoTo   = sorted.get(sorted.size() - 1).getId().getVdrno();
             }
         }
 
-        report.setVariable("SystemName",    systemName);
-        report.setVariable("CompanyName",   company.getCompanyName());
-        report.setVariable("UserId",        currentAuthentication.getUser().getUsername());
-        report.setVariable("BankCodeFrom",  bankCodeFrom);
-        report.setVariable("BankCodeTo",    bankCodeTo);
+        report.setVariable("SystemName",  systemName);
+        report.setVariable("CompanyName", company.getCompanyName());
+        report.setVariable("UserId",      currentAuthentication.getUser().getUsername());
+        report.setVariable("VdrNoFrom",   vdrNoFrom);
+        report.setVariable("VdrNoTo",     vdrNoTo);
 
         report.render();
         return report;

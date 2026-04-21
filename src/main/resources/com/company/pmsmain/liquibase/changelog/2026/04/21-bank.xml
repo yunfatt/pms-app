@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="pms-main">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="bank"/></not>
+        </preConditions>
+        <createTable tableName="bank">
+            <column name="bank_code" type="VARCHAR(8)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_BANK"/>
+            </column>
+            <column name="compno" type="VARCHAR(2)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_BANK"/>
+            </column>
+            <column name="accno" type="VARCHAR(12)"/>
+            <column name="allowbackdate" type="SMALLINT"/>
+            <column name="aptrxncode" type="VARCHAR(10)"/>
+            <column name="aptrxncodercpt" type="VARCHAR(10)"/>
+            <column name="artrxncode" type="VARCHAR(10)"/>
+            <column name="artrxncodedep" type="VARCHAR(10)"/>
+            <column name="artrxncodepv" type="VARCHAR(10)"/>
+            <column name="artrxncoderc" type="VARCHAR(10)"/>
+            <column name="bankaccno" type="VARCHAR(30)"/>
+            <column name="bcaccno" type="VARCHAR(12)"/>
+            <column name="bcprjno" type="VARCHAR(8)"/>
+            <column name="chargesaccno" type="VARCHAR(12)"/>
+            <column name="docno" type="INTEGER"/>
+            <column name="jompaypayerbankid" type="VARCHAR(10)"/>
+            <column name="name" type="VARCHAR(50)"/>
+            <column name="payauto" type="SMALLINT"/>
+            <column name="payautoformat" type="SMALLINT"/>
+            <column name="payno" type="INTEGER"/>
+            <column name="payprefix" type="VARCHAR(2)"/>
+            <column name="paysuppprefix" type="SMALLINT"/>
+            <column name="prjno" type="VARCHAR(8)"/>
+            <column name="rcptauto" type="SMALLINT"/>
+            <column name="rcptautoformat" type="SMALLINT"/>
+            <column name="rcptno" type="INTEGER"/>
+            <column name="rcptprefix" type="VARCHAR(2)"/>
+            <column name="rcptsuppprefix" type="SMALLINT"/>
+            <column name="reconcile" type="SMALLINT"/>
+            <column name="securitygroup" type="INTEGER"/>
+            <column name="slip" type="SMALLINT"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

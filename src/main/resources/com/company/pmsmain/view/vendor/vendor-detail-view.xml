@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://vendorDetailView.title"
+      focusComponent="idVdrnoField">
+    <data>
+        <instance id="vendorDc"
+                  class="com.company.pmsmain.entity.Vendor">
+            <fetchPlan extends="_base"/>
+            <loader id="vendorDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <tabSheet id="tabSheet" width="100%">
+
+            <!-- ── General ─────────────────────────────────────────────── -->
+            <tab id="generalTab" label="General">
+                <formLayout id="generalForm" dataContainer="vendorDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="idVdrnoField" property="id.vdrno" label="Vendor No" readOnly="true"/>
+                    <textField id="vdrnameField" property="vdrname" label="Vendor Name"/>
+                    <textField id="vdrname2Field" property="vdrname2" label="Vendor Name 2"/>
+                    <textField id="identificationtypeField" property="identificationtype" label="ID Type"/>
+                    <textField id="identificationidField" property="identificationid" label="ID No"/>
+                    <textField id="tinField" property="tin" label="TIN"/>
+                    <textField id="suppliergstField" property="suppliergst" label="SST No"/>
+                    <datePicker id="gstregistrationdateField" property="gstregistrationdate" label="SST Reg Date"/>
+                    <datePicker id="gstenddateField" property="gstenddate" label="SST End Date"/>
+                    <datePicker id="selfbilledapprovaldateField" property="selfbilledapprovaldate" label="Self-Billed Approval Date"/>
+                    <textField id="supplierbrnField" property="supplierbrn" label="Supplier BRN" readOnly="true"/>
+                    <textField id="activeField" property="active" label="Active"/>
+                </formLayout>
+            </tab>
+
+            <!-- ── Address ─────────────────────────────────────────────── -->
+            <tab id="addressTab" label="Address">
+                <formLayout id="addressForm" dataContainer="vendorDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="addr1Field" property="addr1" label="Address 1" colspan="2"/>
+                    <textField id="addr2Field" property="addr2" label="Address 2" colspan="2"/>
+                    <textField id="addr3Field" property="addr3" label="Address 3" colspan="2"/>
+                    <textField id="addr4Field" property="addr4" label="Address 4" colspan="2"/>
+                    <textField id="cityField" property="city" label="City"/>
+                    <textField id="postcodeField" property="postcode" label="Post Code"/>
+                    <textField id="statecodeField" property="statecode" label="State Code"/>
+                    <textField id="stateField" property="state" label="State"/>
+                    <textField id="countrycodeField" property="countrycode" label="Country Code"/>
+                    <textField id="countryField" property="country" label="Country"/>
+                </formLayout>
+            </tab>
+
+            <!-- ── Contact ─────────────────────────────────────────────── -->
+            <tab id="contactTab" label="Contact">
+                <formLayout id="contactForm" dataContainer="vendorDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="telField" property="tel" label="Tel"/>
+                    <textField id="tel2Field" property="tel2" label="Tel 2"/>
+                    <textField id="faxField" property="fax" label="Fax"/>
+                    <textField id="contactField" property="contact" label="Contact Person"/>
+                    <textField id="emailField" property="email" label="Email" colspan="2"/>
+                </formLayout>
+            </tab>
+
+            <!-- ── Financial ───────────────────────────────────────────── -->
+            <tab id="financialTab" label="Financial">
+                <formLayout id="financialForm" dataContainer="vendorDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="groupnoField" property="groupno" label="Group No"/>
+                    <textField id="prjnoField" property="prjno" label="Project No"/>
+                    <textField id="accnoField" property="accno" label="A/C No"/>
+                    <textField id="termField" property="term" label="Credit Term (days)"/>
+                    <textField id="creditlimitField" property="creditlimit" label="Credit Limit"/>
+                    <textField id="totdueField" property="totdue" label="Total Due"/>
+                    <textField id="areaField" property="area" label="Area"/>
+                </formLayout>
+            </tab>
+
+            <!-- ── Banking ─────────────────────────────────────────────── -->
+            <tab id="bankingTab" label="Banking">
+                <formLayout id="bankingForm" dataContainer="vendorDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="enableautopayField" property="enableautopay" label="Enable Autopay"/>
+                    <textField id="bankCodeField" property="bankCode" label="Bank Code"/>
+                    <textField id="bankAcctnoField" property="bankAcctno" label="Bank Account No"/>
+                </formLayout>
+            </tab>
+
+            <!-- ── Remarks ─────────────────────────────────────────────── -->
+            <tab id="remarksTab" label="Remarks">
+                <formLayout id="remarksForm" dataContainer="vendorDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                    </responsiveSteps>
+                    <textField id="remark1Field" property="remark1" label="Remark 1"/>
+                    <textField id="remark2Field" property="remark2" label="Remark 2"/>
+                    <textField id="remark3Field" property="remark3" label="Remark 3"/>
+                </formLayout>
+            </tab>
+
+        </tabSheet>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://glaccDetailView.title"
+      focusComponent="accnoField">
+    <data>
+        <instance id="glaccDc"
+                  class="com.company.pmsmain.entity.Glacc">
+            <fetchPlan extends="_base"/>
+            <loader id="glaccDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <tabSheet id="tabSheet" width="100%">
+            <tab id="generalTab" label="General">
+                <formLayout id="form" dataContainer="glaccDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="accnoField" property="accno" label="A/C No"/>
+                    <textField id="descriptionField" property="description" label="Description"/>
+                    <textField id="controlField" property="control" label="Control Account"/>
+                    <textField id="trxntypeField" property="trxntype" label="Account Type"/>
+                    <textField id="groupcodeField" property="groupcode" label="Group Code"/>
+                    <textField id="industrycodeField" property="industrycode" label="Industry Code"/>
+                    <checkbox id="activeField" property="active" label="Active"/>
+                    <checkbox id="budgetcontrolField" property="budgetcontrol" label="Budget Control"/>
+                </formLayout>
+            </tab>
+            <tab id="remarksTab" label="Remarks">
+                <formLayout id="remarksForm" dataContainer="glaccDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                    </responsiveSteps>
+                    <textField id="remark1Field" property="remark1" label="Remark 1"/>
+                    <textField id="remark2Field" property="remark2" label="Remark 2"/>
+                    <textField id="remark3Field" property="remark3" label="Remark 3"/>
+                </formLayout>
+            </tab>
+        </tabSheet>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

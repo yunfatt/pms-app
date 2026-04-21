@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
       title="msg://bankDetailView.title"
-      focusComponent="form">
+      focusComponent="idBankCodeField">
     <data>
         <instance id="bankDc"
                   class="com.company.pmsmain.entity.Bank">
@@ -17,43 +17,79 @@
         <action id="closeAction" type="detail_close"/>
     </actions>
     <layout>
-        <formLayout id="form" dataContainer="bankDc">
-            <responsiveSteps>
-                <responsiveStep minWidth="0" columns="1"/>
-                <responsiveStep minWidth="40em" columns="2"/>
-            </responsiveSteps>
-            <textField id="idBankCodeField" property="id.bankCode"/>
-            <textField id="idCompnoField" property="id.compno"/>
-            <textField id="accnoField" property="accno"/>
-            <textField id="allowbackdateField" property="allowbackdate"/>
-            <textField id="aptrxncodeField" property="aptrxncode"/>
-            <textField id="aptrxncodercptField" property="aptrxncodercpt"/>
-            <textField id="artrxncodeField" property="artrxncode"/>
-            <textField id="artrxncodedepField" property="artrxncodedep"/>
-            <textField id="artrxncodepvField" property="artrxncodepv"/>
-            <textField id="artrxncodercField" property="artrxncoderc"/>
-            <textField id="bankaccnoField" property="bankaccno"/>
-            <textField id="bcaccnoField" property="bcaccno"/>
-            <textField id="bcprjnoField" property="bcprjno"/>
-            <textField id="chargesaccnoField" property="chargesaccno"/>
-            <textField id="docnoField" property="docno"/>
-            <textField id="jompaypayerbankidField" property="jompaypayerbankid"/>
-            <textField id="nameField" property="name"/>
-            <textField id="payautoField" property="payauto"/>
-            <textField id="payautoformatField" property="payautoformat"/>
-            <textField id="paynoField" property="payno"/>
-            <textField id="payprefixField" property="payprefix"/>
-            <textField id="paysuppprefixField" property="paysuppprefix"/>
-            <textField id="prjnoField" property="prjno"/>
-            <textField id="rcptautoField" property="rcptauto"/>
-            <textField id="rcptautoformatField" property="rcptautoformat"/>
-            <textField id="rcptnoField" property="rcptno"/>
-            <textField id="rcptprefixField" property="rcptprefix"/>
-            <textField id="rcptsuppprefixField" property="rcptsuppprefix"/>
-            <textField id="reconcileField" property="reconcile"/>
-            <textField id="securitygroupField" property="securitygroup"/>
-            <textField id="slipField" property="slip"/>
-        </formLayout>
+        <tabSheet id="tabSheet" width="100%">
+
+            <!-- ── General ─────────────────────────────────────────────── -->
+            <tab id="generalTab" label="General">
+                <formLayout id="generalForm" dataContainer="bankDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="idBankCodeField" property="id.bankCode" label="Bank Code" readOnly="true"/>
+                    <textField id="nameField" property="name" label="Bank Name"/>
+                    <textField id="bankaccnoField" property="bankaccno" label="Bank Account No"/>
+                    <textField id="accnoField" property="accno" label="GL Account"/>
+                    <textField id="prjnoField" property="prjno" label="Project No"/>
+                    <textField id="jompaypayerbankidField" property="jompaypayerbankid" label="JomPay Payer Bank ID"/>
+                    <textField id="allowbackdateField" property="allowbackdate" label="Allow Back Date"/>
+                    <textField id="reconcileField" property="reconcile" label="Reconcile"/>
+                    <textField id="slipField" property="slip" label="Slip"/>
+                    <textField id="securitygroupField" property="securitygroup" label="Security Group"/>
+                    <textField id="docnoField" property="docno" label="Doc No"/>
+                </formLayout>
+            </tab>
+
+            <!-- ── AR Settings ─────────────────────────────────────────── -->
+            <tab id="arTab" label="AR Settings">
+                <formLayout id="arForm" dataContainer="bankDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="artrxncodeField" property="artrxncode" label="AR Trxn Code"/>
+                    <textField id="artrxncodedepField" property="artrxncodedep" label="AR Trxn Code (Deposit)"/>
+                    <textField id="artrxncodepvField" property="artrxncodepv" label="AR Trxn Code (PV)"/>
+                    <textField id="artrxncodercField" property="artrxncoderc" label="AR Trxn Code (RC)"/>
+                    <textField id="bcaccnoField" property="bcaccno" label="Bank Charges Account"/>
+                    <textField id="bcprjnoField" property="bcprjno" label="Bank Charges Project"/>
+                    <textField id="chargesaccnoField" property="chargesaccno" label="Charges Account"/>
+                </formLayout>
+            </tab>
+
+            <!-- ── Receipt ─────────────────────────────────────────────── -->
+            <tab id="receiptTab" label="Receipt">
+                <formLayout id="receiptForm" dataContainer="bankDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="rcptautoField" property="rcptauto" label="Receipt Auto"/>
+                    <textField id="rcptautoformatField" property="rcptautoformat" label="Receipt Auto Format"/>
+                    <textField id="rcptnoField" property="rcptno" label="Next Receipt No"/>
+                    <textField id="rcptprefixField" property="rcptprefix" label="Receipt Prefix"/>
+                    <textField id="rcptsuppprefixField" property="rcptsuppprefix" label="Receipt Supplier Prefix"/>
+                </formLayout>
+            </tab>
+
+            <!-- ── Payment ─────────────────────────────────────────────── -->
+            <tab id="paymentTab" label="Payment">
+                <formLayout id="paymentForm" dataContainer="bankDc">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0" columns="1"/>
+                        <responsiveStep minWidth="40em" columns="2"/>
+                    </responsiveSteps>
+                    <textField id="aptrxncodeField" property="aptrxncode" label="AP Trxn Code"/>
+                    <textField id="aptrxncodercptField" property="aptrxncodercpt" label="AP Trxn Code (Receipt)"/>
+                    <textField id="payautoField" property="payauto" label="Payment Auto"/>
+                    <textField id="payautoformatField" property="payautoformat" label="Payment Auto Format"/>
+                    <textField id="paynoField" property="payno" label="Next Payment No"/>
+                    <textField id="payprefixField" property="payprefix" label="Payment Prefix"/>
+                    <textField id="paysuppprefixField" property="paysuppprefix" label="Payment Supplier Prefix"/>
+                </formLayout>
+            </tab>
+
+        </tabSheet>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveCloseAction"/>
             <button id="closeButton" action="closeAction"/>

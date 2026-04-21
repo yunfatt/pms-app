@@ -196,7 +196,7 @@ public class MainView extends StandardMainView implements AfterNavigationObserve
 
     private void buildAPMenu(String subTab) {
         switch (subTab) {
-            case "Files"        -> menuItemsBox.add(createDummyMenuButton("Suppliers"));
+            case "Files"        -> menuItemsBox.add(createMenuButton("Suppliers", "suppliers"));
             case "Transactions" -> menuItemsBox.add(createDummyMenuButton("Bill Entry"));
             case "Reports"      -> menuItemsBox.add(createDummyMenuButton("AP Reports"));
         }
@@ -206,7 +206,10 @@ public class MainView extends StandardMainView implements AfterNavigationObserve
 
     private void buildCBMenu(String subTab) {
         switch (subTab) {
-            case "Files"        -> menuItemsBox.add(createDummyMenuButton("Bank Accounts"));
+            case "Files"        ->
+                    menuItemsBox.add(
+                            createMenuButton("Banks", "banks")
+                    );
             case "Transactions" -> {
                 menuItemsBox.add(
                         createDummyMenuButton("Bank Entry"),
@@ -221,7 +224,10 @@ public class MainView extends StandardMainView implements AfterNavigationObserve
 
     private void buildGLMenu(String subTab) {
         switch (subTab) {
-            case "Files"        -> menuItemsBox.add(createDummyMenuButton("Chart of Accounts"));
+            case "Files"        -> menuItemsBox.add(
+                        createMenuButton("GL Accounts",  "glaccounts"),
+                        createMenuButton("Fiscal Year",  "glfyears")
+                );
             case "Transactions" -> menuItemsBox.add(createDummyMenuButton("Journal Entry"));
             case "Reports"      -> menuItemsBox.add(createDummyMenuButton("Trial Balance"));
         }

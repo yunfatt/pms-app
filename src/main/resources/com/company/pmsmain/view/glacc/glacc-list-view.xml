@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://glaccListView.title"
+      focusComponent="glaccDataGrid">
+    <data>
+        <collection id="glaccDc"
+                    class="com.company.pmsmain.entity.Glacc">
+            <fetchPlan extends="_base"/>
+            <loader id="glaccDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Glacc e order by e.accno]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="glaccDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <startSlot>
+                <button id="createButton" action="glaccDataGrid.createAction"/>
+                <button id="editButton" action="glaccDataGrid.editAction"/>
+                <button id="removeButton" action="glaccDataGrid.removeAction"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="glaccDl"/>
+            </endSlot>
+        </hbox>
+        <dataGrid id="glaccDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="glaccDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="accno" width="8em"/>
+                <column property="description" width="20em"/>
+                <column property="trxntype" width="8em"/>
+                <column property="control" width="8em"/>
+                <column property="groupcode" width="8em"/>
+                <column property="active" width="6em"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
