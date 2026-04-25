@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="Support Tickets">
+    <layout height="100%" width="100%"
+            padding="true" spacing="true"
+            flexDirection="COLUMN">
+        <hbox id="toolbarRow"
+              alignItems="CENTER"
+              spacing="true"
+              width="100%">
+            <button id="refreshTicketsBtn"
+                    icon="REFRESH"
+                    text="Refresh"
+                    themeNames="primary"/>
+            <span id="ticketCountLabel"
+                  style="margin-left:auto;font-size:0.85rem;color:#666;"/>
+        </hbox>
+        <div id="ticketsGridContainer"
+             style="flex:1 1 auto;width:100%;min-height:0;display:flex;flex-direction:column;"/>
+    </layout>
+</view>

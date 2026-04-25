@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="HelpDesk — Tickets"
+      focusComponent="searchField">
+    <layout spacing="false" padding="false" height="100%">
+
+        <!-- Search / filter bar -->
+        <hbox width="100%"
+              alignItems="CENTER"
+              padding="true"
+              spacing="true"
+              classNames="simple-search-bar">
+            <textField id="searchField"
+                       placeholder="Search by subject or customer..."
+                       width="300px"
+                       clearButtonVisible="true"/>
+            <button id="searchButton"
+                    text="Search"
+                    themeNames="primary"
+                    icon="vaadin:search"/>
+            <button id="statusAllBtn"   text="All"      themeNames="tertiary"/>
+            <button id="statusOpenBtn"  text="Open"     themeNames="tertiary"/>
+            <button id="statusPendingBtn" text="Pending" themeNames="tertiary"/>
+            <button id="statusResolvedBtn" text="Resolved" themeNames="tertiary"/>
+            <button id="statusClosedBtn" text="Closed"  themeNames="tertiary"/>
+        </hbox>
+
+        <!-- Action buttons -->
+        <hbox id="buttonsPanel"
+              width="100%"
+              alignItems="CENTER"
+              padding="true"
+              spacing="true"
+              classNames="buttons-panel">
+            <button id="newTicketButton"
+                    text="New Ticket"
+                    icon="vaadin:plus"
+                    themeNames="primary"/>
+            <button id="refreshButton"
+                    text="Refresh"
+                    icon="vaadin:refresh"
+                    themeNames="tertiary"/>
+        </hbox>
+
+        <!-- Grid injected programmatically -->
+        <vbox id="gridContainer"
+              width="100%"
+              height="100%"
+              spacing="false"
+              padding="false"/>
+
+    </layout>
+</view>

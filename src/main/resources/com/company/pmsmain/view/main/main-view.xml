@@ -14,8 +14,8 @@
             <hbox id="topBar"
                   width="100%"
                   alignItems="CENTER"
-                  spacing="true"
-                  padding="true"
+                  spacing="false"
+                  padding="false"
                   classNames="app-topbar">
 
                 <drawerToggle id="drawerToggle"/>
@@ -43,9 +43,10 @@
             </hbox>
         </navigationBar>
 
-        <drawerLayout>
+        <drawerLayout width="260px">
             <vbox id="dynamicMenuBox"
-                  width="100%"
+                  width="260px"
+                  minWidth="260px"
                   spacing="false"
                   padding="false"
                   classNames="app-sidebar"/>
@@ -56,7 +57,7 @@
                   padding="true"
                   spacing="true"
                   classNames="app-content">
-                <h3 text="Welcome to Advelsoft Property Mangement System"/>
+                <h3 text="Welcome to Advelsoft Property Management System"/>
                 <span text="Select a module from the tabs above."/>
             </vbox>
         </initialLayout>

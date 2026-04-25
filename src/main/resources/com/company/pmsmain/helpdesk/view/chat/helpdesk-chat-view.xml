@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="HelpDesk — AI Chat">
+    <layout spacing="false" padding="false" height="100%">
+
+        <!-- Header -->
+        <hbox id="chatHeader"
+              width="100%"
+              alignItems="CENTER"
+              padding="true"
+              spacing="true"
+              classNames="buttons-panel">
+            <span text="AI Support Chat" classNames="section-title"/>
+            <button id="clearChatButton"
+                    text="Clear"
+                    icon="vaadin:trash"
+                    themeNames="tertiary error"/>
+        </hbox>
+
+        <!-- Chat message area -->
+        <vbox id="chatMessagesBox"
+              width="100%"
+              height="100%"
+              spacing="false"
+              padding="true"
+              classNames="helpdesk-chat-messages"/>
+
+        <!-- Typing indicator -->
+        <hbox id="typingIndicator"
+              width="100%"
+              alignItems="CENTER"
+              padding="true"
+              spacing="true"
+              visible="false">
+            <span id="typingLabel" text="AI is thinking..." classNames="helpdesk-typing-label"/>
+        </hbox>
+
+        <!-- Input area -->
+        <vbox id="inputArea"
+              width="100%"
+              spacing="false"
+              padding="true"
+              classNames="helpdesk-input-panel">
+            <textArea id="messageInput"
+                      placeholder="Ask the AI assistant..."
+                      width="100%"
+                      minRows="2"
+                      maxRows="5"/>
+            <hbox alignItems="CENTER" spacing="true" padding="false">
+                <button id="sendButton"
+                        text="Send"
+                        icon="vaadin:paperplane"
+                        themeNames="primary"/>
+                <button id="newTicketFromChatBtn"
+                        text="Create Ticket from Chat"
+                        icon="vaadin:ticket"
+                        themeNames="tertiary"/>
+            </hbox>
+        </vbox>
+
+    </layout>
+</view>

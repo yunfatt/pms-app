@@ -8,8 +8,8 @@ services:
       - MAIN_DATASOURCE_USERNAME=postgres
       - MAIN_DATASOURCE_PASSWORD=Amsb@2025
       - APP_REPORTS_PATH=/app/reports
-      - SERVER_PORT=8100        # ← change port here
+      - SERVER_PORT=8100
     restart: always
     volumes:
-      - /var/log/pms:/app/logs  # optional log persistence
+      - /var/log/pms:/app/logs
       - /opt/pms-app/reports:/app/reports

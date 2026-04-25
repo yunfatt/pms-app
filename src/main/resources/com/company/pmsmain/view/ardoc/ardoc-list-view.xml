@@ -1,42 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
       title="msg://ardocListView.title"
-      focusComponent="ardocsDataGrid">
+      focusComponent="searchField">
     <data>
         <collection id="ardocsDc"
                     class="com.company.pmsmain.entity.Ardoc">
             <fetchPlan extends="_base"/>
             <loader id="ardocsDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from Ardoc e order by e.trxncode]]>
+                    <![CDATA[select e from Ardoc e
+                 where ((:searchText is null or :searchText = '')
+                    or lower(e.trxncode) like lower(concat('%', :searchText, '%'))
+                    or lower(e.description) like lower(concat('%', :searchText, '%')))
+                 order by e.trxncode]]>
                 </query>
             </loader>
         </collection>
     </data>
-
     <facets>
-        <dataLoadCoordinator auto="true"/>
+        <dataLoadCoordinator auto="false"/>
         <urlQueryParameters>
-            <genericFilter component="genericFilter"/>
             <pagination component="pagination"/>
         </urlQueryParameters>
     </facets>
-
     <actions>
         <action id="selectAction" type="lookup_select"/>
         <action id="discardAction" type="lookup_discard"/>
     </actions>
-
     <layout>
-        <genericFilter id="genericFilter" dataLoader="ardocsDl">
-            <properties include=".*"/>
-        </genericFilter>
+
+        <hbox width="100%"
+              alignItems="CENTER"
+              padding="false"
+              spacing="true"
+              classNames="simple-search-bar">
+            <textField id="searchField"
+                       placeholder="Search trxn code or description..."
+                       width="320px"
+                       clearButtonVisible="true"/>
+            <button id="searchButton"
+                    text="Search"
+                    themeNames="primary"
+                    icon="vaadin:search"/>
+            <button id="advancedSearchToggle"
+                    text="Advanced"
+                    themeNames="tertiary"
+                    icon="vaadin:filter"/>
+            <genericFilter id="genericFilter"
+                           dataLoader="ardocsDl"
+                           visible="false">
+                <properties include="trxncode description ttype ptype billto deposit classification"/>
+            </genericFilter>
+        </hbox>
 
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
                 <button id="createButton" action="ardocsDataGrid.createAction"/>
                 <button id="editButton" action="ardocsDataGrid.editAction"/>
                 <button id="removeButton" action="ardocsDataGrid.removeAction"/>
+                <button id="printButton"
+                        text="msg://ardocListView.printButton"
+                        icon="vaadin:print"
+                        themeNames="tertiary"/>
             </startSlot>
             <endSlot>
                 <simplePagination id="pagination" dataLoader="ardocsDl"/>
@@ -53,7 +78,6 @@
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
             </actions>
-            <!-- ✅ Only plain property columns here -->
             <columns resizable="true"/>
         </dataGrid>
 

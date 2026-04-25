@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="Ticket Detail">
+    <layout spacing="false" padding="false" height="100%">
+
+        <!-- Header row -->
+        <hbox id="headerBar"
+              width="100%"
+              alignItems="CENTER"
+              padding="true"
+              spacing="true"
+              classNames="buttons-panel">
+            <button id="backButton"
+                    text="← Back to Tickets"
+                    themeNames="tertiary"/>
+            <span id="ticketTitleLabel"
+                  text="Loading..."
+                  classNames="section-title"/>
+            <span id="statusBadge" text=""/>
+            <span id="priorityBadge" text=""/>
+        </hbox>
+
+        <!-- Ticket meta info -->
+        <hbox id="metaBox"
+              width="100%"
+              padding="true"
+              spacing="true">
+            <vbox spacing="false" padding="false">
+                <span id="customerLabel"  text="Customer:  —"/>
+                <span id="assignedLabel"  text="Assigned:  —"/>
+                <span id="createdLabel"   text="Created:   —"/>
+                <span id="updatedLabel"   text="Updated:   —"/>
+            </vbox>
+        </hbox>
+
+        <!-- Message thread -->
+        <vbox id="messagesBox"
+              width="100%"
+              height="100%"
+              spacing="false"
+              padding="true"
+              classNames="helpdesk-messages-scroll"/>
+
+        <!-- Reply area -->
+        <vbox id="replyBox"
+              width="100%"
+              spacing="false"
+              padding="true"
+              classNames="helpdesk-reply-panel">
+            <textArea id="replyArea"
+                      placeholder="Type your reply..."
+                      width="100%"
+                      minRows="3"
+                      maxRows="6"/>
+            <hbox alignItems="CENTER" spacing="true" padding="false">
+                <button id="sendReplyButton"
+                        text="Send Reply"
+                        icon="vaadin:paperplane"
+                        themeNames="primary"/>
+                <button id="aiAssistButton"
+                        text="AI Assist"
+                        icon="vaadin:magic"
+                        themeNames="tertiary"/>
+            </hbox>
+        </vbox>
+
+    </layout>
+</view>

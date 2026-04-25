@@ -1,0 +1,199 @@
+/* ============================================================
+   HelpDesk component styles
+   ============================================================ */
+
+/* ── Chat bubbles ─────────────────────────────────────────── */
+
+.helpdesk-bubble {
+    max-width: 72%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    word-break: break-word;
+    margin-bottom: 4px;
+}
+
+.helpdesk-bubble--user {
+    background: #1a56a0;
+    color: #ffffff;
+    border-radius: 12px 12px 4px 12px;
+}
+
+.helpdesk-bubble--assistant {
+    background: #ffffff;
+    border: 1px solid #c8d8ea;
+    border-radius: 12px 12px 12px 4px;
+    color: #1a2332;
+}
+
+.helpdesk-bubble--support {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 12px 12px 12px 4px;
+    color: #1a2332;
+}
+
+.helpdesk-bubble--system {
+    font-style: italic;
+    color: #9e9e9e;
+    border: 1px dashed #bdbdbd;
+    background: transparent;
+    border-radius: 8px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.helpdesk-bubble__sender {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.helpdesk-bubble--user .helpdesk-bubble__sender {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.helpdesk-bubble__body {
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 1.5;
+    display: block;
+}
+
+.helpdesk-bubble__ts {
+    font-size: 10px;
+    opacity: 0.55;
+    text-align: right;
+    display: block;
+    margin-top: 4px;
+}
+
+/* ── Input row ────────────────────────────────────────────── */
+
+.helpdesk-input-row {
+    background: #ffffff;
+    border-top: 1px solid #d0dcf0;
+    padding: 10px 16px;
+    gap: 10px;
+}
+
+/* Alias used on the XML inputRow hbox */
+.helpdesk-input-panel {
+    background: #ffffff;
+    border-top: 1px solid #d0dcf0;
+    padding: 10px 16px;
+    gap: 10px;
+}
+
+/* ── Top bar ──────────────────────────────────────────────── */
+
+.helpdesk-topbar {
+    background: #1a56a0;
+    color: #ffffff;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+
+/* ── Tickets grid ─────────────────────────────────────────── */
+
+.helpdesk-ticket-grid {
+    border: none;
+}
+
+/* ── Monospace cell ───────────────────────────────────────── */
+
+.helpdesk-mono {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+}
+
+/* ── Transcript lines ─────────────────────────────────────── */
+
+.helpdesk-transcript-line {
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+}
+
+.helpdesk-transcript-line--user {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+}
+
+.helpdesk-transcript-line--assistant {
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+}
+
+.helpdesk-transcript-line--support {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+}
+
+.helpdesk-transcript-line--system {
+    background: transparent;
+    border: 1px dashed #bdbdbd;
+    font-style: italic;
+    color: #9e9e9e;
+}
+
+/* ── Floating chat button ─────────────────────────────────── */
+
+#hd-float-btn {
+    position: fixed !important;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999 !important;
+    background: #1a56a0;
+    color: #ffffff;
+    border: none;
+    border-radius: 28px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(26, 86, 160, 0.4);
+    animation: hd-pulse 2.5s infinite;
+}
+
+#hd-float-btn:hover {
+    background: #1565c0;
+    box-shadow: 0 6px 20px rgba(26, 86, 160, 0.55);
+}
+
+#hd-float-btn.hd-has-unread {
+    position: fixed !important;
+    animation: none !important;
+    box-shadow: 0 0 0 3px #e53935,
+                0 4px 16px rgba(26, 86, 160, 0.5) !important;
+}
+
+#hd-float-btn.hd-has-unread::after {
+    content:       '';
+    position:      absolute;
+    top:           -4px;
+    right:         -4px;
+    width:         14px;
+    height:        14px;
+    background:    #e53935;
+    border-radius: 50%;
+    border:        2px solid #ffffff;
+    animation:     hd-badge-pulse 1s ease-in-out infinite;
+}
+
+@keyframes hd-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(26, 86, 160, 0.5); }
+    60%       { box-shadow: 0 0 0 10px rgba(26, 86, 160, 0); }
+}
+
+@keyframes hd-badge-pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.2); }
+}

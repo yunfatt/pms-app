@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
-      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
       title="msg://customerListView.title"
-      focusComponent="customersDataGrid">
+      focusComponent="searchField">
     <data>
         <collection id="customersDc"
                     class="com.company.pmsmain.entity.Customer">
             <fetchPlan extends="_base"/>
             <loader id="customersDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from Customer e]]>
+                    <![CDATA[select e from Customer e
+                 where ((:searchText is null or :searchText = '')
+                    or lower(e.custname) like lower(concat('%', :searchText, '%'))
+                    or lower(e.propertyno) like lower(concat('%', :searchText, '%'))
+                    or lower(e.phaseno) like lower(concat('%', :searchText, '%'))
+                    or lower(e.accno) like lower(concat('%', :searchText, '%')))
+                 order by e.phaseno, e.propertyno]]>
                 </query>
             </loader>
         </collection>
     </data>
     <facets>
-        <dataLoadCoordinator auto="true"/>
+        <dataLoadCoordinator auto="false"/>
         <urlQueryParameters>
-            <genericFilter component="genericFilter"/>
             <pagination component="pagination"/>
         </urlQueryParameters>
     </facets>
@@ -26,20 +30,46 @@
         <action id="discardAction" type="lookup_discard"/>
     </actions>
     <layout>
-        <genericFilter id="genericFilter"
-                       dataLoader="customersDl">
-            <properties include=".*"/>
-        </genericFilter>
+
+        <hbox width="100%"
+              alignItems="CENTER"
+              padding="false"
+              spacing="true"
+              classNames="simple-search-bar">
+            <textField id="searchField"
+                       placeholder="Search name, property no, phase or acc no..."
+                       width="320px"
+                       clearButtonVisible="true"/>
+            <button id="searchButton"
+                    text="Search"
+                    themeNames="primary"
+                    icon="vaadin:search"/>
+            <button id="advancedSearchToggle"
+                    text="Advanced"
+                    themeNames="tertiary"
+                    icon="vaadin:filter"/>
+            <genericFilter id="genericFilter"
+                           dataLoader="customersDl"
+                           visible="false">
+                <properties include="phaseno propertyno custtype custname identificationid accno active"/>
+            </genericFilter>
+        </hbox>
+
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
                 <button id="createButton" action="customersDataGrid.createAction"/>
                 <button id="editButton" action="customersDataGrid.editAction"/>
                 <button id="removeButton" action="customersDataGrid.removeAction"/>
+                <button id="printButton"
+                        text="msg://customerListView.printButton"
+                        icon="vaadin:print"
+                        themeNames="tertiary"/>
             </startSlot>
             <endSlot>
                 <simplePagination id="pagination" dataLoader="customersDl"/>
             </endSlot>
         </hbox>
+
         <dataGrid id="customersDataGrid"
                   width="100%"
                   minHeight="20em"
@@ -51,81 +81,17 @@
                 <action id="removeAction" type="list_remove"/>
             </actions>
             <columns resizable="true">
-                <column property="phaseno"/>
-                <column property="propertyno"/>
-                <column property="custtype"/>
-                <column property="custname"/>
-                <column property="customerbrn"/>
-                <column property="tin"/>
-                <column property="accno"/>
-                <column property="active"/>
-                <column property="addr1"/>
-                <column property="agreedate"/>
-                <column property="agreeno"/>
-                <column property="autotransfer"/>
-                <column property="billtounit"/>
-                <column property="city"/>
-                <column property="confirmlett"/>
-                <column property="consentdate"/>
-                <column property="country"/>
-                <column property="countrycode"/>
-                <column property="customergstno"/>
-                <column property="datestart"/>
-                <column property="disablesms"/>
-                <column property="dob"/>
-                <column property="dob2"/>
-                <column property="dob3"/>
-                <column property="dob4"/>
-                <column property="dob5"/>
-                <column property="dob6"/>
-                <column property="einvoicecustomertype"/>
-                <column property="email"/>
-                <column property="email2"/>
-                <column property="email3"/>
-                <column property="etel"/>
-                <column property="expire"/>
-                <column property="fax"/>
-                <column property="gstenddate"/>
-                <column property="gstregistrationdate"/>
-                <column property="historyno"/>
-                <column property="htel"/>
-                <column property="htel2"/>
-                <column property="identificationid"/>
-                <column property="identificationtype"/>
-                <column property="income"/>
-                <column property="interest"/>
-                <column property="legalaction"/>
-                <column property="motno"/>
-                <column property="motpresent"/>
-                <column property="motreceive"/>
-                <column property="mstatus"/>
-                <column property="nationality"/>
-                <column property="nric1"/>
-                <column property="otel"/>
-                <column property="otel2"/>
-                <column property="pob"/>
-                <column property="postcode"/>
-                <column property="profession"/>
-                <column property="race"/>
-                <column property="registeredproprietor"/>
-                <column property="religion"/>
-                <column property="remarks"/>
-                <column property="remarks2"/>
-                <column property="sex"/>
-                <column property="solcode"/>
-                <column property="solref"/>
-                <column property="spouseinc"/>
-                <column property="spousejob"/>
-                <column property="spousename"/>
-                <column property="state"/>
-                <column property="statecode"/>
-                <column property="statement"/>
-                <column property="strata"/>
-                <column property="stratadate"/>
-                <column property="tel"/>
-                <column property="term"/>
+                <column property="phaseno" header="Phase" width="8em"/>
+                <column property="propertyno" header="Property No" width="10em"/>
+                <column property="custtype" header="Type" width="7em"/>
+                <column property="custname" header="Customer Name" width="200px" flexGrow="1"/>
+                <column property="identificationid" header="IC/Passport" width="12em"/>
+                <column property="tel" header="Tel" width="10em"/>
+                <column property="accno" header="Acc No" width="9em"/>
+                <column property="active" header="Active" width="7em"/>
             </columns>
         </dataGrid>
+
         <hbox id="lookupActions" visible="false">
             <button id="selectButton" action="selectAction"/>
             <button id="discardButton" action="discardAction"/>

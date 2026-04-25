@@ -27,6 +27,9 @@ public class TenantSchemaInitializer implements ApplicationRunner, ResourceLoade
     @Value("${tenant.liquibase.change-log}")
     private String changeLog;
 
+    @Value("${tenant.db.host-override:}")
+    private String dbHostOverride;
+
     public TenantSchemaInitializer(UnconstrainedDataManager dataManager) {
         this.dataManager = dataManager;
     }
@@ -49,9 +52,11 @@ public class TenantSchemaInitializer implements ApplicationRunner, ResourceLoade
         for (AppCompany company : companies) {
             log.info("Running Liquibase schema init for: {}", company.getCompanyCode());
             try {
+                String host = (dbHostOverride != null && !dbHostOverride.isBlank())
+                        ? dbHostOverride : company.getDbHost();
                 DataSource ds = DataSourceBuilder.create()
                         .driverClassName("org.postgresql.Driver")
-                        .url("jdbc:postgresql://" + company.getDbHost() + ":"
+                        .url("jdbc:postgresql://" + host + ":"
                                 + company.getDbPort() + "/" + company.getDbName())
                         .username(company.getDbUsername())
                         .password(company.getDbPasswordEnc())

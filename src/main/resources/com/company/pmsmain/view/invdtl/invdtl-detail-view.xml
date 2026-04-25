@@ -17,61 +17,190 @@
         <action id="closeAction" type="detail_close"/>
     </actions>
     <layout>
-        <formLayout id="form" dataContainer="invdtlDc">
-            <responsiveSteps>
-                <responsiveStep minWidth="0" columns="1"/>
-                <responsiveStep minWidth="40em" columns="2"/>
-            </responsiveSteps>
-            <textField id="idInvnoField" property="id.invno"/>
-            <textField id="idLinenumField" property="id.linenum"/>
-            <textField id="amountField" property="amount"/>
-            <textField id="chargeidField" property="chargeid"/>
-            <textField id="chargenoField" property="chargeno"/>
-            <textField id="compnoField" property="compno"/>
-            <datePicker id="date1Field" property="date1"/>
-            <datePicker id="date2Field" property="date2"/>
-            <textField id="descriptionField" property="description"/>
-            <datePicker id="duedateField" property="duedate"/>
-            <textField id="echargeidField" property="echargeid"/>
-            <textField id="gstamtField" property="gstamt"/>
-            <textField id="gstpayableField" property="gstpayable"/>
-            <textField id="gstrateField" property="gstrate"/>
-            <datePicker id="gsttaxpointdateField" property="gsttaxpointdate"/>
-            <textField id="icptamtField" property="icptamt"/>
-            <textField id="icptqtyField" property="icptqty"/>
-            <textField id="icptqty2Field" property="icptqty2"/>
-            <textField id="icptqty3Field" property="icptqty3"/>
-            <textField id="icptqty4Field" property="icptqty4"/>
-            <textField id="icptqty5Field" property="icptqty5"/>
-            <textField id="icptqty6Field" property="icptqty6"/>
-            <textField id="icptrateField" property="icptrate"/>
-            <textField id="icptrate2Field" property="icptrate2"/>
-            <textField id="icptrate3Field" property="icptrate3"/>
-            <textField id="icptrate4Field" property="icptrate4"/>
-            <textField id="icptrate5Field" property="icptrate5"/>
-            <textField id="icptrate6Field" property="icptrate6"/>
-            <textField id="maxdemandField" property="maxdemand"/>
-            <textField id="netamtField" property="netamt"/>
-            <textField id="periodField" property="period"/>
-            <textField id="priceField" property="price"/>
-            <textField id="price2Field" property="price2"/>
-            <textField id="price3Field" property="price3"/>
-            <textField id="price4Field" property="price4"/>
-            <textField id="price5Field" property="price5"/>
-            <textField id="price6Field" property="price6"/>
-            <textField id="qtyField" property="qty"/>
-            <textField id="qty2Field" property="qty2"/>
-            <textField id="qty3Field" property="qty3"/>
-            <textField id="qty4Field" property="qty4"/>
-            <textField id="qty5Field" property="qty5"/>
-            <textField id="qty6Field" property="qty6"/>
-            <textField id="reading1Field" property="reading1"/>
-            <textField id="reading2Field" property="reading2"/>
-            <textField id="reamtField" property="reamt"/>
-            <textField id="rerateField" property="rerate"/>
-            <textField id="taxcodeidField" property="taxcodeid"/>
-            <textField id="unitField" property="unit"/>
-        </formLayout>
+        <!--
+            tabSheet:  27em  (content 24em + ~3em tab bar)
+            formLayout: overflow visible, no scroller — all fields fit
+            Pricing:   3 columns → 6 rows
+            ICPT:      2 columns → 7 rows  (both fit in 24em)
+            All other tabs: much fewer fields, easily fit
+        -->
+        <tabSheet id="tabSheet"
+                  width="56em"
+                  height="27em"
+                  minHeight="27em"
+                  maxHeight="27em"
+                  themeNames="bordered">
+
+            <!-- ═══════════════════════════════════════════════
+                 GENERAL TAB  — 2 columns, 5 rows
+                 ═══════════════════════════════════════════════ -->
+            <tab id="generalTab" label="General">
+                <formLayout id="form"
+                            dataContainer="invdtlDc"
+                            width="100%"
+                            height="24em">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0"    columns="1"/>
+                        <responsiveStep minWidth="30em" columns="2"/>
+                    </responsiveSteps>
+
+                    <!-- Row 1 -->
+                    <textField id="idInvnoField"   property="id.invno"   width="10em" label="Inv No"/>
+                    <textField id="idLinenumField" property="id.linenum" width="6em"  label="Line"/>
+
+                    <!-- Row 2 -->
+                    <textField id="compnoField"    property="compno"     width="5em"  label="Comp"/>
+                    <textField id="periodField"    property="period"     width="6em"  label="Period"/>
+
+                    <!-- Row 3 -->
+                    <textField id="chargeidField"  property="chargeid"   width="6em"  label="Charge ID"/>
+                    <textField id="chargenoField"  property="chargeno"   width="10em" label="Charge No"/>
+
+                    <!-- Row 4 -->
+                    <textField id="echargeidField" property="echargeid"  width="6em"  label="ECharge ID"/>
+                    <textField id="amountField"    property="amount"     width="12em" label="Amount"/>
+
+                    <!-- Row 5: description full width -->
+                    <textField id="descriptionField" property="description" width="100%" label="Description" colspan="2"/>
+
+                    <!-- Row 6 -->
+                    <textField id="netamtField"    property="netamt"     width="12em" label="Net Amt"/>
+
+                </formLayout>
+            </tab>
+
+            <!-- ═══════════════════════════════════════════════
+                 DATES TAB  — 2 columns, 2 rows
+                 ═══════════════════════════════════════════════ -->
+            <tab id="datesTab" label="Dates">
+                <formLayout dataContainer="invdtlDc"
+                            width="100%"
+                            height="24em">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0"    columns="1"/>
+                        <responsiveStep minWidth="30em" columns="2"/>
+                    </responsiveSteps>
+
+                    <datePicker id="date1Field"           property="date1"           width="10em" label="Date 1"/>
+                    <datePicker id="date2Field"           property="date2"           width="10em" label="Date 2"/>
+                    <datePicker id="duedateField"         property="duedate"         width="10em" label="Due Date"/>
+                    <datePicker id="gsttaxpointdateField" property="gsttaxpointdate" width="10em" label="GST Tax Point Date"/>
+
+                </formLayout>
+            </tab>
+
+            <!-- ═══════════════════════════════════════════════
+                 TAX / GST TAB  — 2 columns, 2 rows
+                 ═══════════════════════════════════════════════ -->
+            <tab id="taxTab" label="Tax / GST">
+                <formLayout dataContainer="invdtlDc"
+                            width="100%"
+                            height="24em">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0"    columns="1"/>
+                        <responsiveStep minWidth="30em" columns="2"/>
+                    </responsiveSteps>
+
+                    <!-- Integer -->
+                    <textField id="taxcodeidField"  property="taxcodeid"  width="6em"  label="Tax Code"/>
+                    <!-- DECIMAL(4,0) -->
+                    <textField id="gstrateField"    property="gstrate"    width="5em"  label="GST Rate %"/>
+                    <!-- DECIMAL(10,2) -->
+                    <textField id="gstamtField"     property="gstamt"     width="10em" label="GST Amt"/>
+                    <!-- DECIMAL(14,2) -->
+                    <textField id="gstpayableField" property="gstpayable" width="12em" label="GST Payable"/>
+
+                </formLayout>
+            </tab>
+
+            <!-- ═══════════════════════════════════════════════
+                 PRICING TAB  — 3 columns → 6 rows (18 fields)
+                 Column order: unit | price | qty (repeated per tier)
+                 ═══════════════════════════════════════════════ -->
+            <tab id="pricingTab" label="Pricing">
+                <formLayout dataContainer="invdtlDc"
+                            width="100%"
+                            height="24em">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0"    columns="1"/>
+                        <responsiveStep minWidth="30em" columns="2"/>
+                        <responsiveStep minWidth="50em" columns="3"/>
+                    </responsiveSteps>
+
+                    <!-- Row 1: unit + price + qty -->
+                    <textField id="unitField"   property="unit"   width="7em"  label="Unit"/>
+                    <textField id="priceField"  property="price"  width="10em" label="Price"/>
+                    <textField id="qtyField"    property="qty"    width="10em" label="Qty"/>
+
+                    <!-- Row 2 -->
+                    <textField id="price2Field" property="price2" width="10em" label="Price 2"/>
+                    <textField id="qty2Field"   property="qty2"   width="10em" label="Qty 2"/>
+                    <textField id="price3Field" property="price3" width="10em" label="Price 3"/>
+
+                    <!-- Row 3 -->
+                    <textField id="qty3Field"   property="qty3"   width="10em" label="Qty 3"/>
+                    <textField id="price4Field" property="price4" width="10em" label="Price 4"/>
+                    <textField id="qty4Field"   property="qty4"   width="10em" label="Qty 4"/>
+
+                    <!-- Row 4 -->
+                    <textField id="price5Field" property="price5" width="10em" label="Price 5"/>
+                    <textField id="qty5Field"   property="qty5"   width="10em" label="Qty 5"/>
+                    <textField id="price6Field" property="price6" width="10em" label="Price 6"/>
+
+                    <!-- Row 5 -->
+                    <textField id="qty6Field"      property="qty6"      width="10em" label="Qty 6"/>
+                    <textField id="reading1Field"  property="reading1"  width="7em"  label="Reading 1"/>
+                    <textField id="reading2Field"  property="reading2"  width="7em"  label="Reading 2"/>
+
+                    <!-- Row 6 -->
+                    <textField id="reamtField"     property="reamt"     width="8em"  label="RE Amt"/>
+                    <textField id="rerateField"    property="rerate"    width="8em"  label="RE Rate"/>
+                    <textField id="maxdemandField" property="maxdemand" width="8em"  label="Max Demand"/>
+
+                </formLayout>
+            </tab>
+
+            <!-- ═══════════════════════════════════════════════
+                 ICPT TAB  — 2 columns → 7 rows (13 fields)
+                 Row 1: icptamt (colspan 2)
+                 Rows 2-7: qty/rate pairs
+                 ═══════════════════════════════════════════════ -->
+            <tab id="icptTab" label="ICPT">
+                <formLayout dataContainer="invdtlDc"
+                            width="100%"
+                            height="24em">
+                    <responsiveSteps>
+                        <responsiveStep minWidth="0"    columns="1"/>
+                        <responsiveStep minWidth="30em" columns="2"/>
+                    </responsiveSteps>
+
+                    <!-- Row 1: total spans full width -->
+                    <textField id="icptamtField"   property="icptamt"   width="12em" label="ICPT Amt"    colspan="2"/>
+
+                    <!-- Rows 2-7: qty + rate pairs -->
+                    <textField id="icptqtyField"   property="icptqty"   width="10em" label="ICPT Qty"/>
+                    <textField id="icptrateField"  property="icptrate"  width="8em"  label="ICPT Rate"/>
+
+                    <textField id="icptqty2Field"  property="icptqty2"  width="10em" label="ICPT Qty 2"/>
+                    <textField id="icptrate2Field" property="icptrate2" width="8em"  label="ICPT Rate 2"/>
+
+                    <textField id="icptqty3Field"  property="icptqty3"  width="10em" label="ICPT Qty 3"/>
+                    <textField id="icptrate3Field" property="icptrate3" width="8em"  label="ICPT Rate 3"/>
+
+                    <textField id="icptqty4Field"  property="icptqty4"  width="10em" label="ICPT Qty 4"/>
+                    <textField id="icptrate4Field" property="icptrate4" width="8em"  label="ICPT Rate 4"/>
+
+                    <textField id="icptqty5Field"  property="icptqty5"  width="10em" label="ICPT Qty 5"/>
+                    <textField id="icptrate5Field" property="icptrate5" width="8em"  label="ICPT Rate 5"/>
+
+                    <textField id="icptqty6Field"  property="icptqty6"  width="10em" label="ICPT Qty 6"/>
+                    <textField id="icptrate6Field" property="icptrate6" width="8em"  label="ICPT Rate 6"/>
+
+                </formLayout>
+            </tab>
+
+        </tabSheet>
+
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveCloseAction"/>
             <button id="closeButton" action="closeAction"/>

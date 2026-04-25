@@ -61,6 +61,10 @@
                 <button id="createButton" action="glfyearDataGrid.createAction"/>
                 <button id="editButton" action="glfyearDataGrid.editAction"/>
                 <button id="removeButton" action="glfyearDataGrid.removeAction"/>
+                <button id="printButton"
+                        text="msg://glfyearListView.printButton"
+                        icon="vaadin:print"
+                        themeNames="tertiary"/>
             </startSlot>
             <endSlot>
                 <simplePagination id="pagination" dataLoader="glfyearDl"/>

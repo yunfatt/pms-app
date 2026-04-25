@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="HelpDesk — Chat"
+      focusComponent="messageInput">
+    <layout spacing="false" padding="false" height="100%">
+
+        <!-- Top bar: ticket info + refresh -->
+        <hbox id="topBar"
+              width="100%"
+              alignItems="CENTER"
+              padding="true"
+              spacing="true"
+              classNames="buttons-panel">
+            <span id="ticketLabel" text="No ticket selected"/>
+            <span id="statusBadge" text=""/>
+            <span style="flex: 1"/>
+            <button id="refreshBtn"
+                    text="Refresh"
+                    icon="vaadin:refresh"
+                    themeNames="tertiary"/>
+        </hbox>
+
+        <!-- Scrollable message area -->
+        <scroller id="chatScroller"
+                  width="100%"
+                  height="100%">
+            <vbox id="messagesBox"
+                  width="100%"
+                  spacing="true"
+                  padding="true"/>
+        </scroller>
+
+        <!-- Input row -->
+        <hbox id="inputRow"
+              width="100%"
+              alignItems="END"
+              padding="true"
+              spacing="true"
+              classNames="helpdesk-input-panel">
+            <textArea id="messageInput"
+                      width="100%"
+                      minRows="1"
+                      maxRows="4"
+                      placeholder="Type a message..."/>
+            <button id="sendBtn"
+                    text="Send"
+                    icon="vaadin:paperplane"
+                    themeNames="primary"/>
+        </hbox>
+
+    </layout>
+</view>

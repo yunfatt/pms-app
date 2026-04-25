@@ -125,3 +125,86 @@ When I type `GENVIEW <EntityName>`, generate these 4 files:
 - src/main/java/**/view/vendor/VendorListView.java
 - src/main/resources/**/view/vendor/vendor-list-view.xml
 - src/main/resources/**/Reports/supplierlist.mrt]()
+
+## DEPLOY Command
+
+When I type `DEPLOY`, execute the full deployment pipeline below step by step,
+confirming success at each phase before proceeding.
+
+### Phase 1 — Build (Windows PC)
+
+Run these commands in the IntelliJ Terminal from the project root:
+
+**Step 1 — Package the JAR:**
+```bash
+./gradlew clean bootJar -Pprod
+```
+
+**Step 2 — Ensure Dockerfile exists in project root.**
+Create it if missing with this exact content:
+```dockerfile
+FROM bellsoft/liberica-openjdk-debian:21
+WORKDIR /app
+COPY build/libs/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
+```
+
+**Step 3 — Build the Docker image:**
+```bash
+docker build -t pms-app:latest .
+```
+
+**Step 4 — Export image to tar:**
+```bash
+docker save -o pms-app.tar pms-app:latest
+```
+
+### Phase 2 — Transfer (Windows → Zorin OS)
+
+**Step 5 — Transfer the image:**
+```bash
+scp pms-app.tar zorinpc@192.168.0.159:/home/zorinpc/
+```
+
+**Step 6 — Transfer docker-compose.yml:**
+```bash
+scp docker-compose.yml zorinpc@192.168.0.159:/opt/pms-app/
+```
+
+### Phase 3 — Launch (Zorin Server)
+
+SSH into the server and run:
+
+**Step 7 — Load the image:**
+```bash
+sudo docker load -i /home/zorinpc/pms-app.tar
+```
+
+**Step 8 — Start the stack:**
+```bash
+cd /opt/pms-app
+sudo docker compose up -d
+```
+
+### Phase 4 — Verify
+
+**Step 9 — Check all containers are running:**
+```bash
+sudo docker compose ps
+```
+
+**Step 10 — Tail logs to confirm startup:**
+```bash
+sudo docker compose logs -f jmix-app
+```
+
+**Step 11 — Confirm app is reachable at:** `http://192.168.0.159:8080`
+
+### DEPLOY Constraints
+- Always run Phase 1 fully before Phase 2
+- If `docker build` fails, check that `build/libs/*.jar` exists first
+- If `scp` fails, verify SSH access: `ssh zorinpc@192.168.0.159`
+- If `docker compose up` fails, run `sudo docker compose logs jmix-app`
+  and report the last 50 lines
+- Never skip the verify phase — confirm HTTP 200 before declaring success
